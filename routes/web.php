@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,9 +12,16 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::middleware(['casAuth'])->group(function(){
+    Route::get('/', function () {
+        return view('welcome');
+    });
+    Route::get('/logout',function(){
 
-Route::get('/', function () {
-    return view('welcome');
+        cas()->logout();
+        return redirect('htpps://auth.mlouma.com/cas/logout');
+    });
+
 });
 
 Route::get('/admin', function () {
