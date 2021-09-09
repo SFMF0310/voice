@@ -13,9 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::middleware(['casAuth'])->group(function(){
+    
     Route::get('/', function () {
         return view('welcome');
     });
+    
     Route::get('/logout',function(){
 
         cas()->logout();
@@ -23,7 +25,6 @@ Route::middleware(['casAuth'])->group(function(){
     });
 
 });
-
 Route::get('/admin', function () {
     return view('admin.dashboard');
 });
