@@ -12,12 +12,17 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::middleware(['casAuth'])->group(function(){
+Route::get('/', function () {
+    return view('welcome');
+});
+            // Admin
+Route::middleware(['casAuth','admin'])->group(function(){
+
     
-    Route::get('/', function () {
-        return view('welcome');
+    Route::get('/admin', function () {
+        return view('admin.dashboard');
     });
-    
+
     Route::get('/logout',function(){
 
         cas()->logout();
@@ -25,6 +30,21 @@ Route::middleware(['casAuth'])->group(function(){
     });
 
 });
-Route::get('/admin', function () {
-    return view('admin.dashboard');
+
+
+                //Client 
+Route::middleware(['casAuth','client'])->group(function(){
+
+    
+
+    Route::get('/client', function () {
+        return view('client.client');
+    });
+
+    Route::get('/logout',function(){
+
+        cas()->logout();
+        return redirect('htpps://auth.mlouma.com/cas/logout');
+    });
+
 });

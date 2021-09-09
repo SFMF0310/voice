@@ -64,6 +64,10 @@ class Kernel extends HttpKernel
         'cas.auth'  => 'Subfission\Cas\Middleware\CASAuth',
         'cas.guest' => 'Subfission\Cas\Middleware\RedirectCASAuthenticated',
         'casAuth' => \App\Http\Middleware\CasAuth::class,
+        'admin' =>   \App\Http\Middleware\AdminMiddleware::class,
+        'client' =>   \App\Http\Middleware\ClientMiddleware::class,
+
+
 
     ];
 

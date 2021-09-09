@@ -31,7 +31,6 @@ class CasAuth
         $user = cas()->getUser();
         $login = DB::select("SELECT id from ml_users WHERE login='$user'");
         if(!empty($login)){
-
             $if_profil_exist =DB::table('voice_uprofil')
             ->join('ml_users','ml_users.id','=','voice_uprofil.user')
             ->join('voice_profil','voice_uprofil.profil','=','voice_profil.id')
@@ -43,15 +42,34 @@ class CasAuth
             }
             else{
                 session()->put('cas_user', cas()->user() );
-                $_SESSION['profil'] = $if_profil_exist[0]->profil;
+
                 $_SESSION['role'] = $if_profil_exist[0]->intitule;
+                $_SESSION['profil'] = $if_profil_exist[0]->profil;
+
+
                 return $next($request);
             }
         }
         else{
             return view('Unauthorized', 401);
         }
-     
+       /* $login_in_db = DB::table('ml_users')
+        ->join('prix_profil','prix_profil.id_user','=','ml_users.id')
+        ->join('prix_roles','prix_profil.id_role','=','prix_roles.id_role')
+        ->where('login' ,'=' ,$user)->get();
+        */
+
+      //  foreach($login_in_db as $logins){
+
+      //  if (empty($login_in_db) ) {
+         //   session()->put('cas_user', cas()->user() );
+          //  return $next($request);
+      //  }
+     //   else{
+        //    return response('Unauthorized', 401);
+
+       // };
+        //}
 
     }
 }
