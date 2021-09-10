@@ -42,7 +42,7 @@
 
                               @foreach($role as $dataRole)
 
-                              <option value="{{$dataRole->id_role}}"> {{$dataRole->designation}}  </option>
+                              <option value="{{$dataRole->id}}"> {{$dataRole->intitule}}  </option>
 
                               @endforeach
                             </select>
@@ -69,17 +69,17 @@
       <div class="col-md-12">
         <div class="card">
 
-          @if($_SESSION['role']=='Admin')
+          @if($_SESSION['profil']=1 or $_SESSION['profil']=2  )
           <div class="card-header card-header-primary">
             <h4 class="card-title ">Liste des utilisateurs</h4>
             <?php 
             $user1 = cas()->getUser();
             $login = DB::table('ml_users')->where('login', $user1)->first();
 
-            $if_profil_exist =DB::table('dash_profil')
-            ->join('ml_users','ml_users.id','=','dash_profil.id_user') 
-            ->join('dash_roles','dash_profil.id_role','=','dash_roles.id_role')
-            ->where('dash_profil.id_user' ,'=' ,$login->id)->first();
+            $if_profil_exist =DB::table('voice_uprofil')
+            ->join('ml_users','ml_users.id','=','voice_uprofil.user') 
+            ->join('voice_profil','voice_uprofil.profil','=','voice_profil.id')
+            ->where('voice_uprofil.user' ,'=' ,$login->id)->first();
 
 
 
@@ -130,6 +130,10 @@
                   <th>
                     Tel 
                   </th>
+
+                  <th>
+                    Profil 
+                  </th>
                  
                   <th>
                     Modifier
@@ -161,6 +165,10 @@
 
                     <td>
                       {{$data->tel}}
+                    </td>
+
+                    <td>
+                      {{$data->intitule}}
                     </td>
 
                     

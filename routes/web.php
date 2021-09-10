@@ -12,9 +12,13 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+<<<<<<< HEAD
 // Route::get('/index', function () {
 //     return view('welcome');
 // });
+=======
+
+>>>>>>> 0c362425fe2484c4e3167f4c3ffae230a2e3e9f9
             // Admin
 Route::middleware(['casAuth','admin'])->group(function(){
 
@@ -23,11 +27,23 @@ Route::middleware(['casAuth','admin'])->group(function(){
         return view('admin.dashboard');
     });
 
-    Route::get('/logout',function(){
+    
+Route::get('/', function () {
+    return view('welcome');
+});
 
-        cas()->logout();
-        return redirect('htpps://auth.mlouma.com/cas/logout');
-    });
+Route::get('/logout',function(){
+
+    cas()->logout();
+    return redirect('htpps://auth.mlouma.com/cas/logout');
+});
+    //utilisateur
+    Route::get('admin/utilisateur', 'UserController@index');
+    Route::post('/admin/ajoutUtilisateur','UserController@store');
+    Route::get('/admin/modifUtilisateur/{id}', 'UserController@update');
+    Route::put('admin/update-utilisateur-saving/{id}', 'UserController@updateSaving');
+    Route::post('/admin/deleteUtilisateur/{id}', 'UserController@delete');
+
 
 });
 
