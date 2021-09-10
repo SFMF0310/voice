@@ -12,13 +12,13 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/index', function () {
+//     return view('welcome');
+// });
             // Admin
 Route::middleware(['casAuth','admin'])->group(function(){
 
-    
+
     Route::get('/admin', function () {
         return view('admin.dashboard');
     });
@@ -32,10 +32,10 @@ Route::middleware(['casAuth','admin'])->group(function(){
 });
 
 
-                //Client 
+                //Client
 Route::middleware(['casAuth','client'])->group(function(){
 
-    
+
 
     Route::get('/client', function () {
         return view('client.client');
