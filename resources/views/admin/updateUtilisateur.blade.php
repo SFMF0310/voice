@@ -36,7 +36,7 @@
                             
                             <select class="form-control" name="profil">
                               @foreach($role as $dataRole)
-                                  <option value="{{$dataRole->id_role}}" {{ $dataRole->id_role == $data->id_role ? 'selected' : '' }} >{{$dataRole->designation}}</option>
+                                  <option value="{{$dataRole->id}}" {{ $dataRole->id == $data->profil ? 'selected' : '' }} >{{$dataRole->intitule}}</option>
                               @endforeach
                               
                             </select>
