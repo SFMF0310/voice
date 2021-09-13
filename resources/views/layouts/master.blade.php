@@ -116,18 +116,7 @@ The above copyright notice and this permission notice shall be included in all c
       <div class="content">
         @yield('content')
       </div>
-      <footer class="footer">
-        <div class="container-fluid">
-          
-          <div class="copyright float-right">
-            &copy;
-            <script>
-              document.write(new Date().getFullYear())
-            </script>, made with <i class="material-icons">favorite</i> by
-            <a href="https://mlouma.com" target="_blank">Mlouma</a>.
-          </div>
-        </div>
-      </footer>
+      
     </div>
   </div>
   

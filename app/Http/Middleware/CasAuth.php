@@ -45,6 +45,8 @@ class CasAuth
 
                 $_SESSION['role'] = $if_profil_exist[0]->intitule;
                 $_SESSION['profil'] = $if_profil_exist[0]->profil;
+                $_SESSION['user'] = $login[0]->id;
+
 
 
                 return $next($request);
