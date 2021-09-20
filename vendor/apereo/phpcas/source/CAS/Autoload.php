@@ -85,11 +85,11 @@ if (!class_exists('CAS_Client'))
 {
     trigger_error('phpCAS autoloader is deprecated. Install phpCAS using composer instead.', E_USER_DEPRECATED);
     spl_autoload_register('CAS_autoload');
-    if (function_exists('__autoload')
-        && !in_array('__autoload', spl_autoload_functions())
+    if (function_exists('spl_autoload')
+        && !in_array('spl_autoload', spl_autoload_functions())
     ) {
-        // __autoload() was being used, but now would be ignored, add
+        // spl_autoload() was being used, but now would be ignored, add
         // it to the autoload stack
-        spl_autoload_register('__autoload');
+        spl_autoload_register('spl_autoload');
     }
 }

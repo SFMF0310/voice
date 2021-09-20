@@ -706,10 +706,6 @@ class ComposerStaticInit1ee2a39a41374aaf8006e96a743b7c0d
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Auth\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerificationController.php',
         'App\\Http\\Controllers\\CampagneController' => __DIR__ . '/../..' . '/app/Http/Controllers/CampagneController.php',
-<<<<<<< HEAD
-=======
-        'App\\Http\\Controllers\\ContactController' => __DIR__ . '/../..' . '/app/Http/Controllers/ContactController.php',
->>>>>>> 27aa624c56a97c9898b3446ea6b0ee51c2b26ee5
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\AdminMiddleware' => __DIR__ . '/../..' . '/app/Http/Middleware/AdminMiddleware.php',
@@ -722,16 +718,8 @@ class ComposerStaticInit1ee2a39a41374aaf8006e96a743b7c0d
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
-<<<<<<< HEAD
         'App\\Models\\MlUser' => __DIR__ . '/../..' . '/app/Models/MlUser.php',
         'App\\Models\\VoiceCampagne' => __DIR__ . '/../..' . '/app/Models/VoiceCampagne.php',
-=======
-        'App\\Http\\Requests\\CsvImportRequest' => __DIR__ . '/../..' . '/app/Http/Requests/CsvImportRequest.php',
-        'App\\Models\\MlUser' => __DIR__ . '/../..' . '/app/Models/MlUser.php',
-        'App\\Models\\VoiceCampagne' => __DIR__ . '/../..' . '/app/Models/VoiceCampagne.php',
-        'App\\Models\\VoiceClient' => __DIR__ . '/../..' . '/app/Models/VoiceClient.php',
-        'App\\Models\\VoiceContact' => __DIR__ . '/../..' . '/app/Models/VoiceContact.php',
->>>>>>> 27aa624c56a97c9898b3446ea6b0ee51c2b26ee5
         'App\\Models\\VoiceProfil' => __DIR__ . '/../..' . '/app/Models/VoiceProfil.php',
         'App\\Models\\VoiceUprofil' => __DIR__ . '/../..' . '/app/Models/VoiceUprofil.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
