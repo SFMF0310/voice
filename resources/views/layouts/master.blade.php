@@ -226,6 +226,7 @@ The above copyright notice and this permission notice shall be included in all c
 
       // FileInput
       $('.form-file-simple .inputFileVisible').click(function() {
+        console.log("gneuwna")
         $(this).siblings('.inputFileHidden').trigger('click');
       });
 
