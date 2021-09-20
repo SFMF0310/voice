@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClientController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,20 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-            // Admin
+                    /* Admin & SuperAdmin */
 Route::middleware(['casAuth','admin'])->group(function(){
-
-
-    Route::get('/admin', function () {
-        return view('admin.dashboard');
+    Route::get('/', function () {
+        return view('welcome');
     });
-
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/logout',function(){
+    Route::get('/admin','ClientController@index');
+    Route::get('/logout',function(){
 
     cas()->logout();
     return redirect('htpps://auth.mlouma.com/cas/logout');
@@ -44,19 +38,24 @@ Route::get('/logout',function(){
 
 
 });
-
-
-                //Client
+                    /* Profil Client */
 Route::middleware(['casAuth','client'])->group(function(){
-
-
 
     Route::get('/client', function () {
         return view('client.client');
     });
-
     Route::get('/logout',function(){
+        cas()->logout();
+        return redirect('htpps://auth.mlouma.com/cas/logout');
+    });
 
+});
+                    /* Personnel */
+Route::middleware(['casAuth','personnel'])->group(function(){
+    Route::get('/client/personnel', function () {
+        return view('client.personnel.index');
+    });
+    Route::get('/logout',function(){
         cas()->logout();
         return redirect('htpps://auth.mlouma.com/cas/logout');
     });

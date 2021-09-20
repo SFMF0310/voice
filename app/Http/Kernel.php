@@ -66,7 +66,7 @@ class Kernel extends HttpKernel
         'casAuth' => \App\Http\Middleware\CasAuth::class,
         'admin' =>   \App\Http\Middleware\AdminMiddleware::class,
         'client' =>   \App\Http\Middleware\ClientMiddleware::class,
-
+        'personnel' => \App\Http\Middleware\PersonnelMiddleware::class
 
 
     ];

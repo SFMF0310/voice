@@ -21,23 +21,11 @@
               </div>
               <div class="card-body ">
                 <div class="form-group row">
-                        <div class="col-md-6">
-                            <label for="" class="col-form-label">Utilisateur</label>
-                            
-                            <select class="form-control select-live" name="utilisateur">
-                              <option>--Sélectionner un utilisateur</option>
 
-                              @foreach($mlUser as $dataUser)
-
-                              <option value="{{$dataUser->id}}">{{$dataUser->prenom}} {{$dataUser->nom}} - {{$dataUser->login}} </option>
-
-                              @endforeach
-                            </select>
-                        </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6" >
                             <label for="" class="col-form-label">Rôle</label>
-                            
-                            <select class="form-control select-live2" name="role">
+
+                            <select id="role" class="form-control select-live2" name="role">
                               <option>--Sélectionner le rôle</option>
 
                               @foreach($role as $dataRole)
@@ -48,9 +36,86 @@
                             </select>
 
                         </div>
+                        <div class="col-md-6" id="users">
+                            <label for="" class="col-form-label">Utilisateur</label>
+
+                            <select class="form-control select-live" name="utilisateur">
+                              <option>--Sélectionner un utilisateur</option>
+
+                              @foreach($mlUser as $dataUser)
+
+                              <option value="{{$dataUser->id}}">{{$dataUser->prenom}} {{$dataUser->nom}} - {{$dataUser->login}} </option>
+
+                              @endforeach
+                            </select>
+                        </div>
+                        <div class="col-md-6 info-personnel">
+                            <label for="" class="col-form-label">Prénom</label>
+
+                            <input class="form-control info-personnel" name="prenom">
+                              {{-- <option>--Sélectionner un utilisateur</option>
+
+                              @foreach($mlUser as $dataUser)
+
+                              <option value="{{$dataUser->id}}">{{$dataUser->prenom}} {{$dataUser->nom}} - {{$dataUser->login}} </option>
+
+                              @endforeach
+                            </select> --}}
+                        </div>
+                        <div class="col-md-6 info-personnel">
+                            <label for="" class="col-form-label">Nom</label>
+
+                            <input class="form-control " name="nom">
+                              {{-- <option>--Sélectionner un utilisateur</option>
+
+                              @foreach($mlUser as $dataUser)
+
+                              <option value="{{$dataUser->id}}">{{$dataUser->prenom}} {{$dataUser->nom}} - {{$dataUser->login}} </option>
+
+                              @endforeach
+                            </select> --}}
+                        </div>
+                        <div class="col-md-6 info-personnel">
+                            <label for="" class="col-form-label">Téléphone</label>
+
+                            <input class="form-control" name="tel">
+                              {{-- <option>--Sélectionner un utilisateur</option>
+
+                              @foreach($mlUser as $dataUser)
+
+                              <option value="{{$dataUser->id}}">{{$dataUser->prenom}} {{$dataUser->nom}} - {{$dataUser->login}} </option>
+
+                              @endforeach
+                            </select> --}}
+                        </div>
+                        <div class="col-md-6 info-personnel">
+                            <label for="" class="col-form-label">Login</label>
+
+                            <input class="form-control" name="login">
+                              {{-- <option>--Sélectionner un utilisateur</option>
+
+                              @foreach($mlUser as $dataUser)
+
+                              <option value="{{$dataUser->id}}">{{$dataUser->prenom}} {{$dataUser->nom}} - {{$dataUser->login}} </option>
+
+                              @endforeach
+                            </select> --}}
+                        </div>
+                        <div class="col-md-6 info-personnel">
+                            <label for="" class="col-form-label">Mot de passe</label>
+
+                            <input class="form-control" name="mdp">
+                              {{-- <option>--Sélectionner un utilisateur</option>
+
+                              @foreach($mlUser as $dataUser)
+
+                              <option value="{{$dataUser->id}}">{{$dataUser->prenom}} {{$dataUser->nom}} - {{$dataUser->login}} </option>
+
+                              @endforeach --}}
+                        </div>
                 </div>
-                
-                
+
+
               </div>
               <div class="card-footer ml-auto mr-auto">
                 <a class="btn btn-danger" data-dismiss="modal">Annuler</a>
@@ -72,12 +137,12 @@
           @if($_SESSION['profil']=1 or $_SESSION['profil']=2  )
           <div class="card-header card-header-primary">
             <h4 class="card-title ">Liste des utilisateurs</h4>
-            <?php 
+            <?php
             $user1 = cas()->getUser();
             $login = DB::table('ml_users')->where('login', $user1)->first();
 
             $if_profil_exist =DB::table('voice_uprofil')
-            ->join('ml_users','ml_users.id','=','voice_uprofil.user') 
+            ->join('ml_users','ml_users.id','=','voice_uprofil.user')
             ->join('voice_profil','voice_uprofil.profil','=','voice_profil.id')
             ->where('voice_uprofil.user' ,'=' ,$login->id)->first();
 
@@ -90,7 +155,7 @@
             ?>
           </div>
           <div class="card-body">
-           
+
               @if (session('success'))
                 <div class="alert alert-success" role="alert">
                   <strong>{{session('success')}}</strong>
@@ -113,47 +178,47 @@
                 <thead class=" text-primary">
 
                   <th>
-                    Prenom 
+                    Prenom
                   </th>
                   <th>
-                    Nom 
+                    Nom
                   </th>
                   <th>
-                    Email 
+                    Email
                   </th>
 
 
                   <th>
-                    Login 
+                    Login
                   </th>
 
                   <th>
-                    Tel 
+                    Tel
                   </th>
 
                   <th>
-                    Profil 
+                    Profil
                   </th>
-                 
+
                   <th>
                     Modifier
                   </th>
                   <th>
                     Supprimer
                   </th>
-                  
-                  
+
+
                 </thead>
                 <tbody>
-               
+
                @foreach($user as $data)
                   <tr>
-                   
+
                     <td>
                      {{$data->prenom}}
                     </td>
                     <td>
-                      {{$data->nom}} 
+                      {{$data->nom}}
                     </td>
                     <td>
                      {{$data->mail}}
@@ -171,11 +236,11 @@
                       {{$data->intitule}}
                     </td>
 
-                    
-                   
+
+
 
                     <td >
-                      
+
 
                       <form action="{{ url('admin/modifUtilisateur/'.$data->id)}}" method="get">
                         <div class="form-group">
@@ -187,24 +252,24 @@
                     <td >
                       <form action="/admin/deleteUtilisateur/{{$data->id ?? ''}}" onsubmit="return confirm('Confirmez-vous la suppression');" method="post">
                         @csrf
-                         
+
                         <div class="form-group">
-                    
+
                             <button type="submit" class="btn btn-danger btn-sm"><i class="material-icons">delete</i></button>
                         </div>
 
                       </form>
                     </td>
-                    
-                    
-                   
+
+
+
                   </tr>
                @endforeach
-                 
+
                 </tbody>
               </table>
 
-              
+
             </div>
           </div>
           @else
@@ -212,7 +277,7 @@
           @endif
         </div>
       </div>
-      
+
     </div>
   </div>
 </div>

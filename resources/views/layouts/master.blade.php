@@ -46,22 +46,25 @@ The above copyright notice and this permission notice shall be included in all c
         <a href="/" class="simple-text logo-normal">
             <img src="{{ asset('assets/img/LOGO-mlouma.png')}}" alt="" srcset="">
         </a>
-        
-         
+
+
         </a></div>
 
         <?php
-         //if ($_SESSION['role']=='Admin') {?>
+         if ($_SESSION['role']=='Administrateur') {?>
             @include('layouts.sidebar.admin.sidebar')
-            
-        <?php
 
-       // }elseif($_SESSION['role']=='Personnel') { ?>
+        <?php }elseif ($_SESSION['role']=='Client') {?>
+            @include('layouts.sidebar.client.sidebar');
+
+        <?php }elseif($_SESSION['role']=='Personnel') { ?>
 
             @include('layouts.sidebar.personnel.sidebar')
 
-        <?php// } ?>
-        
+        <?php } ?>
+
+
+
     </div>
 
     <div class="main-panel">
@@ -69,7 +72,7 @@ The above copyright notice and this permission notice shall be included in all c
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
           <div class="navbar-wrapper">
-            
+
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
@@ -78,7 +81,7 @@ The above copyright notice and this permission notice shall be included in all c
             <span class="navbar-toggler-icon icon-bar"></span>
           </button>
           <div class="collapse navbar-collapse justify-content-end">
-            
+
             <ul class="navbar-nav">
 
               <?php //echo  $_SESSION['role'] ; ?>
@@ -89,43 +92,50 @@ The above copyright notice and this permission notice shall be included in all c
                   <li class="nav-item dropdown">
                   <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
                      aria-haspopup="true" aria-expanded="false">
-                      {{-- Cas::user() --}} 
+                      {{-- Cas::user() --}}
                   </a>
                   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                      <a id='disconnect' href="{{-- route('logout') --}}" class="dropdown-item">
+                      <a id='disconnect' href="/logout" class="dropdown-item">
                           Logout
                       </a>
-              
-                      <form id="logout-form" action="{{-- route('logout') --}}" method="POST"
+
+                      <form id="logout-form" action="route('/logout')" method="POST"
                             style="display: none;">
-                     {{-- csrf_field() --}} 
+                     csrf_field()
                       </form>
                   </div>
               </li>
-              
-              
-              
+
+
+
                {{--  @endif --}}
-              
-              
+
+
             </ul>
           </div>
         </div>
       </nav>
+
       <!-- End Navbar -->
+
       <div class="content">
-        @yield('content')
+            <div>
+                @yield('stats-header')
+            </div>
+            <div>
+                @yield('content')
+            </div>
       </div>
-      
+
     </div>
   </div>
-  
+
   <!--   Core JS Files   -->
- <script src="{{asset('assets/js/core/jquery.min.js') }}"></script>
-  
+  <script src="{{asset('assets/js/core/jquery.min.js') }}"></script>
+
   <script src="{{asset('assets/js/core/kumkum.js') }}"></script>
-  
-  
+  <script src="{{asset('assets/js/script.js') }}"></script>
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="{{asset('assets/js/core/popper.min.js') }}"></script>
@@ -148,7 +158,7 @@ The above copyright notice and this permission notice shall be included in all c
   <!--  Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
   <script src="{{asset('assets/js/plugins/bootstrap-tagsinput.js') }}"></script>
   <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
-  
+
   <!--  Full Calendar Plugin, full documentation here: https://github.com/fullcalendar/fullcalendar    -->
   <!-- <script src="{{asset('assets/js/plugins/fullcalendar.min.js') }}"></script> -->
   <!-- Vector Map plugin, full documentation here: http://jvectormap.com/documentation/ -->
@@ -169,14 +179,14 @@ The above copyright notice and this permission notice shall be included in all c
   <script src="{{asset('assets/js/material-dashboard.js?v=2.1.2') }}"></script>
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
   <script src="{{asset('assets/demo/demo.js') }}"></script>
- 
+
  <script src="{{asset('assets/bootstrap-select/js/bootstrap-select.js') }}"></script>
 
 <!--  chart js  -->
 
- 
+
   <script type="text/javascript">
-    
+
     $(document).ready( function () {
       $('#datatableid2').DataTable({
         "language": {
@@ -186,9 +196,9 @@ The above copyright notice and this permission notice shall be included in all c
 
     } );
 
- 
+
   </script>
-  
+
   <script>
     $(document).ready(function() {
       // Javascript method's body can be found in assets/js/demos.js
@@ -202,18 +212,18 @@ The above copyright notice and this permission notice shall be included in all c
      $('.select-live').selectpicker({"liveSearch": true});
      $('.select-live2').selectpicker({"liveSearch": false});
    </script>
-  
-  
+
+
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.js"></script> -->
    <script>
-    
+
    </script>
    <script>
-        
+
     </script>
 
     <script >
-      
+
       // FileInput
       $('.form-file-simple .inputFileVisible').click(function() {
         $(this).siblings('.inputFileHidden').trigger('click');
@@ -250,7 +260,7 @@ The above copyright notice and this permission notice shall be included in all c
       });
     </script>
 
-    
+
 
   @yield('scripts')
 </body>
