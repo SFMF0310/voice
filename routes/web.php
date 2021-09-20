@@ -41,6 +41,26 @@ Route::get('/logout',function(){
     //campagne
     Route::get('admin/campagne', 'CampagneController@index');
     Route::post('/admin/ajoutCampagne','CampagneController@store');
+    Route::get('/admin/modifCampagne/{id}', 'CampagneController@update');
+    Route::put('admin/update-campagne-saving/{id}', 'CampagneController@updateSaving');
+    Route::post('/admin/deleteCampagne/{id}', 'CampagneController@delete');
+    Route::get('/admin/detailsCampagne/{id}', 'CampagneController@details');
+
+
+    //contact 
+    Route::get('admin/contact', 'ContactController@index');
+    Route::post('/admin/ajoutContact','ContactController@store');
+    Route::post('/admin/import_contact', 'ContactController@import');
+
+
+
+    //liste contact
+    
+    Route::get('admin/liste', 'ListeController@index');
+    Route::post('/admin/ajoutListe','ListeController@store');
+    Route::post('/admin/deleteListe/{id}', 'ListeController@delete');
+    Route::get('/admin/modifListe/{id}', 'ListeController@update');
+    Route::put('admin/update-liste-saving/{id}', 'ListeController@updateSaving');
 
 
 });

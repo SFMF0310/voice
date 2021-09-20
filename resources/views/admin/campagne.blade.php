@@ -69,7 +69,7 @@
              
                     <a href="#addCampagne">
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                      Ajouter une camapagne 
+                      Ajouter une campagne 
                     </button>
                     </a>
                   
@@ -101,30 +101,44 @@
                 </thead>
                 <tbody>
 
+                  @foreach($campagne as $data )
+
                   <tr>
                     <td>
-                     
+                     <a href="/admin/detailsCampagne/{{$data->id}}"> {{ $data->intitule }} </a>
                     </td>
 
                     <td>
-                     
+                     {{ $data->prenom }} {{ $data->nom }}
                     </td>
                       
                     <td>
-                     
+                     {{ $data->created_at }}
                     </td>
                     
                     <td >
-                      
+                      <form action="{{ url('admin/modifCampagne/'.$data->id)}}" method="get">
+                        <div class="form-group">
+                          <button type="submit" class="btn btn-warning btn-sm"><i class="material-icons">edit</i></button>
+                        </div>
+                      </form>
                     </td>
-                   
 
                     <td>
-                     
+                     <form action="/admin/deleteCampagne/{{$data->id ?? ''}}" onsubmit="return confirm('Confirmez-vous la suppression');" method="post">
+                        @csrf
+                         
+                        <div class="form-group">
+                    
+                            <button type="submit" class="btn btn-danger btn-sm"><i class="material-icons">delete</i></button>
+                        </div>
+
+                      </form>
                     </td>
                    
                   </tr>
                   
+                  @endforeach
                
                 </tbody>
               </table>
