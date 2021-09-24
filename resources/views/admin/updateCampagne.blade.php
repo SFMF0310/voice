@@ -24,9 +24,19 @@
                   </div>
                   <div class="card-body ">
                     <div class="form-group row">
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <label for="" class="col-form-label ">Intitulé</label>
-                                <input class="form-control" type="text" name="intitule" value="{{ $campagne[0]->intitule }}">
+
+                                <input class="form-control " type="text" name="intitule" value="{{ $campagne[0]->intitule }}">
+                            </div>
+                            <div class="col-md-6">
+                              <label for="" class="col-form-label ">Client</label>
+                              <select class="form-control select-live2" name="client">
+                                <option>Sélectionner un client</option>
+                                @foreach($client as $dataClient)
+                                  <option value="{{$dataClient->id}}" {{ $dataClient->id == $campagne[0]->client ? 'selected' : '' }} >{{$dataClient->nom}}</option>
+                                @endforeach
+                              </select>
                             </div>
                             
                     </div>

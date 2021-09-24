@@ -2,13 +2,10 @@
 
 namespace App\Imports;
 
-use App\Models\VoiceContact;
-//use App\Models\VoiceLocalite;
+use App\Models\VoiceCampagneContact;
 use Maatwebsite\Excel\Concerns\ToModel;
-use Maatwebsite\Excel\Concerns\WithHeadingRow;
-use Illuminate\Support\Facades\DB;
 
-class ContactImport implements ToModel,WithHeadingRow
+class CampagneContactImport implements ToModel
 {
     /**
     * @param array $row
@@ -18,7 +15,6 @@ class ContactImport implements ToModel,WithHeadingRow
     public function model(array $row)
     {
 
-        
 
         if (!empty($row['localite']) ) {
 
@@ -49,7 +45,6 @@ class ContactImport implements ToModel,WithHeadingRow
             if (empty($row['tel'])) {
                
             }else{
-                $_SESSION['numVerif']= $row['tel'];
                 return new VoiceContact([
                     'prenom'     => isset($row['prenom']) ? $row['prenom'] : NULL,
                     'nom'    => isset($row['nom']) ? $row['nom'] : NULL,
@@ -65,13 +60,19 @@ class ContactImport implements ToModel,WithHeadingRow
                     
                 ]);
 
-
+                
+                // $campagneContact =new VoiceCampagneContact;
+                // $campagneContact->campagne=$request->input('campagne');
+                // $campagneContact->contact= $value;
+                // //$campagne->createur=$_SESSION['user'];
+                // $campagneContact->save();
             }
 
             
         }
 
-        
+
+
+       
     }
 }
-

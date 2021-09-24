@@ -9,8 +9,10 @@ use App\Models\VoiceClient;
 use App\Models\VoiceContact;
 use App\Models\ListeContact;
 use App\Models\VoiceLangue;
+use App\Models\VoiceLocalite;
 use App\Imports\ContactImport;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Redirect;
 
 class ContactController extends Controller
 {
@@ -19,8 +21,8 @@ class ContactController extends Controller
     public function index(){
 
 
-        $contact= DB::select('select c.*,loc.nom as nomloc ,lan.nom as nomlan ,cl.nom as nomclient from voice_contact c ,ml_localite loc , voice_langue lan , voice_clients cl where c.localite=loc.id and c.langue_reception=lan.id and c.client=cl.id');
-        
+        //$contact= DB::select('select c.*,loc.nom as nomloc ,lan.nom as nomlan ,cl.nom as nomclient from voice_contact c ,ml_localite loc , voice_langue lan , voice_clients cl where c.localite=loc.id and c.langue_reception=lan.id and c.client=cl.id');
+        $contact=VoiceContact::all();
         $localite=DB::select('select a.id id, a.nom nom, b.nom commune from ml_localite a, ml_commune b where a.commune=b.id order by nom');
         $client=VoiceClient::all();
         $langue=VoiceLangue::all();
@@ -63,4 +65,61 @@ class ContactController extends Controller
            
         return back()->with('success','Liste ajoutée avec succès');
     }
+
+    public function update(Request $request ,$id){
+   
+        $liste= /*DB::select('select l.id,l.nom as nomliste ,l.client,l.created_at, c.nom as nomclient from voice_clients c , voice_liste_contact l where c.id=l.client and  l.id="'.$id.'"' )*/'';
+
+        $contact=VoiceContact::findOrFail($id);
+        $client=VoiceClient::all();
+        $langue=VoiceLangue::all();
+        $localite=VoiceLocalite::all();
+
+        
+            return view('admin.updateContact',compact('liste','contact','client','langue','localite'));
+        
+    }
+
+    public function updateSaving(Request $request ,$id){
+   
+        $contact=VoiceContact::findOrFail($id);
+        $contact->prenom=$request->input('prenom');
+        $contact->nom=$request->input('nom');
+        $contact->genre=$request->input('genre');
+        $contact->date_naissance=$request->input('date_naissance');
+        $contact->lieu_naissance=$request->input('lieu_naissance');
+        $contact->adresse=$request->input('adresse');
+        $contact->localite=$request->input('localite');
+        $contact->langue_reception=$request->input('langue_reception');
+        $contact->tel=$request->input('tel');
+        $contact->client=$request->input('client');
+        $contact->update();
+       
+
+        return redirect('/admin/contact')->with('success','Contact modifié avec succès');
+
+        
+    }
+
+    public function details(Request $request ,$id){
+   
+        $liste= /*DB::select('select l.id,l.nom as nomliste ,l.client,l.created_at, c.nom as nomclient from voice_clients c , voice_liste_contact l where c.id=l.client and  l.id="'.$id.'"' )*/'';
+
+        //$campagneContact=DB::select('select con.nom ,con.prenom ,con ="'.$id.'"' );
+
+        $contact=VoiceContact::findOrFail($id);
+        $client=VoiceClient::all();
+        $langue=VoiceLangue::all();
+        $localite=VoiceLocalite::all();
+        return view('admin.detailsContact',compact('liste','contact','client','langue','localite'));
+    }
+
+    public function delete($id){
+   
+        $contact= VoiceContact::findOrFail($id);
+        $contact->delete();
+
+        return Redirect::back()->with('success','Contact supprimé avec succès');
+    }
+
 }

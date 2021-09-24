@@ -54,6 +54,9 @@ The above copyright notice and this permission notice shall be included in all c
          if ($_SESSION['role']=='Administrateur') {?>
             @include('layouts.sidebar.admin.sidebar')
 
+        <?php }elseif ($_SESSION['role']=='Super administrateur') {?>
+            @include('layouts.sidebar.admin.sidebar');
+
         <?php }elseif ($_SESSION['role']=='Client') {?>
             @include('layouts.sidebar.client.sidebar');
 

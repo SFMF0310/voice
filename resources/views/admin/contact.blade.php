@@ -10,6 +10,14 @@
 @section('content')
 
 
+<?php 
+use App\Models\VoiceLocalite;
+use App\Models\VoiceClient;
+
+
+
+?>
+
 <div class="modal fade bd-example-modal-lg" id="listeModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -27,7 +35,7 @@
                       <label for="" class="col-form-label ">Client</label>
                      <select class="form-control" name="client">
 
-                        <option>Sélectionner un Client </option>
+                        <option value="" >Sélectionner un Client </option>
 
                         @foreach($client as $dataClient)
 
@@ -57,8 +65,8 @@
                    
                 </div>
                 
-                
               </div>
+              <span style="margin-left: 30px;">Télécharger le modèle <a target="__blanc" href=" {{asset('assets/modeleContact/modeleliste.csv') }}">ICI</a></span>
               <div class="card-footer ml-auto mr-auto">
                 <a class="btn btn-danger" data-dismiss="modal">Annuler</a>
                 <button type="submit" class="btn btn-primary">Enregistrer</button>
@@ -96,7 +104,7 @@
                     <div class="col-md-6">
                         <label for="" class="col-form-label ">Genre</label>
                         <select class="form-control select-live2" name="genre">
-                          <option>Sélectionner le genre </option>
+                          <option value="" >Sélectionner le genre </option>
                            <option value="H">Homme</option>
                            <option value="F">Femme</option>
                         </select>
@@ -131,7 +139,7 @@
 
                         <select class="form-control select-live" name="localite">
 
-                            <option>Sélectionner une localité </option>
+                            <option value="" >Sélectionner une localité </option>
 
                             @foreach($localite as $dataLoc)
 
@@ -158,7 +166,7 @@
 
                             <select class="form-control select-live" name="langue_reception">
 
-                                <option>Sélectionner une langue </option>
+                                <option value="" >Sélectionner une langue </option>
 
                                 @foreach($langue as $dataLangue)
 
@@ -176,7 +184,7 @@
 
                            <select class="form-control select-live2" name="client">
 
-                            <option>Sélectionner un Client </option>
+                            <option value="" >Sélectionner un Client </option>
 
                             @foreach($client as $dataClient)
 
@@ -231,6 +239,12 @@
                       Ajouter un contact 
                     </button>
                     </a>
+
+                  <a href="#addListe">
+                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#listeModal">
+                      Ajouter par lot
+                    </button>
+                  </a>
                   
                   
                 </div>
@@ -277,22 +291,54 @@
                 <tbody>
                   @foreach($contact as $dataCon)
                     <tr>
-                      <td> {{$dataCon->prenom}} </td>
-                      <td>{{$dataCon->nom}}</td>
-                      <td>{{$dataCon->genre}}</td>
-                      <td>{{$dataCon->tel}}</td>
-                      <td>{{$dataCon->nomloc}}</td>
-                      <td>{{$dataCon->nomclient}}</td>
-                      <td><a href="/details-utilisateur/{{$dataCon->id}}" class="btn btn-info btn-sm"><i class="material-icons">assignment</i></a></td>
+                      <td> {{$dataCon->prenom ?? '--'}} </td>
+                      <td>{{$dataCon->nom ?? '--'}}</td>
+                      <td>{{$dataCon->genre ?? '--'}}</td>
+                      <td>{{$dataCon->tel ?? '--'}}</td>
+                      <td>
+
+                        <?php //use App\Models\VoiceLocalite;
+                        //use App\Models\VoiceLocalite;
+                        if (!empty($dataCon->localite)) {
+                        
+                          $locCon= VoiceLocalite::findOrFail($dataCon->localite);
+
+                          echo $locCon->nom;
+                        }else{
+                          echo "--";
+                        }
+                         
+
+                        ?>
+                        
+
+                      </td>
+                      <td>
+
+                        <?php //use App\Models\VoiceLocalite;
+                        //use App\Models\VoiceLocalite;
+                        if (!empty($dataCon->client)) {
+                        
+                          $clCon= VoiceClient::findOrFail($dataCon->client);
+
+                          echo $clCon->nom;
+                        }else{
+                          echo "--";
+                        }
+                         
+
+                        ?>
+                      </td>
+                      <td><a href="/admin/detailsContact/{{$dataCon->id}}" class="btn btn-info btn-sm"><i class="material-icons">assignment</i></a></td>
                       <td> 
-                        <form action="{{ url('admin/modifListe/'.$dataCon->id)}}" method="get">
+                        <form action="{{ url('admin/modifContact/'.$dataCon->id)}}" method="get">
                           <div class="form-group">
                             <button type="submit" class="btn btn-warning btn-sm"><i class="material-icons">edit</i></button>
                           </div>
                         </form>
                     </td>
                       <td>
-                       <form action="/admin/deleteListe/{{$dataCon->id ?? ''}}" onsubmit="return confirm('Confirmez-vous la suppression');" method="post">
+                       <form action="/admin/deleteContact/{{$dataCon->id ?? ''}}" onsubmit="return confirm('Confirmez-vous la suppression');" method="post">
                         @csrf
                          
                         <div class="form-group">
@@ -308,11 +354,11 @@
               </table>
 
               <div class="col-12 text-left">
-                  <a href="#addListe">
+                  <!-- <a href="#addListe">
                   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#listeModal">
                     Ajouter par lot
                   </button>
-                  </a>
+                  </a> -->
               </div>
 
             </div>

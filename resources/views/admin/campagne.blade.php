@@ -22,9 +22,19 @@
               </div>
               <div class="card-body ">
                 <div class="form-group row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <label for="" class="col-form-label ">Intitulé</label>
                             <input class="form-control" type="text" name="intitule" >
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="" class="col-form-label ">Client</label>
+                            <select class="form-control select-live2" name="client">
+                              <option>Sélectionner un client</option>
+                              @foreach($client as $dataClient )
+                                <option value="{{$dataClient->id}}">{{$dataClient->nom }}</option>
+                              @endforeach
+                            </select>
                         </div>
                         
                 </div>
@@ -83,6 +93,9 @@
                   <th>
                     Intitulé
                   </th>
+                   <th>
+                    Client
+                  </th>
                   <th>
                     Créé par
                   </th>
@@ -106,6 +119,10 @@
                   <tr>
                     <td>
                      <a href="/admin/detailsCampagne/{{$data->id}}"> {{ $data->intitule }} </a>
+                    </td>
+
+                    <td>
+                     {{$data->nomclient}}
                     </td>
 
                     <td>

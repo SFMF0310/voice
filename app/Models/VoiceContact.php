@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class VoiceContact extends Model
 {
     protected $table='voice_contact';
-    protected $fillable = ['prenom','nom','tel','client','createur'];
+    protected $fillable = ['prenom','nom','tel','client','createur','date_naissance','lieu_naissance','adresse','localite','langue_reception','genre'];
 }

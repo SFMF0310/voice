@@ -39,12 +39,19 @@ Route::middleware(['casAuth','admin'])->group(function(){
     Route::put('admin/update-campagne-saving/{id}', 'CampagneController@updateSaving');
     Route::post('/admin/deleteCampagne/{id}', 'CampagneController@delete');
     Route::get('/admin/detailsCampagne/{id}', 'CampagneController@details');
+    Route::post('/admin/ajoutCampagneContact','CampagneController@storeContact');
+    Route::post('/admin/deleteContactCampagne/{id}', 'CampagneController@deleteContact');
+    Route::post('/admin/import_contactCampagne', 'CampagneController@import');
 
 
     //contact 
     Route::get('admin/contact', 'ContactController@index');
     Route::post('/admin/ajoutContact','ContactController@store');
     Route::post('/admin/import_contact', 'ContactController@import');
+    Route::get('/admin/modifContact/{id}', 'ContactController@update');
+    Route::put('admin/update-contact-saving/{id}', 'ContactController@updateSaving');
+    Route::get('/admin/detailsContact/{id}', 'ContactController@details');
+    Route::post('/admin/deleteContact/{id}', 'ContactController@delete');
 
 
 
