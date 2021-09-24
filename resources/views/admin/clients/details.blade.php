@@ -15,9 +15,9 @@
               <div class="card-icon">
                 <i class="material-icons">person</i>
               </div>
-              <p class="card-category">Nombre d'utilisateurs</p>
-              {{-- <h3 class="card-title">49/50 --}}
-                <small>GB</small>
+              <p class="card-category">Nombre de profils</p>
+              <h3 class="card-title">{{count($clientProfils)}}
+                {{-- <small>GB</small> --}}
               </h3>
             </div>
             <div class="card-footer">
@@ -35,7 +35,7 @@
                 <i class="material-icons">campaign</i>
               </div>
               <p class="card-category">Nombre de campagne</p>
-              {{-- <h3 class="card-title">{{ $nbProfils->id }}</h3> --}}
+              <h3 class="card-title">{{count($campagnes) }}</h3>
             </div>
             <div class="card-footer">
               <div class="stats">
@@ -104,7 +104,7 @@
               <div class="card col-md-12 " >
 
                 <div class="card-header card-header-primary">
-                  <h4 class="card-title d-inline"> Dashboard</h4>
+                  <h4 class="card-title d-inline">{{ $client[0]->nom }}</h4>
                   <div class="dropdown d-inline ml-2 de">
                     <a class="text-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       Clients
@@ -119,6 +119,7 @@
                 </div>
                 <div class="card-body col-md-12">
                         <div class="container">
+                            {{-- {{ count($clientProfils)}} --}}
                             <table id="datatableid2" class="table responsive">
                                 <thead>
                                     <th><b>Nom</b> </th>
@@ -129,11 +130,11 @@
                                 </thead>
                                 <tbody>
                                     
-                                    @foreach ( $clients as $client )
+                                    @foreach ( $clientProfils as $profils )
                                         <tr>
-                                            <td><a href="/admin/client/{{$client->id}}/infos" target="_blank" rel="noopener noreferrer">{{ $client->nom}}</a></td>
+                                            <td><a href="/admin/client/{{$profils->id}}/infos" target="_blank" rel="noopener noreferrer">{{ $profils->nom}}</a></td>
                                             <td><a href=""><i class="material-icons">bar_chart</i></a></td>
-                                            <td><a href="" class="text-danger"><i class="material-icons">delete</i></a></td>                                        
+                                            <td><a href="/admin/client/{{$profils->vpid}}/delete" class="text-danger"><i class="material-icons">delete</i></a></td>                                        
                                         </tr>
                                     @endforeach
                                     
