@@ -8,6 +8,6 @@ class MlUser extends Model
 {
      protected $table='ml_users';
      protected $fillable = [
-        'prenom','nom','tel','login','mdp','ldap'
+        'prenom','nom','tel','login','mail','mdp','ldap'
      ] ;
 }

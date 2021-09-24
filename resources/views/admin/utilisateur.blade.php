@@ -22,25 +22,34 @@
               <div class="card-body ">
                 <div class="form-group row">
 
-                        <div class="col-md-6" >
+                        <div class="col-md-12 role" >
                             <label for="" class="col-form-label">Rôle</label>
 
-                            <select id="role" class="form-control select-live2" name="role">
+                            <select id="role" class="form-control select-live2" name="role" >
                               <option>--Sélectionner le rôle</option>
 
                               @foreach($role as $dataRole)
+                                @if ($_SESSION['profil'] == 3 && $dataRole->id == 2){
+                                    <option value="{{$dataRole->id}}"> {{$dataRole->intitule}}  </option>
+                                }@elseif ($_SESSION['profil'] == 2 ){
+                                    <option value="{{$dataRole->id}}"> {{$dataRole->intitule}}  </option>
 
-                              <option value="{{$dataRole->id}}"> {{$dataRole->intitule}}  </option>
+                                }
+                                @endif
+                               
+
+                                {{-- @endif --}}
 
                               @endforeach
                             </select>
 
                         </div>
-                        <div class="col-md-6" id="users">
+                       
+                        {{-- <div class="col-md-6" id="users">
                             <label for="" class="col-form-label">Utilisateur</label>
 
                             <select class="form-control select-live" name="utilisateur">
-                              <option>--Sélectionner un utilisateur</option>
+                              <option value="">--Sélectionner un utilisateur</option>
 
                               @foreach($mlUser as $dataUser)
 
@@ -48,11 +57,11 @@
 
                               @endforeach
                             </select>
-                        </div>
-                        <div class="col-md-6 info-personnel">
-                            <label for="" class="col-form-label">Prénom</label>
+                        </div> --}}
+                        <div class="col-md-6 info-personnel prenom ">
+                            <label for="" class="col-form-label">Prénom </label>
 
-                            <input class="form-control info-personnel" name="prenom">
+                            <input class="form-control"name="prenom" >
                               {{-- <option>--Sélectionner un utilisateur</option>
 
                               @foreach($mlUser as $dataUser)
@@ -62,8 +71,8 @@
                               @endforeach
                             </select> --}}
                         </div>
-                        <div class="col-md-6 info-personnel">
-                            <label for="" class="col-form-label">Nom</label>
+                        <div class="col-md-6 info-personnel  client" >
+                            <label for="" class="col-form-label">Nom ou Intitulé</label>
 
                             <input class="form-control " name="nom">
                               {{-- <option>--Sélectionner un utilisateur</option>
@@ -75,10 +84,10 @@
                               @endforeach
                             </select> --}}
                         </div>
-                        <div class="col-md-6 info-personnel">
-                            <label for="" class="col-form-label">Téléphone</label>
+                        <div class="col-md-6 info-personnel client" >
+                            <label for="" class="col-form-label">Email</label>
 
-                            <input class="form-control" name="tel">
+                            <input class="form-control" type="email" name="email">
                               {{-- <option>--Sélectionner un utilisateur</option>
 
                               @foreach($mlUser as $dataUser)
@@ -88,7 +97,20 @@
                               @endforeach
                             </select> --}}
                         </div>
-                        <div class="col-md-6 info-personnel">
+                        <div class="col-md-6 info-personnel client" >
+                            <label for="" class="col-form-label">Téléphone</label>
+
+                            <input class="form-control" type="tel" name="tel" pattern="^7[5-8]{1}\d{7}$">
+                              {{-- <option>--Sélectionner un utilisateur</option>
+
+                              @foreach($mlUser as $dataUser)
+
+                              <option value="{{$dataUser->id}}">{{$dataUser->prenom}} {{$dataUser->nom}} - {{$dataUser->login}} </option>
+
+                              @endforeach
+                            </select> --}}
+                        </div>
+                        <div class="col-md-6 info-personnel client" >
                             <label for="" class="col-form-label">Login</label>
 
                             <input class="form-control" name="login">
@@ -101,10 +123,10 @@
                               @endforeach
                             </select> --}}
                         </div>
-                        <div class="col-md-6 info-personnel">
+                        <div class="col-md-6 info-personnel client">
                             <label for="" class="col-form-label">Mot de passe</label>
 
-                            <input class="form-control" name="mdp">
+                            <input class="form-control" type="password" name="mdp">
                               {{-- <option>--Sélectionner un utilisateur</option>
 
                               @foreach($mlUser as $dataUser)
@@ -112,6 +134,19 @@
                               <option value="{{$dataUser->id}}">{{$dataUser->prenom}} {{$dataUser->nom}} - {{$dataUser->login}} </option>
 
                               @endforeach --}}
+                        </div>
+                        <div class="col-md-6" id="structure" >
+                            <label  for="" class="col-form-label ">Structure</label>
+
+                            <select id="selectstructure" class="form-control select-live" name="client">
+                              <option value="">--Sélectionner la structure</option>
+
+                              @foreach($clients as $client)
+
+                              <option value="{{$client->id}}">{{$client->nom}} </option>
+
+                              @endforeach
+                            </select>
                         </div>
                 </div>
 

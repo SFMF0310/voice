@@ -5,21 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class ClientController extends Controller
+class DetailClientController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        $clients = DB::table('voice_clients')->orderBy('id','asc')->get() ;
-        $nbProfils =  DB::table('voice_uprofil')->selectRaw('count(*)')->groupBy('id');
-        $nbCampagne = DB::table('voice_campagne')->selectRaw('count(*)')->groupBy('id');
-        // $packs = Db
- 
-        return view('admin.dashboard',compact('clients','nbProfils','nbCampagne'));
+        //
+        $client = DB::table('voice_clients')->selectRaw('*')->where('id',$id)->get();
+        $clientProfils = DB::table('voice_uprofil')->join('ml_users','voice_uprofil.user','=','ml_users.id')->select('*','voice_uprofil.id as vpid')->where('voice_uprofil.client',$id)->get();
+        $campagnes = DB::table('voice_campagne')->where('voice_campagne.client',$id)->get();
+        return view('admin.clients.details',compact('client','clientProfils','campagnes'));
     }
 
     /**
@@ -86,5 +85,13 @@ class ClientController extends Controller
     public function destroy($id)
     {
         //
+        $profil=DB::table('voice_uprofil')->where('id',$id); 
+        
+        if($profil->delete()){
+            return redirect("admin/client/".$id."/infos")->with('success','Profil supprimé avec succés');
+        }else{
+            return redirect("admin/client/".$id."/infos")->with('error','Erreur survenue lors de la suppression');
+
+        }  
     }
 }

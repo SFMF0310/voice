@@ -32,6 +32,11 @@ Route::middleware(['casAuth','admin'])->group(function(){
     Route::put('admin/update-utilisateur-saving/{id}', 'UserController@updateSaving');
     Route::post('/admin/deleteUtilisateur/{id}', 'UserController@delete');
 
+
+    //client
+    Route::get('admin/client/{id}/infos','DetailClientController@index');
+    Route::get('admin/client/{id}/delete','UserController@delete');
+
     //campagne
     Route::get('admin/campagne', 'CampagneController@index');
     Route::post('/admin/ajoutCampagne','CampagneController@store');
