@@ -15,6 +15,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+Route::get('/', function () {
+    return view('welcome');
+});
+// Route::get('/login', function () {
+//     cas()->auth
+// });
 Route::get('/logout',function(){
 
     cas()->logout();
@@ -23,11 +29,9 @@ Route::get('/logout',function(){
 
                     /* Admin & SuperAdmin */
 Route::middleware(['casAuth','admin'])->group(function(){
-    Route::get('/', function () {
-        return view('welcome');
-    });
+
     Route::get('/admin','ClientController@index');
-    
+
     //utilisateur
     Route::get('admin/utilisateur', 'UserController@index');
     Route::post('/admin/ajoutUtilisateur','UserController@store');
@@ -52,7 +56,7 @@ Route::middleware(['casAuth','admin'])->group(function(){
     Route::post('/admin/import_contactCampagne', 'CampagneController@import');
 
 
-    //contact 
+    //contact
     Route::get('admin/contact', 'ContactController@index');
     Route::post('/admin/ajoutContact','ContactController@store');
     Route::post('/admin/import_contact', 'ContactController@import');
@@ -64,7 +68,7 @@ Route::middleware(['casAuth','admin'])->group(function(){
 
 
     //liste contact
-    
+
     Route::get('admin/liste', 'ListeController@index');
     Route::post('/admin/ajoutListe','ListeController@store');
     Route::post('/admin/deleteListe/{id}', 'ListeController@delete');
