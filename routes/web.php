@@ -14,17 +14,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+Route::get('/logout',function(){
+
+    cas()->logout();
+    return redirect('htpps://auth.mlouma.com/cas/logout');
+});
+
                     /* Admin & SuperAdmin */
 Route::middleware(['casAuth','admin'])->group(function(){
     Route::get('/', function () {
         return view('welcome');
     });
     Route::get('/admin','ClientController@index');
-    Route::get('/logout',function(){
-
-    cas()->logout();
-    return redirect('htpps://auth.mlouma.com/cas/logout');
-});
+    
     //utilisateur
     Route::get('admin/utilisateur', 'UserController@index');
     Route::post('/admin/ajoutUtilisateur','UserController@store');
@@ -76,10 +79,10 @@ Route::middleware(['casAuth','client'])->group(function(){
     Route::get('/client', function () {
         return view('client.client');
     });
-    Route::get('/logout',function(){
-        cas()->logout();
-        return redirect('htpps://auth.mlouma.com/cas/logout');
-    });
+    // Route::get('/logout',function(){
+    //     cas()->logout();
+    //     return redirect('htpps://auth.mlouma.com/cas/logout');
+    // });
 
 });
                     /* Personnel */
@@ -87,9 +90,9 @@ Route::middleware(['casAuth','personnel'])->group(function(){
     Route::get('/client/personnel', function () {
         return view('client.personnel.index');
     });
-    Route::get('/logout',function(){
-        cas()->logout();
-        return redirect('htpps://auth.mlouma.com/cas/logout');
-    });
+    // Route::get('/logout',function(){
+    //     cas()->logout();
+    //     return redirect('htpps://auth.mlouma.com/cas/logout');
+    // });
 
 });

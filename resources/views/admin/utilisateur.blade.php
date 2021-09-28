@@ -31,7 +31,7 @@
                               @foreach($role as $dataRole)
                                 @if ($_SESSION['profil'] == 3 && $dataRole->id == 2){
                                     <option value="{{$dataRole->id}}"> {{$dataRole->intitule}}  </option>
-                                }@elseif ($_SESSION['profil'] == 2 ){
+                                }@elseif ($_SESSION['profil'] == 2 || $_SESSION['profil'] == 1 ){
                                     <option value="{{$dataRole->id}}"> {{$dataRole->intitule}}  </option>
 
                                 }

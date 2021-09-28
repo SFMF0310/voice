@@ -130,7 +130,7 @@ class Usercontroller extends Controller
 
 
         }else{
-                if (in_array($infos['role'],array(2,4))) {               /* ajout d'un administrateur ou de personnel */
+                if (in_array($infos['role'],array(1,2,4))) {               /* ajout d'un administrateur ou de personnel */
                     # code...
                     $u = DB::table('ml_users')->where('tel',$infos['tel'])->value('id');
                     if(!is_null($u)){
