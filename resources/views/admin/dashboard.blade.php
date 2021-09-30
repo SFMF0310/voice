@@ -78,83 +78,44 @@
         </div>
       </div>
 @endsection
+@section('sidebar2')
+      @include('layouts.sidebar.sidebar2')
+@endsection
 
 @section('content')
 
 
-<div class="content">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-12">
-        <!-- <div class="card"> -->
-          <!-- <div class="card-header card-header-primary">
-            <h4 class="card-title ">Dashboard</h4>
-            <?php //var_dump($financement); ?>
-          </div> -->
-          <div class="card-body">
-
-             <!--  @if (session('success')) -->
-                <div class="alert alert-success" role="alert">
-
-                  <strong><!-- {{session('success')}} --></strong>
-
-                </div>
-              <!-- @endif -->
-
-              <div class="card col-md-12 " >
-
-                <div class="card-header card-header-primary">
-                  <h4 class="card-title d-inline"> Dashboard</h4>
-                  <div class="dropdown d-inline ml-2 de">
-                    <a class="text-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Clients
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <a class="dropdown-item" href="#">Action</a>
-                      <a class="dropdown-item" href="#">Another action</a>
-                      <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                  </div>
-                  <?php //var_dump($financement); ?>
-                </div>
+{{-- <div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">                
                 <div class="card-body col-md-12">
-                        <div class="container">
-                            <table id="datatableid2" class="table responsive">
-                                <thead>
-                                    <th><b>Nom</b> </th>
-                                    <th><b>Stats</b></th>
-                                    <th><b>Supprimer</b> </th>
-                                    {{-- <th><b>Stats</b> </th>
-                                    <th><b>Supprimer</b> </th> --}}
-                                </thead>
-                                <tbody>
-                                    
-                                    @foreach ( $clients as $client )
-                                        <tr>
-                                            <td><a href="/admin/client/{{$client->id}}/infos" target="_blank" rel="noopener noreferrer">{{ $client->nom}}</a></td>
-                                            <td><a href=""><i class="material-icons">bar_chart</i></a></td>
-                                            <td><a href="" class="text-danger"><i class="material-icons">delete</i></a></td>                                        
-                                        </tr>
-                                    @endforeach
-                                    
-                                </tbody>
-                            </table>
-
-                        </div>
-
-
+                    <div class="container"> --}}
+                        <table id="datatableid2" class="table table-stripped bg-light ">
+                            <thead class="bg-secondary">
+                                <th><b>Nom</b> </th>
+                                <th><b>Stats</b></th>
+                                <th><b>Supprimer</b> </th>
+                                {{-- <th><b>Stats</b> </th>
+                                <th><b>Supprimer</b> </th> --}}
+                            </thead>
+                            <tbody>
+                                @foreach ( $clients as $client )
+                                    <tr>
+                                        <td><a href="/admin/client/{{$client->id}}/infos" target="_blank" rel="noopener noreferrer">{{ $client->nom}}</a></td>
+                                        <td><a href=""><i class="material-icons">bar_chart</i></a></td>
+                                        <td><a href="" class="text-danger"><i class="material-icons">delete</i></a></td>                                        
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    {{-- </div>
                 </div>
-              </div>
-
-
-
-          </div>
-        <!-- </div> -->
-      </div>
-
+            </div>
+        </div>
     </div>
-  </div>
-</div>
+</div> --}}
+
 
 @endsection
 

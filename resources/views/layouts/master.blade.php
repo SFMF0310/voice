@@ -11,45 +11,26 @@ Coded by Creative Tim
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
 
-<head>
-  <meta charset="utf-8" />
-  <link rel="apple-touch-icon" sizes="76x76" href="{{asset('assets/img/apple-icon.png') }}">
-  <link rel="icon" type="image/png" href="{{asset('assets/img/FAVICO1.ico') }}">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <title>
-    @yield('title')
-  </title>
-  <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
-  <!--     Fonts and icons     -->
-  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-  <!-- CSS Files -->
-  <link href="{{ asset('assets/css/material-dashboard.css?v=2.1.2') }}" rel="stylesheet" />
-  <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link href="{{asset('assets/demo/demo.css') }}" rel="stylesheet" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        {{-- <link rel="stylesheet" href="style.css">  --}}
+        <link rel="stylesheet" href="{{asset('assets/css/layoutStyle.css')}}">
+        <meta charset="utf-8" />
+        <title>
+          @yield('title')
+        </title>
+        
 
-  <link href="{{asset('assets/bootstrap-select/css/bootstrap-select.css') }}" rel="stylesheet">
-</head>
-
-<body class="">
-  <div class="wrapper ">
-    <div class="sidebar" data-color="purple" data-background-color="white" data-image="{{asset('assets/img/sidebar-1.jpg') }}">
-      <!--
-        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
-
-        Tip 2: you can also add an image using data-image tag
-    -->
-      <div class="logo"><a href="http://dashboard.mlouma.com/" class="simple-text logo-normal">
-         <!-- <img src="{{ asset('assets/img/logo1.png') }}" width="90" height="80"> -->
-
-        <a href="/" class="simple-text logo-normal">
-            <img src="{{ asset('assets/img/LOGO-mlouma.png')}}" alt="" srcset="">
-        </a>
-
-
-        </a></div>
-
+        <title>Document</title>
+    </head>
+    <body id="body-pd">
         <?php
          if ($_SESSION['role']=='Administrateur') {?>
             @include('layouts.sidebar.admin.sidebar')
@@ -67,91 +48,45 @@ The above copyright notice and this permission notice shall be included in all c
         <?php } ?>
 
 
-
-    </div>
-
-    <div class="main-panel">
-      <!-- Navbar -->
-      <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
-        <div class="container-fluid">
-          <div class="navbar-wrapper">
-
-          </div>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-          </button>
-          <div class="collapse navbar-collapse justify-content-end">
-
-            <ul class="navbar-nav">
-
-              <?php //echo  $_SESSION['role'] ; ?>
-
-              <!-- code enlevé à mettre ici -->
-
-              {{-- @if ( Cas::isAuthenticated() ) --}}
-                  <li class="nav-item dropdown">
-                  <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                     aria-haspopup="true" aria-expanded="false">
-                      {{-- Cas::user() --}}
-                  </a>
-                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                      <a id='disconnect' href="/logout" class="dropdown-item">
-                          Logout
-                      </a>
-
-                      <form id="logout-form" action="route('/logout')" method="POST"
-                            style="display: none;">
-                     csrf_field()
-                      </form>
-                  </div>
-              </li>
-
-
-
-               {{--  @endif --}}
-
-
-            </ul>
-          </div>
+<div class="row" style="margin-left:-3%;">
+    {{-- @include('layouts.sidebar.sidebar2') --}}
+        @yield('sidebar2')
+    <div id="main"  class="height-100  col-md-10 d-inline">
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">                
+                        <div class="card-body col-md-12">
+                            <div class="container">
+                                @yield('content')
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </nav>
-
-      <!-- End Navbar -->
-
-      <div class="content">
-            <div>
-                @yield('stats-header')
-            </div>
-            <div>
-                @yield('content')
-            </div>
-      </div>
-
     </div>
-  </div>
-
+</div>    
+  
   <!--   Core JS Files   -->
   <script src="{{asset('assets/js/core/jquery.min.js') }}"></script>
 
-  <script src="{{asset('assets/js/core/kumkum.js') }}"></script>
+  {{-- <script src="{{asset('assets/js/core/kumkum.js') }}"></script> --}}
   <script src="{{asset('assets/js/script.js') }}"></script>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="{{asset('assets/js/core/popper.min.js') }}"></script>
+  {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
+   {{-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> --}}
+  {{-- <script src="{{asset('assets/js/core/popper.min.js') }}"></script> --}}
   <script src="{{asset('assets/js/core/bootstrap-material-design.min.js') }}"></script>
   <script src="{{asset('assets/js/plugins/perfect-scrollbar.jquery.min.js') }}"></script>
   <!-- Plugin for the momentJs  -->
-  <script src="{{asset('assets/js/plugins/moment.min.js') }}"></script>
+  {{-- <script src="{{asset('assets/js/plugins/moment.min.js') }}"></script> --}}
   <!--  Plugin for Sweet Alert -->
-  <script src="{{asset('assets/js/plugins/sweetalert2.js') }}"></script>
+  {{-- <script src="{{asset('assets/js/plugins/sweetalert2.js') }}"></script> --}}
   <!-- Forms Validations Plugin -->
-  <script src="{{asset('assets/js/plugins/jquery.validate.min.js') }}"></script>
+  {{-- <script src="{{asset('assets/js/plugins/jquery.validate.min.js') }}"></script> --}}
   <!-- Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
-  <script src="{{asset('assets/js/plugins/jquery.bootstrap-wizard.js') }}"></script>
+  {{-- <script src="{{asset('assets/js/plugins/jquery.bootstrap-wizard.js') }}"></script> --}}
   <!--  Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
   <!-- <script src="../assets/js/plugins/bootstrap-selectpicker.js"></script> -->
   <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
@@ -159,7 +94,7 @@ The above copyright notice and this permission notice shall be included in all c
   <!--  DataTables.net Plugin, full documentation here: https://datatables.net/  -->
   <script src="{{asset('assets/js/plugins/jquery.dataTables.min.js') }}"></script>
   <!--  Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
-  <script src="{{asset('assets/js/plugins/bootstrap-tagsinput.js') }}"></script>
+  {{-- <script src="{{asset('assets/js/plugins/bootstrap-tagsinput.js') }}"></script> --}}
   <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
 
   <!--  Full Calendar Plugin, full documentation here: https://github.com/fullcalendar/fullcalendar    -->
@@ -171,24 +106,24 @@ The above copyright notice and this permission notice shall be included in all c
   <!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support SweetAlert -->
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script> -->
   <!-- Library for adding dinamically elements -->
-  <script src="{{asset('assets/js/plugins/arrive.min.js') }}"></script>
+  {{-- <script src="{{asset('assets/js/plugins/arrive.min.js') }}"></script> --}}
   <!--  Google Maps Plugin    -->
   <!-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> -->
   <!-- Chartist JS -->
-  <script src="{{asset('assets/js/plugins/chartist.min.js') }}"></script>
+  {{-- <script src="{{asset('assets/js/plugins/chartist.min.js') }}"></script> --}}
   <!--  Notifications Plugin    -->
-  <script src="{{asset('assets/js/plugins/bootstrap-notify.js') }}"></script>
+  {{-- <script src="{{asset('assets/js/plugins/bootstrap-notify.js') }}"></script> --}}
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="{{asset('assets/js/material-dashboard.js?v=2.1.2') }}"></script>
+  {{-- <script src="{{asset('assets/js/material-dashboard.js?v=2.1.2') }}"></script> --}}
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
-  <script src="{{asset('assets/demo/demo.js') }}"></script>
+  {{-- <script src="{{asset('assets/demo/demo.js') }}"></script> --}}
 
- <script src="{{asset('assets/bootstrap-select/js/bootstrap-select.js') }}"></script>
+ {{-- <script src="{{asset('assets/bootstrap-select/js/bootstrap-select.js') }}"></script> --}}
 
 <!--  chart js  -->
 
 
-  <script type="text/javascript">
+   <script type="text/javascript">
 
     $(document).ready( function () {
       $('#datatableid2').DataTable({
@@ -266,7 +201,7 @@ The above copyright notice and this permission notice shall be included in all c
 
 
 
-  @yield('scripts')
+  {{-- @yield('scripts') --}}
 </body>
 
 </html>

@@ -24,14 +24,13 @@ Route::get('/', function () {
 Route::get('/logout',function(){
 
     cas()->logout();
-    return redirect('htpps://auth.mlouma.com/cas/logout');
+    return redirect('https://auth.mlouma.com/cas/logout');
 });
 
                     /* Admin & SuperAdmin */
 Route::middleware(['casAuth','admin'])->group(function(){
 
     Route::get('/admin','ClientController@index');
-
     //utilisateur
     Route::get('admin/utilisateur', 'UserController@index');
     Route::post('/admin/ajoutUtilisateur','UserController@store');
