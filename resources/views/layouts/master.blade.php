@@ -160,6 +160,8 @@ The above copyright notice and this permission notice shall be included in all c
   <script src="{{asset('assets/js/plugins/jquery.dataTables.min.js') }}"></script>
   <!--  Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
   <script src="{{asset('assets/js/plugins/bootstrap-tagsinput.js') }}"></script>
+
+  <script src="{{asset('assets/js/choix.js') }}"></script>
   <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
 
   <!--  Full Calendar Plugin, full documentation here: https://github.com/fullcalendar/fullcalendar    -->

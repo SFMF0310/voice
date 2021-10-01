@@ -10,6 +10,8 @@ use App\Models\VoiceContact;
 use App\Models\ListeContact;
 use App\Models\VoiceLangue;
 use App\Models\VoiceLocalite;
+use App\Models\VoiceCommune;
+use App\Models\VoiceDepartement;
 use App\Imports\ContactImport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Redirect;
@@ -24,12 +26,13 @@ class ContactController extends Controller
         //$contact= DB::select('select c.*,loc.nom as nomloc ,lan.nom as nomlan ,cl.nom as nomclient from voice_contact c ,ml_localite loc , voice_langue lan , voice_clients cl where c.localite=loc.id and c.langue_reception=lan.id and c.client=cl.id');
         $contact=VoiceContact::all();
         $localite=DB::select('select a.id id, a.nom nom, b.nom commune from ml_localite a, ml_commune b where a.commune=b.id order by nom');
+        $departement=DB::select('select * from ml_departement');
         $client=VoiceClient::all();
         $langue=VoiceLangue::all();
 
 
 
-        return view('admin.contact',compact('contact','client','localite','langue'));
+        return view('admin.contact',compact('contact','client','localite','langue','departement'));
     }
 
 
@@ -45,6 +48,8 @@ class ContactController extends Controller
         $contact->date_naissance=$request->input('date_naissance');
         $contact->lieu_naissance=$request->input('lieu_naissance');
         $contact->adresse=$request->input('adresse');
+        $contact->departement=$request->input('departement');
+        $contact->commune=$request->input('commune');
         $contact->localite=$request->input('localite');
         $contact->langue_reception=$request->input('langue_reception');
         $contact->tel=$request->input('tel');
@@ -74,9 +79,11 @@ class ContactController extends Controller
         $client=VoiceClient::all();
         $langue=VoiceLangue::all();
         $localite=VoiceLocalite::all();
+        $departement=VoiceDepartement::all();
+        $commune=VoiceCommune::all();
 
         
-            return view('admin.updateContact',compact('liste','contact','client','langue','localite'));
+        return view('admin.updateContact',compact('liste','contact','client','langue','localite','departement','commune'));
         
     }
 
@@ -89,6 +96,8 @@ class ContactController extends Controller
         $contact->date_naissance=$request->input('date_naissance');
         $contact->lieu_naissance=$request->input('lieu_naissance');
         $contact->adresse=$request->input('adresse');
+        $contact->departement=$request->input('departement');
+        $contact->commune=$request->input('commune');
         $contact->localite=$request->input('localite');
         $contact->langue_reception=$request->input('langue_reception');
         $contact->tel=$request->input('tel');
@@ -111,7 +120,9 @@ class ContactController extends Controller
         $client=VoiceClient::all();
         $langue=VoiceLangue::all();
         $localite=VoiceLocalite::all();
-        return view('admin.detailsContact',compact('liste','contact','client','langue','localite'));
+        $departement=VoiceDepartement::all();
+        $commune=VoiceCommune::all();
+        return view('admin.detailsContact',compact('liste','contact','client','langue','localite','commune','departement'));
     }
 
     public function delete($id){

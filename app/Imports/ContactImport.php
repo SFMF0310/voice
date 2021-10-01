@@ -25,6 +25,18 @@ class ContactImport implements ToModel,WithHeadingRow
                 $localiteid =DB::select('SELECT * FROM `ml_localite` WHERE `nom` LIKE "'.$row['localite'].'" ');
 
             }
+
+        if (!empty($row['departement']) ) {
+
+                $departementid =DB::select('SELECT * FROM `ml_departement` WHERE `nom` LIKE "'.$row['departement'].'" ');
+
+            }
+
+        if (!empty($row['commune']) ) {
+
+                $communeid =DB::select('SELECT * FROM `ml_commune` WHERE `nom` LIKE "'.$row['commune'].'" ');
+
+            }
            
 
         if (!empty($row['langue_reception']) ) {
@@ -59,6 +71,8 @@ class ContactImport implements ToModel,WithHeadingRow
                     'date_naissance' => isset($row['date_naissance']) ? $row['date_naissance'] : NULL,
                     'lieu_naissance' => isset($row['lieu_naissance']) ? $row['lieu_naissance'] : NULL,
                     'adresse' => isset($row['adresse']) ? $row['adresse'] : NULL,
+                    'departement' =>isset($departementid[0]->id) ? $departementid[0]->id : NULL,
+                    'commune' =>isset($communeid[0]->id) ? $communeid[0]->id : NULL,
                     'localite' =>isset($localiteid[0]->id) ? $localiteid[0]->id : NULL,
                     'langue_reception' => isset($localiteid[0]->id) ? $localiteid[0]->id : NULL,
                     'genre' => isset($row['genre']) ? $row['genre'] : NULL
