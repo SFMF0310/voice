@@ -28,7 +28,6 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
-
   <!-- =======================================================
   * Template Name: Medilab - v4.3.0
   * Template URL: https://bootstrapmade.com/medilab-free-medical-bootstrap-theme/

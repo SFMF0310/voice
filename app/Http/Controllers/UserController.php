@@ -50,7 +50,7 @@ class Usercontroller extends Controller
         $infos['mdp'] =  $request->input('mdp');
         $infos['client'] =  $request->input('client');
         // if(is_null($infos['utilisateur'])){
-        if(is_null($infos['prenom'])){
+        if($infos['role'] == 3){
          // $u = DB::table('ml_users')->where('tel',$infos['tel'])->value('id');
             $u = DB::table('ml_users')->selectRaw('*')->where('tel',$infos['tel'])->get();
             if(!empty($u)){
