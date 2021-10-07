@@ -75,10 +75,15 @@ Route::middleware(['casAuth','admin'])->group(function(){
     Route::put('admin/update-liste-saving/{id}', 'ListeController@updateSaving');
 
 
+
     //choix dynamique 
 
     Route::get('admin/choixdept/{dept}', 'ChoixController@choixDept');
     Route::get('admin/choixcomm/{comm}', 'ChoixController@choixComm');
+
+
+    //Message
+    Route::get('admin/message', 'MessageController@index');
 
 
 });

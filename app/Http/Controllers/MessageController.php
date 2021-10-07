@@ -4,26 +4,32 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\VoiceCampagne;
+use App\Models\VoiceLangue;
 
 class MessageController extends Controller
 {
-    //
+    
+    public function index(){
+
+        $campagne=VoiceCampagne::all();
+        $langue=VoiceLangue::all();
+
+        return view('admin.message',compact('campagne','langue'));
+    }
 
 
+     public function store (Request $request){
 
-    if(!empty($_FILES) && isset($_FILES['audio']) && isset($_POST['nom']) && isset($_POST['campagne'])){
-        $nom = substr($_FILES['audio']['name'], 0, -4);
-        $nomfic = uniqid(date('Ymd')).'_'.$_FILES['audio']['name'];
-        $uploaddir = ROOT . 'docs/audio/';
-        $uploadfile = $uploaddir . $nomfic;
-        $type = $_FILES['audio']['type'];
-        
-        $camp = intval($_POST['campagne']);
+        $message=new VoiceResultat;
+        //$campagne=$request->input('campagne');
+
+        $camp = intval($request->input('prenom'));
         $req = "select b.tel from voice_contact b, voice_campagne_contact a where b.id=a.contact and a.campagne=".$camp;
         $tels = $voiceup->executerReq($req);
         
-//        print_r($uploadfile);
-//        exit;
+//    print_r($uploadfile);
+//    exit;
 //    echo $req;
 //    exit;
         $contacts = array();
@@ -163,6 +169,27 @@ class MessageController extends Controller
             echo "Envoi effectué avec succès. <br>Veuillez vérifier l'historique pour voir l'état des envois.";
 
         }
+    
+
+
+        
+        $contact->prenom=$request->input('prenom');
+        $contact->nom=$request->input('nom');
+        $contact->genre=$request->input('genre');
+        $contact->date_naissance=$request->input('date_naissance');
+        $contact->lieu_naissance=$request->input('lieu_naissance');
+        $contact->adresse=$request->input('adresse');
+        $contact->departement=$request->input('departement');
+        $contact->commune=$request->input('commune');
+        $contact->localite=$request->input('localite');
+        $contact->langue_reception=$request->input('langue_reception');
+        $contact->tel=$request->input('tel');
+        $contact->client=$request->input('client');
+        $contact->createur=$_SESSION['user'];
+        $contact->save();
+
+        return redirect('/admin/message')->with('success','Message envoyé avec succès');
+
     }
 
 

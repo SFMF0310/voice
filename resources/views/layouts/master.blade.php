@@ -30,16 +30,18 @@ The above copyright notice and this permission notice shall be included in all c
 
         <title>Document</title>
     </head>
+
     <body id="body-pd">
+
         <?php
          if ($_SESSION['role']=='Administrateur') {?>
             @include('layouts.sidebar.admin.sidebar')
 
         <?php }elseif ($_SESSION['role']=='Super administrateur') {?>
-            @include('layouts.sidebar.admin.sidebar');
+            @include('layouts.sidebar.admin.sidebar')
 
         <?php }elseif ($_SESSION['role']=='Client') {?>
-            @include('layouts.sidebar.client.sidebar');
+            @include('layouts.sidebar.client.sidebar')
 
         <?php }elseif($_SESSION['role']=='Personnel') { ?>
 
@@ -48,23 +50,52 @@ The above copyright notice and this permission notice shall be included in all c
         <?php } ?>
 
 
-<div class="row" style="margin-left:-3%;">
-    {{-- @include('layouts.sidebar.sidebar2') --}}
-        @yield('sidebar2')
-    <div id="main"  class="height-100  col-md-10 d-inline">
-        <div class="content">
+
+<div class="row d-flex" style="margin-left:-3%;">
+
+
+  <?php
+  $link = $_SERVER['REQUEST_URI'];
+  $link_array = explode('/',$link);
+  $page = end($link_array);
+  ?>
+
+    <?php if ($page=="message") {?>
+
+      <div class=" col-2 " style="background-color: #ffffff;border-right:5em;border-shadow:5;" id="">
+
+          @yield('sidebar2')
+
+      </div>
+   <?php  }?>
+
+    
+    <?php if ($page=="message") {?>
+
+      <div id="main"  class="height-100  col-md-10 d-inline " style="margin-top:2%;">
+    <?php }
+    else{?>
+      <div id="main"  class="height-100  col-md-12 d-inline " style="margin-top:2%;"> 
+   <?php }?>
+
+    
+      <!-- <div class="row"> -->
+
+    @yield('content')
+        <!-- <div class="content">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">                
                         <div class="card-body col-md-12">
                             <div class="container">
-                                @yield('content')
+                                
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
+      <!-- </div> -->
     </div>
 </div>    
   
@@ -94,13 +125,11 @@ The above copyright notice and this permission notice shall be included in all c
   <!--  DataTables.net Plugin, full documentation here: https://datatables.net/  -->
   <script src="{{asset('assets/js/plugins/jquery.dataTables.min.js') }}"></script>
   <!--  Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
-<<<<<<< HEAD
+
   <script src="{{asset('assets/js/plugins/bootstrap-tagsinput.js') }}"></script>
 
   <script src="{{asset('assets/js/choix.js') }}"></script>
-=======
-  {{-- <script src="{{asset('assets/js/plugins/bootstrap-tagsinput.js') }}"></script> --}}
->>>>>>> 0293f444eefd7a2b9f87cbd2874477e9c92d6e95
+
   <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
 
   <!--  Full Calendar Plugin, full documentation here: https://github.com/fullcalendar/fullcalendar    -->
@@ -125,6 +154,9 @@ The above copyright notice and this permission notice shall be included in all c
   {{-- <script src="{{asset('assets/demo/demo.js') }}"></script> --}}
 
  {{-- <script src="{{asset('assets/bootstrap-select/js/bootstrap-select.js') }}"></script> --}}
+ <script type="text/javascript" src="{{asset('assets/js/audio/WebAudioRecorder.min.js') }}"></script>
+ <script type="text/javascript" src="{{asset('assets/js/audio/WebAudioRecorderMp3.min.js') }}"></script>
+ <script type="text/javascript" src="{{asset('assets/js/audio/app.js') }}"></script>
 
 <!--  chart js  -->
 
@@ -205,9 +237,68 @@ The above copyright notice and this permission notice shall be included in all c
       });
     </script>
 
+<script >
+    
+    // $('#smshider').ready(function(){
+    //     $("#smshider").change(function(){
+    //         $(this).find("option:selected").each(function(){
+    //             var optionValue = $(this).attr("value");
+    //             //console.log(optionValue);
+    //             if(optionValue){
+    //                 $(".box").not("." + optionValue).hide();
+    //                 $("." + optionValue).show();
+    //             } else{
+    //                 $(".box").hide();
+    //             }
+    //         });
+    //     }).change();
+    // });
+
+    // $('#smshiderLoc').ready(function(){
+    //     $("#smshiderLoc").change(function(){
+    //         $(this).find("option:selected").each(function(){
+    //             var optionValue = $(this).attr("value");
+    //             //console.log(optionValue);
+    //             if(optionValue){
+    //                 $(".box").not("." + optionValue).hide();
+    //                 $("." + optionValue).show();
+    //             } else{
+    //                 $(".box").hide();
+    //             }
+    //         });
+    //     }).change();
+    // });
 
 
-  {{-- @yield('scripts') --}}
+    // $('#bologna-list a').on('click', function (e) {
+    //   e.preventDefault()
+    //   $(this).tab('show')
+    // });
+
+    $("#log").hide();
+    $("#prerecordings").hide();
+     $("#encodingTypeSelect").hide();
+      $("#formats").hide();
+
+</script>
+<script>
+
+    $("#pausebtn").hide();
+    $("#recordButton").click(function(){
+      $("#pausebtn").show();
+      $("#recordButton").hide();
+    });
+
+     $("#stopButton").click(function(){
+      $("#pausebtn").hide();
+      $("#recordButton").show();
+      $("#stopButton").show();
+    });
+
+</script>
+
+
+  @yield('scripts') 
 </body>
 
 </html>
