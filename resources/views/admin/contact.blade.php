@@ -103,7 +103,7 @@ use App\Models\VoiceClient;
                 <div class="form-group row">
                     <div class="col-md-6">
                         <label for="" class="col-form-label ">Genre</label>
-                        <select class="form-control select-live2" name="genre">
+                        <select class="form-control 2" name="genre">
                           <option value="" >Sélectionner le genre </option>
                            <option value="H">Homme</option>
                            <option value="F">Femme</option>
@@ -132,22 +132,39 @@ use App\Models\VoiceClient;
                 </div>
 
                 <div class="form-group row">
+                  <div class="col-md-6">
+                    <label for="" class="col-form-label">Departement</label>
+                    <select class="form-control " name="departement" id="departement" >
+                      <option value="">--Sélectionnez le département</option>
+                      @foreach($departement as $dataDep)
+
+                        <option value="{{$dataDep->id}}">
+                          {{$dataDep->nom}}
+                        </option>
+
+                      @endforeach
+                  </select>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label for="" class="col-form-label ">Commune</label>
+                    <select class="form-control " name="commune" id="commune" >
+                      <option value="">--Sélectionnez la commune</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group row">
                    
                     <div class="col-md-6">
 
                         <label for="" class="col-form-label ">Localité</label>
 
-                        <select class="form-control select-live" name="localite">
+                        <select class="form-control " name="localite" id="localite" >
 
                             <option value="" >Sélectionner une localité </option>
 
-                            @foreach($localite as $dataLoc)
-
-                            <option value="{{$dataLoc->id}}">
-                              {{$dataLoc->nom}}
-                            </option>
-
-                            @endforeach
+                            
                         </select>
                     </div>
 
@@ -164,7 +181,7 @@ use App\Models\VoiceClient;
 
                             <label for="" class="col-form-label ">Langue de réception</label>
 
-                            <select class="form-control select-live" name="langue_reception">
+                            <select class="form-control " name="langue_reception">
 
                                 <option value="" >Sélectionner une langue </option>
 
@@ -182,7 +199,7 @@ use App\Models\VoiceClient;
                             <label for="" class="col-form-label ">Client</label>
                            <!--  <input class="form-control" type="text" name="intitule" > -->
 
-                           <select class="form-control select-live2" name="client">
+                           <select class="form-control 2" name="client">
 
                             <option value="" >Sélectionner un Client </option>
 

@@ -67,6 +67,28 @@
                                   </div>
 
                                   <div class="form-group row">
+                                    <div class="col-md-6">
+                                      <label for="" class="col-form-label">Departement</label>
+                                      <select disabled class="form-control " name="departement" id="departement" >
+                                        <option  value="">--Sélectionnez le département</option>
+                                        @foreach($departement as $dataDep)
+                                          <option value="{{$dataDep->id}}" {{ $dataDep->id == $contact->departement ? 'selected' : '' }} >{{$dataDep->nom}}</option>
+                                        @endforeach
+                                      </select>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                      <label for="" class="col-form-label ">Commune</label>
+                                      <select disabled class="form-control " name="commune" id="commune" >
+                                        <option value="">--Sélectionnez la commune</option>
+                                        @foreach($commune as $dataCom)
+                                          <option value="{{$dataCom->id}}" {{ $dataCom->id == $contact->commune ? 'selected' : '' }} >{{$dataCom->nom}}</option>
+                                        @endforeach
+                                      </select>
+                                    </div>
+                                  </div>
+
+                                  <div class="form-group row">
                                      
                                       <div class="col-md-6">
 

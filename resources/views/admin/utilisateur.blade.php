@@ -20,6 +20,7 @@
       @include('layouts.sidebar.sidebar2')
 @endsection
 
+
 @section('content')
 
 <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -178,7 +179,12 @@
 
 {{-- <div class="content">
   <div class="container-fluid"> --}}
+<<<<<<< HEAD
     {{-- <div class="row">
+=======
+    
+    <div class="row">
+>>>>>>> 365863561e923d81b929710aec7552bef8453f76
       <div class="col-md-12">
         <div class="card"> --}}
 
