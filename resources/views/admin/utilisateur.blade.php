@@ -4,8 +4,21 @@
 @section('title')
   Utilisateurs
 @endsection
+@section('top-menu')
+<li class="nav-item active">
+    <a class="nav-link text-dark" href="/admin/utilisateur"><b>Utilisateurs |</b> <span class="sr-only"></span></a>
+</li>
 
-
+<li class="nav-item">
+    <a class="nav-link" href="/admin/packs">Tarifications |</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="">Mon compte</a>
+</li>
+@endsection
+@section('sidebar2')
+      @include('layouts.sidebar.sidebar2')
+@endsection
 
 @section('content')
 
@@ -36,7 +49,7 @@
 
                                 }
                                 @endif
-                               
+
 
                                 {{-- @endif --}}
 
@@ -44,7 +57,7 @@
                             </select>
 
                         </div>
-                       
+
                         {{-- <div class="col-md-6" id="users">
                             <label for="" class="col-form-label">Utilisateur</label>
 
@@ -165,13 +178,13 @@
 
 {{-- <div class="content">
   <div class="container-fluid"> --}}
-    <div class="row">
+    {{-- <div class="row">
       <div class="col-md-12">
-        <div class="card">
+        <div class="card"> --}}
 
           @if($_SESSION['profil']=1 or $_SESSION['profil']=2  )
-          <div class="card-header card-header-primary">
-            <h4 class="card-title ">Liste des utilisateurs</h4>
+          {{-- <div class="card-header card-header-primary"> --}}
+            {{-- <h4 class="card-title ">Liste des utilisateurs</h4> --}}
             <?php
             $user1 = cas()->getUser();
             $login = DB::table('ml_users')->where('login', $user1)->first();
@@ -188,15 +201,15 @@
             //var_dump($if_profil_exist[0]->designation);
             //echo "$if_profil_exist->designation";
             ?>
-          </div>
-          <div class="card-body">
+          {{-- </div> --}}
+          {{-- <div class="card-body"> --}}
 
               @if (session('success'))
                 <div class="alert alert-success" role="alert">
                   <strong>{{session('success')}}</strong>
                 </div>
               @endif
-              <div class="row">
+              {{-- <div class="row">
                   <div class="col-12 text-right">
                     <a href="#addUser">
                       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
@@ -204,41 +217,41 @@
                       </button>
                     </a>
                   </div>
-              </div>
+              </div> --}}
 
 
-            <div class="table-responsive">
+            {{-- <div class="table-responsive"> --}}
              <?php //var_dump($financement); ?>
-              <table class="table" id="datatableid2">
-                <thead class=" text-primary">
+              <table class="display table  col-md-6" id="datatableid2">
+                <thead class=" text-primary thead">
 
-                  <th>
+                  <th class="text-dark">
                     Prenom
                   </th>
-                  <th>
+                  <th class="text-dark">
                     Nom
                   </th>
-                  <th>
+                  <th class="text-dark">
                     Email
                   </th>
 
 
-                  <th>
+                  <th class="text-dark">
                     Login
                   </th>
 
-                  <th>
+                  <th class="text-dark">
                     Tel
                   </th>
 
-                  <th>
+                  <th class="text-dark">
                     Profil
                   </th>
 
-                  <th>
+                  <th class="text-dark">
                     Modifier
                   </th>
-                  <th>
+                  <th class="text-dark">
                     Supprimer
                   </th>
 
@@ -247,7 +260,7 @@
                 <tbody>
 
                @foreach($user as $data)
-                  <tr>
+                  <tr class="tr">
 
                     <td>
                      {{$data->prenom}}
@@ -305,8 +318,8 @@
               </table>
 
 
-            </div>
-          </div>
+            {{-- </div> --}}
+          {{-- </div> --}}
           @else
           <h2>Vous n'avez pas l'autorisation de consulter cette page</h2>
           @endif

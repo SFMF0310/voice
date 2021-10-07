@@ -37,51 +37,9 @@
 
         </ul>
 </div> --}}
-<header class="header" id="header">
 
-    <div class="row">
-        <div class="">
-
-            <div class="">
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <!-- <a class="navbar-brand" href="#">Navbar</a> -->
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="header_toggle">
-                        <i class='bx bx-menu ' id="header-toggle"></i>
-                    </div>
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                      <ul class="navbar-nav">
-                        <li class="nav-item active">
-                          <a class="nav-link text-dark" href="#"><b>Creer une nouvelle campagne |</b> <span class="sr-only"></span></a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" href="#">Features</a>
-                        </li>
-                        <!-- <li class="nav-item">
-                          <a class="nav-link" href="#">Pricing</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link disabled" href="#">Disabled</a>
-                        </li> -->
-                      </ul>
-                    </div>
-                  </nav>
-            </div>
-
-        </div>
-        <!-- <div class="d-inline">
-
-        </div> -->
-    </div>
-    <div class="">
-        <!-- <img src="https://i.imgur.com/hczKIze.jpg" alt="">  -->
-        <span><i class='material-icons nav_icon'>account_balance_wallet</i><b>SOLDE |</b>2000 mn</span>
-    </div>
-</header>
 <div class="l-navbar" id="nav-bar">
-    <nav class="nav">
+    <nav class="nav" id="nav1">
         <div>
             <div>
             <a href="#" class="nav_logo">
@@ -93,7 +51,7 @@
                     <i class='bx bx-grid-alt nav_icon'></i>
                     <span class="nav_name">Dashboard</span>
                 </a> -->
-                <a href="admin/dashboard" class="nav_link bs-tooltip-right" data-toggle="tooltip" data-placement="right" title="Messages">
+                <a href="/admin" class="nav_link bs-tooltip-right" data-toggle="tooltip" data-placement="right" title="Messages">
                     <i class='material-icons nav_icon'>dashboard</i>
                     <span class="nav_name">Dashboard</span>
                 </a>

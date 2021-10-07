@@ -37,6 +37,9 @@ Route::middleware(['casAuth','admin'])->group(function(){
     Route::get('/admin/modifUtilisateur/{id}', 'UserController@update');
     Route::put('admin/update-utilisateur-saving/{id}', 'UserController@updateSaving');
     Route::post('/admin/deleteUtilisateur/{id}', 'UserController@delete');
+    Route::get('/admin/packs','PackController@index');
+    Route::get('/admin/packs/paiement','PackController@buy');
+    Route::get('/admin/packs/retourpaiement','PackController@retourpaiement');
 
 
     //client

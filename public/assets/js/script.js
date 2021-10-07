@@ -53,6 +53,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
     nav = document.getElementById(navId),
     bodypd = document.getElementById(bodyId),
     headerpd = document.getElementById(headerId)
+    // header2pd = document.getElementById(headerId2)
+
 
     // Validate that all variables exist
     if(toggle && nav && bodypd && headerpd){
@@ -66,6 +68,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     bodypd.classList.toggle('body-pd')
     // add padding to header
     headerpd.classList.toggle('body-pd')
+    // header2pd.classList.toggle('body-pd')
     })
     }
     }
@@ -85,4 +88,46 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     // Your code to run since DOM is loaded and ready
     });
+
+    
+                            function buy(btn) {
+                                let idTransaction = pQuery(btn).attr('data-item-id');
+                                let commandName = pQuery(btn).attr('item-name');
+                                let commandPrice = pQuery(btn).attr('item-price');
+                                let client = pQuery(btn).attr('client');
+                                
+
+
+                                // alert(itemname); 
+                                (new PayTech({
+                                     //will be sent to paiement.php page
+                                    // idPack          : idTransaction,
+                                    pack            : commandName,
+                                    price           : commandPrice ,
+                                    client          : client,
+                                    
+
+                                })).withOption({
+                                    requestTokenUrl           :   'http://127.0.0.1:8000/admin/packs/paiement',
+                                    method              :   'GET',
+                                    headers             :   {
+                                        // "Accept"          :    "text/html"
+                                    },
+                                    prensentationMode   :   PayTech.OPEN_IN_POPUP,
+                                    willGetToken        :   function () {
+                                       
+                                    },
+                                    didGetToken         : function (token, redirectUrl) {
+                                       
+                                    },
+                                    didReceiveError: function (error) {
+                                        // console.log(error);
+                                    },
+                                    didReceiveNonSuccessResponse: function (jsonResponse) {
+                                        //console.log(jsonResponse);
+                                    }
+                                }).send();
+                        
+                                // .send params are optional
+                            }
 
