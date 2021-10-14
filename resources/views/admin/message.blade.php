@@ -8,7 +8,7 @@
 
 @section('sidebar2')
       
-    <form style="background-color: rgba(245, 245, 245, 0);margin-top:50px;">
+    <!-- <form style="background-color: rgba(245, 245, 245, 0);margin-top:50px;">
       <select class="form-control" style="background-color: rgba(245, 245, 245, 0);border-top: none;border-right: none;border-left: none;">
         <option value=""> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Choisir la langue </option>
 
@@ -20,8 +20,7 @@
 
       <center style="margin-top: 120px;"><p><strong> Configuration d'envoie </strong></p></center>
 
-      <!-- <input class="form-control" type="date" name="demarrage" placeholder="Date de démarrage"> -->
-      <!-- <input class="form-control" placeholder="Date" class="textbox-n" type="text" onfocus="(this.type='date')" id="date"> -->
+
       <input placeholder="       Date de démarrage" class="form-control" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="date" style="background-color: rgba(245, 245, 245, 0);border-top: none;border-right: none;border-left: none;" />
       <br>
       <input placeholder="       Date de fin" class="form-control" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="date" style="background-color: rgba(245, 245, 245, 0);border-top: none;border-right: none;border-left: none;" />
@@ -30,8 +29,8 @@
 
 
 
-      <!-- <hr> -->
-    </form>
+
+    </form> -->
 
 @endsection
 
@@ -67,7 +66,7 @@ use App\Models\VoiceClient;
 
                     <h4 class="col-9 text-right">Uploader vos fichiers de contact en format CSV,EXCEL, ..</h4>
 
-                    <button class="btn btn-success col-2">bouton test</button>
+                    <button class="btn btn-success col-2">Importer les contacts</button>
                     </div>
                   </div>
                 </div>
@@ -76,34 +75,7 @@ use App\Models\VoiceClient;
       </div>
 
       <div class="col-md-12 ">
-        <div class="row py-4">
-          <form style="background-color: rgba(245, 245, 245, 0);margin-top:20px;">
-            <select class="form-control" style="background-color: rgba(245, 245, 245, 0);border-top: none;border-right: none;border-left: none;">
-              <option value="">Selectionnez les destinataire de votre campagne </option>
-
-              @foreach($campagne as $data)
-              <option value="{{$data->id}}"> {{$data->intitule}} </option>
-              @endforeach
-            </select>
-
-            <br>
-
-            <select class="form-control" style="background-color: rgba(245, 245, 245, 0);border-top: none;border-right: none;border-left: none;">
-              <option value="">Choisir la langue </option>
-
-              @foreach($campagne as $data)
-              <option value="{{$data->id}}"> {{$data->intitule}} </option>
-              @endforeach
-            </select>
-<!-- 
-            <br>
-
-            <input placeholder="       Heure d'envoi" class="form-control" type="file" id="date" style="background-color: rgba(245, 245, 245, 0);border-top: none;border-right: none;border-left: none;" /> -->
-            <br>
-            <button class="btn btn-success col-2" style="margin-left:75%">Envoyer</button>
-            <!-- <hr> -->
-          </form>
-        </div>
+        
         <div class="card border border-secondary" style="background-color: rgba(245, 245, 245, 0.4);margin-top:20px;">
           
           <div class="card-body">
@@ -111,19 +83,19 @@ use App\Models\VoiceClient;
               <div class="row">
                 <div class="col-12">
 
-                  <div class="row py-4">
+                  <div class="row py-2">
 
                   
-                    <h4 class="col-5 text-right py-4">Enrdegistrez votre message vocal</h4>
+                    <h4 class="col-5 text-right py-3">Enrdegistrez votre message vocal</h4>
 
-                      <div class=" form-group col-5 ">
+                      <div class=" form-group col-3 ">
                               <select id="encodingTypeSelect">
                                 <option value="wav" >Waveform Audio (.wav)</option>
                                 <option value="mp3" selected>MP3 (MPEG-1 Audio Layer III) (.mp3)</option>
                                 <option value="ogg">Ogg Vorbis (.ogg)</option>
                               </select>
                               
-                              <div id="controls " style="margin-left:100px;">
+                              <div id="controls " style="margin-left:20px;">
                                   <br>
                                   <button id="recordButton"><img src="{{asset('assets/img/play.png') }}"></button>
                                   <button id="pausebtn" disabled ><img src="{{asset('assets/img/pause.png') }}"></button>
@@ -140,23 +112,53 @@ use App\Models\VoiceClient;
 
 
                               </div>
-                              <div id="formats"></div>
-                              <!-- <pre>Log</pre> -->
-                              <pre id="log"></pre>
-
-                              <pre id="prerecordings" >Recordings</pre>
-                               <br>
-                              <ol id="recordingsList"></ol>
-                          
-                        
                       </div>
-                    
+                      <div class="col-2 ">
+                        <div id="formats"></div>
+                                <!-- <pre>Log</pre> -->
+                        <pre id="log"></pre>
+
+                        <pre id="prerecordings" >Recordings</pre>
+                          <br>
+                        <ol id="recordingsList"></ol>
+                      </div>
 
                   </div>
                 </div>
               </div>
           </div>
         </div>
+
+        <div class="row py-4">
+          <form method="POST" action="/admin/envoi-message" style="background-color: rgba(245, 245, 245, 0);margin-top:20px;"  enctype="multipart/form-data">
+             @csrf
+            <select class="form-control" name="campagne" style="background-color: rgba(245, 245, 245, 0);border-top: none;border-right: none;border-left: none;" required>
+              <option value="">Selectionnez les destinataire de votre campagne </option>
+
+              @foreach($campagne as $data)
+              <option value="{{$data->id}}"> {{$data->intitule}} </option>
+              @endforeach
+            </select>
+
+            <br>
+
+            <select class="form-control" name="langue" style="background-color: rgba(245, 245, 245, 0);border-top: none;border-right: none;border-left: none;" required >
+              <option value="">Choisir la langue </option>
+
+              @foreach($langue as $datalangue)
+              <option value="{{$datalangue->id}}"> {{$datalangue->nom}} </option>
+              @endforeach
+            </select>
+
+            <br>
+
+            <input required placeholder="       Heure d'envoi" class="form-control" type="file" id="date" name="audio[]" style="background-color: rgba(245, 245, 245, 0);border-top: none;border-right: none;border-left: none;" />
+            <br>
+            <button class="btn btn-success col-2" style="margin-left:75%">Envoyer</button>
+            <!-- <hr> -->
+          </form>
+        </div>
+
       </div>
 
         <!-- <div class=" card-body col-12 ">

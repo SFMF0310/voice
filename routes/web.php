@@ -84,6 +84,7 @@ Route::middleware(['casAuth','admin'])->group(function(){
 
     //Message
     Route::get('admin/message', 'MessageController@index');
+    Route::post('/admin/envoi-message','MessageController@store');
 
 
 });

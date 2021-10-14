@@ -62,11 +62,11 @@ The above copyright notice and this permission notice shall be included in all c
 
     <?php if ($page=="message") {?>
 
-      <div class=" col-2 " style="background-color: #ffffff;border-right:5em;border-shadow:5;" id="">
+      <div class=" col-1 " style="border-right:5em;border-shadow:5;" id="">
 
           @yield('sidebar2')
 
-      </div>
+      </div> 
    <?php  }?>
 
     

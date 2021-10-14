@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\VoiceCampagne;
 use App\Models\VoiceLangue;
+use App\Models\VoiceResultat;
+use Illuminate\Support\Facades\DB;
 
 class MessageController extends Controller
 {
@@ -21,20 +23,19 @@ class MessageController extends Controller
 
      public function store (Request $request){
 
-        $message=new VoiceResultat;
+        
         //$campagne=$request->input('campagne');
 
-        $camp = intval($request->input('prenom'));
-        $req = "select b.tel from voice_contact b, voice_campagne_contact a where b.id=a.contact and a.campagne=".$camp;
-        $tels = $voiceup->executerReq($req);
-        
-//    print_r($uploadfile);
-//    exit;
-//    echo $req;
-//    exit;
+        $campagne = $request->input('campagne');
+
+        $telCampagne=DB::select('select con.tel from voice_contact con , voice_campagne_contact cam where cam.contact=con.id and cam.campagne = "'.$request->input('campagne').'" and langue_reception = "'.$request->input('langue').'" ');
+
+
         $contacts = array();
-        foreach ($tels as $key => $value) {
-            $tt = trim(str_replace(" ", "", $value['tel']));
+        $j = $k = 0;
+        foreach ($telCampagne as $datatel) {
+           // var_dump ( $datatel->tel);
+            $tt = trim(str_replace(" ", "", $datatel->tel));
             if(strlen($tt) == 9){
                 $num = '221'.$tt;
             } elseif (strlen($tt) == 12) {
@@ -47,16 +48,30 @@ class MessageController extends Controller
             $k++;
         }
     
-//        print_r($contacts);
-//        exit;
+
         $i = $j = 0;
-        // echo $uploadfile;
-        // exit;
-        if(move_uploaded_file($_FILES['audio']['tmp_name'], $uploadfile)){
-            $historique->ajouter(array("type" => 5, "user" => $_SESSION['phpCAS']['utilisateur'], "valeur" => $nomfic));
+        
             
-            
-            
+		//$user->update(); 
+        //echo $request->file('audio');
+        
+// exit;
+        if (!empty($request->file('audio'))) {
+           // echo "<br>". $request->file('audio');
+            // $i = 0;
+            foreach($request->file('audio') as $file){
+              //  echo "<br>". $request->input('langue');
+                $audioName = time() . $i . '.' . $file->getClientOriginalExtension();
+             // echo $audioName;
+             // exit;
+               $fichier=public_path('/assets/audio');
+                $path = $file->move($fichier, $audioName); 
+                $data[] = $audioName; 
+                $i++;
+           }
+    
+        }
+           // exit;
             
             
             
@@ -64,13 +79,14 @@ class MessageController extends Controller
                 'login' => 'MLOUMA',
                 'password' => 'svdnj328FHC',
 //                'filename' => new \CurlFile('/var/www/html/voice/docs/audio/mlouma.mp3','audio/mp3', 'dip.mp3') 
-                'filename' => new \CurlFile($uploadfile, $type, $nomfic) 
+                'filename' => new \CurlFile(public_path('/assets/audio/'.$audioName),'audio/mp3', 'dip.mp3'),
             );
 
             $ch = curl_init();
 
 //            print_r($fields);
-//            exit;
+            //echo $audioName;
+           //exit;
             curl_setopt($ch, CURLOPT_URL, 'https://voice.lafricamobile.com/api/Upload'); 
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
@@ -81,9 +97,11 @@ class MessageController extends Controller
             "Content-Disposition: mulipart/form-data", ));
             $result = curl_exec($ch);
 
-        //    print_r($result);
+        //print_r($result);
+        //exit;
             $res = json_decode(substr($result, 0, -1));
-        //    print_r($res);
+          //print_r($res);
+          //exit;
             $clientFileName = $res->clientFileName;
             $serverFileName = $res->serverFileName;
             $url = $res->url;
@@ -144,49 +162,33 @@ class MessageController extends Controller
                 $tab_contacts["called"] = $value->called;
                 $tab_contacts["callStateId"] = $value->callStateId;
                 $tab_contacts["callResultId"] = $value->callResultId;
+                 $tab_res["contacts"] = json_encode($tab_contacts);
+
+            $message=new VoiceResultat;
+            $message->id_res=$tab_res["id_res"];
+            $message->campagne=$request->input('campagne');
+            $message->login_res=$tab_res["login_res"];
+            $message->count_res=$tab_res["count_res"];
+            $message->processingCallCount=$tab_res["processingCallCount"];
+            $message->callSuccessCount=$tab_res["callSuccessCount"];
+            $message->callFailedCount=$tab_res["callFailedCount"];
+            $message->callIgnoredCount=$tab_res["callIgnoredCount"];
+            $message->campaignName=$tab_res["campaignName"];
+            $message->historyStateId=$tab_res["historyStateId"];
+            $message->messageFileName=$tab_res["messageFileName"];
+            $message->contacts=$tab_res["contacts"];
+            $message->fichier=$audioName;
+
+            $message->save();
+            
             }
 //
-            $tab_res["contacts"] = json_encode($tab_contacts);
-            $tab_res["campagne"] = $camp;
-            
-            $infos = array("campagne" => $camp, "nom" => utf8_encode(strip_tags($_POST['nom'])), "user" => $_SESSION['phpCAS']['utilisateur'], "fichier" => $nomfic);
-            if($message->ajouter($infos)){
-//                echo "Fihier sauvegardé avec succès! ";
-//               $infos["type"] = 6;
-                $historique->ajouter(array("type" => 6, "user" => $infos["user"], "valeur" => serialize($infos)));
-//                echo 'ok';
-//                $camp = intval($_POST['campagne']);
-//                $tab_res["campagne"] = $camp;
-//                print_r($lam_resulat->ajouter($tab_res));
-                
-            }
-            
-            if($lam_resulat->ajouter($tab_res)){
-                $historique->ajouter(array("type" => 7, "user" => $infos["user"], "valeur" => serialize($tab_res)));
-//                echo "OK2";
-            }
-            
+
+
             echo "Envoi effectué avec succès. <br>Veuillez vérifier l'historique pour voir l'état des envois.";
 
-        }
-    
+    //    }
 
-
-        
-        $contact->prenom=$request->input('prenom');
-        $contact->nom=$request->input('nom');
-        $contact->genre=$request->input('genre');
-        $contact->date_naissance=$request->input('date_naissance');
-        $contact->lieu_naissance=$request->input('lieu_naissance');
-        $contact->adresse=$request->input('adresse');
-        $contact->departement=$request->input('departement');
-        $contact->commune=$request->input('commune');
-        $contact->localite=$request->input('localite');
-        $contact->langue_reception=$request->input('langue_reception');
-        $contact->tel=$request->input('tel');
-        $contact->client=$request->input('client');
-        $contact->createur=$_SESSION['user'];
-        $contact->save();
 
         return redirect('/admin/message')->with('success','Message envoyé avec succès');
 
