@@ -20,19 +20,64 @@ The above copyright notice and this permission notice shall be included in all c
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://paytech.sn/cdn/paytech.min.css">
+
         {{-- <link rel="stylesheet" href="style.css">  --}}
         <link rel="stylesheet" href="{{asset('assets/css/layoutStyle.css')}}">
+        
         <meta charset="utf-8" />
         <title>
           @yield('title')
         </title>
-        
+
 
         <title>Document</title>
     </head>
 
     <body id="body-pd">
+<<<<<<< HEAD
+        <header class="header" id="header">
 
+            <div class="row">
+                <div class="">
+
+                    <div class="">
+                        <nav class="navbar navbar-expand-lg navbar-light bg-light" >
+                            <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="header_toggle">
+                                <i class='bx bx-menu ' id="header-toggle"></i>
+                            </div>
+                            <div class="collapse navbar-collapse" id="navbarNav">
+                              <ul class="navbar-nav">
+                                    @yield('top-menu')
+                                <!-- <li class="nav-item">
+                                  <a class="nav-link" href="#">Pricing</a>
+                                </li>
+                                <li class="nav-item">
+                                  <a class="nav-link disabled" href="#">Disabled</a>
+                                </li> -->
+                              </ul>
+                            </div>
+                          </nav>
+                    </div>
+
+                </div>
+                <!-- <div class="d-inline">
+
+                </div> -->
+            </div>
+            <div class="">
+                <!-- <img src="https://i.imgur.com/hczKIze.jpg" alt="">  -->
+                <span><i class='material-icons nav_icon'>account_balance_wallet</i><b>SOLDE |</b>2000 mn</span>
+            </div>
+        </header>
+        @yield('header2')
+=======
+
+>>>>>>> 365863561e923d81b929710aec7552bef8453f76
         <?php
          if ($_SESSION['role']=='Administrateur') {?>
             @include('layouts.sidebar.admin.sidebar')
@@ -50,6 +95,13 @@ The above copyright notice and this permission notice shall be included in all c
         <?php } ?>
 
 
+<<<<<<< HEAD
+<div class="row" style="margin-left:-3%;">
+    {{-- @include('layouts.sidebar.sidebar2') --}}
+        @yield('sidebar2')
+    <div id="main"  class="height-100  d-inline">
+        {{-- <div class="content">
+=======
 
 <div class="row d-flex" style="margin-left:-3%;">
 
@@ -83,27 +135,47 @@ The above copyright notice and this permission notice shall be included in all c
 
     @yield('content')
         <!-- <div class="content">
+>>>>>>> 365863561e923d81b929710aec7552bef8453f76
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12">                
+                    <div class="col-md-12">
                         <div class="card-body col-md-12">
+<<<<<<< HEAD
+                            <div class="container"> --}}
+                                @yield('stats-header')
+                                @yield('content')
+                            {{-- </div>
+=======
                             <div class="container">
                                 
                             </div>
+>>>>>>> 365863561e923d81b929710aec7552bef8453f76
                         </div>
                     </div>
                 </div>
             </div>
+<<<<<<< HEAD
+        </div>--}}
+    </div> 
+</div>
+
+=======
         </div> -->
       <!-- </div> -->
     </div>
 </div>    
   
+>>>>>>> 365863561e923d81b929710aec7552bef8453f76
   <!--   Core JS Files   -->
   <script src="{{asset('assets/js/core/jquery.min.js') }}"></script>
-
-  {{-- <script src="{{asset('assets/js/core/kumkum.js') }}"></script> --}}
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
   <script src="{{asset('assets/js/script.js') }}"></script>
+
+  <script src="https://paytech.sn/cdn/paytech.min.js"></script>
+
+
+
+  {{-- <script src="{{asset('assets/js/core/kumkum.js') }}"></script> 
 
   {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
    {{-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> --}}
@@ -168,8 +240,9 @@ The above copyright notice and this permission notice shall be included in all c
         "language": {
               "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
           },
+        //   "dom": '<"toolbar">frtip'
       });
-
+    //   $("div.toolbar").html('<b>Custom tool bar! Text/images etc.</b>');
     } );
 
 

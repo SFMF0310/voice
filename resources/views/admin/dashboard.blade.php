@@ -4,10 +4,17 @@
 @section('title')
   Dashboard
 @endsection
-
+@section('top-menu')
+<li class="nav-item active">
+    <a class="nav-link text-dark" href="#"><b>Creer une nouvelle campagne |</b> <span class="sr-only"></span></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Features</a>
+</li>
+@endsection
 @section('stats-header')
-<div class="content">
-    <div class="container-fluid">
+{{-- <div class="content">
+    <div class="container-fluid"> --}}
       <div class="row">
         <div class="col-lg-3 col-md-6 col-sm-6">
           <div class="card card-stats">
@@ -85,36 +92,49 @@
 @section('content')
 
 
-{{-- <div class="content">
+<div class="content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12">                
+            <div class="col-md-12">
                 <div class="card-body col-md-12">
-                    <div class="container"> --}}
-                        <table id="datatableid2" class="table table-stripped bg-light ">
-                            <thead class="bg-secondary">
-                                <th><b>Nom</b> </th>
-                                <th><b>Stats</b></th>
-                                <th><b>Supprimer</b> </th>
-                                {{-- <th><b>Stats</b> </th>
-                                <th><b>Supprimer</b> </th> --}}
-                            </thead>
-                            <tbody>
-                                @foreach ( $clients as $client )
-                                    <tr>
-                                        <td><a href="/admin/client/{{$client->id}}/infos" target="_blank" rel="noopener noreferrer">{{ $client->nom}}</a></td>
-                                        <td><a href=""><i class="material-icons">bar_chart</i></a></td>
-                                        <td><a href="" class="text-danger"><i class="material-icons">delete</i></a></td>                                        
+                    <div class="container">
+                        <div class="container">
+
+                           
+                            <table id="datatableid2" class="display table  col-md-12">
+                                <thead class="border-top thead" >
+                                    <tr class="border_bottom  align-items-center">
+                                        <th class="">Nom</th>
+                                        <th class="">Stats</th>
+                                        <th class="">Supprimer</th>
                                     </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    {{-- </div>
+                                </thead>
+                                <tbody>
+                                    @foreach ( $clients as $client )
+                                        <tr class="border_bottom tr">
+                                            <td><a class="text-decoration-none text-dark"  target="_blank" rel="noopener noreferrer">{{ $client->nom}}</a></td>
+                                            <td><a href="/admin/client/{{$client->id}}/infos"><i class="material-icons">bar_chart</i></a></td>
+                                            <td><a href="" class="text-danger"><i class="material-icons">delete</i></a></td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <tr>
+                                            <th class="">Nom</th>
+                                            <th class="">Stats</th>
+                                            <th class="">Supprimer</th>
+                                        </tr>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div> --}}
+</div>
 
 
 @endsection

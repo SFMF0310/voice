@@ -78,6 +78,9 @@
         </div>
       </div>
 @endsection
+{{-- @section('sidebar2')
+      @include('layouts.sidebar.sidebar2')
+@endsection --}}
 
 @section('content')
 
@@ -129,15 +132,15 @@
                                     <th><b>Supprimer</b> </th> --}}
                                 </thead>
                                 <tbody>
-                                    
+
                                     @foreach ( $clientProfils as $profils )
                                         <tr>
                                             <td><a href="/admin/client/{{$profils->id}}/infos" target="_blank" rel="noopener noreferrer">{{ $profils->nom}}</a></td>
                                             <td><a href=""><i class="material-icons">bar_chart</i></a></td>
-                                            <td><a href="/admin/client/{{$profils->vpid}}/delete" class="text-danger"><i class="material-icons">delete</i></a></td>                                        
+                                            <td><a href="/admin/client/{{$profils->vpid}}/delete" class="text-danger"><i class="material-icons">delete</i></a></td>
                                         </tr>
                                     @endforeach
-                                    
+
                                 </tbody>
                             </table>
 
