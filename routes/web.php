@@ -93,6 +93,7 @@ Route::middleware(['casAuth','admin'])->group(function(){
     Route::get('admin/message', 'MessageController@index');
     //historique
     Route::get('admin/historique', 'HistController@index');
+    Route::post('/admin/envoi-message','MessageController@store');
 
 
 });
