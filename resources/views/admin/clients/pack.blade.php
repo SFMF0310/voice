@@ -21,45 +21,45 @@
 @section('content')
 {{-- <header class="header2" id="header2"> --}}
 
-    <div class="row mt-5 ml-3" style="background-color:#ccc5c5;width:100">
-        <p ><b class="text-success">Tarification</b><br/>Détails de tarification de nos packs</p>
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <div class="row ml-3" style="background-color:#ccc5c5;width:100">
+        <p class="pt-5 ml-5"><b class="text-success">Tarification</b><br/>Détails de tarification de nos packs</p>
+        <ul class="nav nav-tabs ml-2 " id="myTab" role="tablist">
             @foreach ( $packs as $pack )
                     <li class="nav-item">
-                        <a class="nav-link text-decoration-none text-dark" id="{{ $pack->id.'-tab' }}" data-toggle="tab" href="{{'#'.$pack->forfait }}" role="tab" aria-controls="{{ $pack->forfait }}" aria-selected="false">{{$pack->forfait}}</a>
+                        <a class="nav-link text-decoration-none text-dark " id="{{ $pack->id.'-tab' }}" data-toggle="tab" href="{{'#'.$pack->forfait }}" role="tab" aria-controls="{{ $pack->forfait }}" aria-selected="false"><b>{{$pack->forfait}}</b></a>
                     </li>
-                
-                
+
+
             @endforeach
-           
+
         </ul>
         <div class="tab-content bg-light left-0" id="myTabContent">
             @foreach ( $packs as $pack )
                     <div class="tab-pane fade " id="{{$pack->forfait}}" role="tabpanel" aria-labelledby="{{ $pack->id.'-tab'}}">
                         <div class=" bg-light">
-                            <div class="text-dark"> 
+                            <div class="text-dark">
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                
+
                             </div>
                             <div class="d-flex justify-content-end bottom-2">
                                 {{-- <a class="btn btn-success " href="#">Souscrire</a> --}}
-                                <button class="btn btn-success buy" onclick="buy(this)" client="3" item-price="{{ $pack->prix}}" item-name="{{$pack->forfait}}" data-item-id="{{$pack->id}}" >Souscrire</button>
+                                <button class="btn btn-success buy" onclick="buy(this)" client="3" item-price="{{$pack->prix}}" item-name="{{$pack->forfait}}" data-item-id="{{$pack->id}}" item-nb-minute="{{$pack->nb_minute}}">Souscrire</button>
                              </div>
-                        </div> 
+                        </div>
                     </div>
-                
+
 
             {{-- <div class="tab-pane fade show active " id="home" role="tabpanel" aria-labelledby="home-tab">
                 {{-- <div class="card bg-light">
-                    <div class="text-dark"> 
+                    <div class="text-dark">
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        
+
                     </div>
                     <div class="d-flex justify-content-end bottom-2">
                         <a class="btn btn-success " href="#">Souscrire</a>
                      </div>
-                {{--</div> 
-        
+                {{--</div>
+
             </div> --}}
             @endforeach
 

@@ -10,7 +10,7 @@
 @section('content')
 
 
-<?php 
+<?php
 use App\Models\VoiceLocalite;
 use App\Models\VoiceClient;
 
@@ -62,9 +62,9 @@ use App\Models\VoiceClient;
                           </div>
 
                     </div>
-                   
+
                 </div>
-                
+
               </div>
               <span style="margin-left: 30px;">Télécharger le modèle <a target="__blanc" href=" {{asset('assets/modeleContact/modeleliste.csv') }}">ICI</a></span>
               <div class="card-footer ml-auto mr-auto">
@@ -128,7 +128,7 @@ use App\Models\VoiceClient;
 
                     </div>
 
-                   
+
                 </div>
 
                 <div class="form-group row">
@@ -155,7 +155,7 @@ use App\Models\VoiceClient;
                 </div>
 
                 <div class="form-group row">
-                   
+
                     <div class="col-md-6">
 
                         <label for="" class="col-form-label ">Localité</label>
@@ -164,7 +164,7 @@ use App\Models\VoiceClient;
 
                             <option value="" >Sélectionner une localité </option>
 
-                            
+
                         </select>
                     </div>
 
@@ -213,7 +213,7 @@ use App\Models\VoiceClient;
                            </select>
                         </div>
                 </div>
-                
+
               </div>
               <div class="card-footer ml-auto mr-auto">
                 <a class="btn btn-danger" data-dismiss="modal">Annuler</a>
@@ -231,11 +231,11 @@ use App\Models\VoiceClient;
 
     <div class="row">
       <div class="col-md-12">
-        <div class="card">
-          <div class="card-header card-header-primary">
+        {{-- <div class="card"> --}}
+          {{-- <div class="card-header card-header-primary">
             <h4 class="card-title "> Liste des contacts   </h4>
 
-          </div>
+          </div> --}}
           <div class="card-body">
             @if (session('success'))
               <div class="alert alert-success" role="alert">
@@ -247,68 +247,70 @@ use App\Models\VoiceClient;
                 <strong>{{session('status')}}</strong>
               </div>
             @endif
-             <div class="row">
-                <div class="col-12 text-right">
+             {{-- <div class="row"> --}}
+                <div class="d-flex justify-content-between">
+                    <div class="">
+                        <a href="#addCampagne" class="">
+                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
+                              Ajouter un contact
+                            </button>
+                            </a>
 
-             
-                    <a href="#addCampagne">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                      Ajouter un contact 
-                    </button>
-                    </a>
+                    </div>
 
-                  <a href="#addListe">
-                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#listeModal">
-                      Ajouter par lot
-                    </button>
-                  </a>
-                  
-                  
+                    <div class="ml-3 ">
+                        <a href="#addListe">
+                            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#listeModal">
+                            Ajouter par lot
+                            </button>
+                        </a>
+                    </div>
+
                 </div>
-              </div>
-            <div class="table-responsive">
-             
-              <table class="table" id="datatableid2">
-                <thead class=" text-primary">
-                  <th>
+              {{-- </div> --}}
+            <div class="mt-5 table-responsive">
+
+              <table class="table display" id="datatableid2">
+                <thead class=" text-primary thead">
+                  <th class="text-dark">
                     Prénom
                   </th>
-                  <th>
+                  <th class="text-dark">
                     Nom
                   </th>
-                  <th>
+                  <th class="text-dark">
                     Genre
                   </th>
 
-                  <th>
+                  <th class="text-dark">
                     Tel
                   </th>
 
-                  <th>
+                  <th class="text-dark">
                     Localite
                   </th>
 
-                  <th>
+                  <th class="text-dark">
                     Client
                   </th>
 
-                  <th>
+                  <th class="text-dark">
                     Détails
                   </th>
-               
-                  <th>
+
+                  <th class="text-dark">
                     Modifier
                   </th>
 
-                  <th>
+                  <th class="text-dark">
                     Supprimer
                   </th>
-                  
+
                 </thead>
                 <tbody>
                   @foreach($contact as $dataCon)
-                    <tr>
-                      <td> {{$dataCon->prenom ?? '--'}} </td>
+                    <tr class="tr">
+                      <td>{{$dataCon->prenom ?? '--'}} </td>
                       <td>{{$dataCon->nom ?? '--'}}</td>
                       <td>{{$dataCon->genre ?? '--'}}</td>
                       <td>{{$dataCon->tel ?? '--'}}</td>
@@ -317,17 +319,17 @@ use App\Models\VoiceClient;
                         <?php //use App\Models\VoiceLocalite;
                         //use App\Models\VoiceLocalite;
                         if (!empty($dataCon->localite)) {
-                        
+
                           $locCon= VoiceLocalite::findOrFail($dataCon->localite);
 
                           echo $locCon->nom;
                         }else{
                           echo "--";
                         }
-                         
+
 
                         ?>
-                        
+
 
                       </td>
                       <td>
@@ -335,31 +337,31 @@ use App\Models\VoiceClient;
                         <?php //use App\Models\VoiceLocalite;
                         //use App\Models\VoiceLocalite;
                         if (!empty($dataCon->client)) {
-                        
+
                           $clCon= VoiceClient::findOrFail($dataCon->client);
 
                           echo $clCon->nom;
                         }else{
                           echo "--";
                         }
-                         
+
 
                         ?>
                       </td>
-                      <td><a href="/admin/detailsContact/{{$dataCon->id}}" class="btn btn-info btn-sm"><i class="material-icons">assignment</i></a></td>
-                      <td> 
+                      <td><a href="/admin/detailsContact/{{$dataCon->id}}" class="btn btn-success btn-sm"><i class="material-icons">assignment</i></a></td>
+                      <td>
                         <form action="{{ url('admin/modifContact/'.$dataCon->id)}}" method="get">
                           <div class="form-group">
-                            <button type="submit" class="btn btn-warning btn-sm"><i class="material-icons">edit</i></button>
+                            <button type="submit" class="btn btn-secondary btn-sm"><i class="material-icons">edit</i></button>
                           </div>
                         </form>
                     </td>
                       <td>
                        <form action="/admin/deleteContact/{{$dataCon->id ?? ''}}" onsubmit="return confirm('Confirmez-vous la suppression');" method="post">
                         @csrf
-                         
+
                         <div class="form-group">
-                    
+
                             <button type="submit" class="btn btn-danger btn-sm"><i class="material-icons">delete</i></button>
                         </div>
 
@@ -380,9 +382,9 @@ use App\Models\VoiceClient;
 
             </div>
           </div>
-        </div>
+        {{-- </div> --}}
       </div>
-      
+
     </div>
   </div>
 </div>

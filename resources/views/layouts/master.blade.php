@@ -24,7 +24,7 @@ The above copyright notice and this permission notice shall be included in all c
 
         {{-- <link rel="stylesheet" href="style.css">  --}}
         <link rel="stylesheet" href="{{asset('assets/css/layoutStyle.css')}}">
-        
+
         <meta charset="utf-8" />
         <title>
           @yield('title')
@@ -35,7 +35,6 @@ The above copyright notice and this permission notice shall be included in all c
     </head>
 
     <body id="body-pd">
-<<<<<<< HEAD
         <header class="header" id="header">
 
             <div class="row">
@@ -71,13 +70,10 @@ The above copyright notice and this permission notice shall be included in all c
             </div>
             <div class="">
                 <!-- <img src="https://i.imgur.com/hczKIze.jpg" alt="">  -->
-                <span><i class='material-icons nav_icon'>account_balance_wallet</i><b>SOLDE |</b>2000 mn</span>
+                <span><i class='material-icons nav_icon'>account_balance_wallet</i><b>SOLDE |</b>{{$_SESSION['solde']}} mn</span>
             </div>
         </header>
         @yield('header2')
-=======
-
->>>>>>> 365863561e923d81b929710aec7552bef8453f76
         <?php
          if ($_SESSION['role']=='Administrateur') {?>
             @include('layouts.sidebar.admin.sidebar')
@@ -95,13 +91,6 @@ The above copyright notice and this permission notice shall be included in all c
         <?php } ?>
 
 
-<<<<<<< HEAD
-<div class="row" style="margin-left:-3%;">
-    {{-- @include('layouts.sidebar.sidebar2') --}}
-        @yield('sidebar2')
-    <div id="main"  class="height-100  d-inline">
-        {{-- <div class="content">
-=======
 
 <div class="row d-flex" style="margin-left:-3%;">
 
@@ -112,7 +101,7 @@ The above copyright notice and this permission notice shall be included in all c
   $page = end($link_array);
   ?>
 
-    <?php if ($page=="message") {?>
+    <?php if ($page=="message" || $page=="utilisateur") {?>
 
       <div class=" col-2 " style="background-color: #ffffff;border-right:5em;border-shadow:5;" id="">
 
@@ -121,51 +110,36 @@ The above copyright notice and this permission notice shall be included in all c
       </div>
    <?php  }?>
 
-    
+
     <?php if ($page=="message") {?>
 
       <div id="main"  class="height-100  col-md-10 d-inline " style="margin-top:2%;">
     <?php }
     else{?>
-      <div id="main"  class="height-100  col-md-12 d-inline " style="margin-top:2%;"> 
+      <div id="main"  class="height-100  col-md-12 d-inline " style="margin-top:2%;">
    <?php }?>
 
-    
+
       <!-- <div class="row"> -->
 
     @yield('content')
         <!-- <div class="content">
->>>>>>> 365863561e923d81b929710aec7552bef8453f76
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card-body col-md-12">
-<<<<<<< HEAD
-                            <div class="container"> --}}
-                                @yield('stats-header')
-                                @yield('content')
-                            {{-- </div>
-=======
                             <div class="container">
-                                
+
                             </div>
->>>>>>> 365863561e923d81b929710aec7552bef8453f76
                         </div>
                     </div>
                 </div>
             </div>
-<<<<<<< HEAD
-        </div>--}}
-    </div> 
-</div>
-
-=======
         </div> -->
       <!-- </div> -->
     </div>
-</div>    
-  
->>>>>>> 365863561e923d81b929710aec7552bef8453f76
+</div>
+
   <!--   Core JS Files   -->
   <script src="{{asset('assets/js/core/jquery.min.js') }}"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
@@ -175,11 +149,11 @@ The above copyright notice and this permission notice shall be included in all c
 
 
 
-  {{-- <script src="{{asset('assets/js/core/kumkum.js') }}"></script> 
+  {{-- <script src="{{asset('assets/js/core/kumkum.js') }}"></script>--}}
 
-  {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
-   {{-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> --}}
-  {{-- <script src="{{asset('assets/js/core/popper.min.js') }}"></script> --}}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="{{asset('assets/js/core/popper.min.js') }}"></script>
   <script src="{{asset('assets/js/core/bootstrap-material-design.min.js') }}"></script>
   <script src="{{asset('assets/js/plugins/perfect-scrollbar.jquery.min.js') }}"></script>
   <!-- Plugin for the momentJs  -->
@@ -311,7 +285,7 @@ The above copyright notice and this permission notice shall be included in all c
     </script>
 
 <script >
-    
+
     // $('#smshider').ready(function(){
     //     $("#smshider").change(function(){
     //         $(this).find("option:selected").each(function(){
@@ -371,7 +345,7 @@ The above copyright notice and this permission notice shall be included in all c
 </script>
 
 
-  @yield('scripts') 
+  @yield('scripts')
 </body>
 
 </html>

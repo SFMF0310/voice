@@ -8,5 +8,5 @@ class PaiementModel extends Model
 {
     //
     protected $table = 'voice_paiement';
-    protected $fillable = ['id_offre_financiere','reference','id_client'];
+    protected $fillable = ['id_offre_financiere','reference','prix','id_client'];
 }

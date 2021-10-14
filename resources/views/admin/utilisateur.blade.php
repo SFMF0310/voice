@@ -177,15 +177,10 @@
 </div>
 
 
-{{-- <div class="content">
-  <div class="container-fluid"> --}}
-<<<<<<< HEAD
-    {{-- <div class="row">
-=======
-    
-    <div class="row">
->>>>>>> 365863561e923d81b929710aec7552bef8453f76
-      <div class="col-md-12">
+<div class="content">
+  <div class="container-fluid">
+     <div class="row ">
+      {{-- <div class="col-md-12"> 
         <div class="card"> --}}
 
           @if($_SESSION['profil']=1 or $_SESSION['profil']=2  )
@@ -211,24 +206,25 @@
           {{-- <div class="card-body"> --}}
 
               @if (session('success'))
-                <div class="alert alert-success" role="alert">
+                {{-- <div class="alert alert-success" role="alert">
                   <strong>{{session('success')}}</strong>
-                </div>
+                </div> --}}
               @endif
-              {{-- <div class="row">
-                  <div class="col-12 text-right">
+              <div class="row">
+                  <div class="col-12 d-flex justify-content-end">
                     <a href="#addUser">
-                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                      <button type="button" class="btn btn-success " data-toggle="modal" data-target="#exampleModal">
                         Ajouter un utilisateur
                       </button>
                     </a>
                   </div>
-              </div> --}}
+              </div>
 
 
             {{-- <div class="table-responsive"> --}}
              <?php //var_dump($financement); ?>
-              <table class="display table  col-md-6" id="datatableid2">
+            <div>
+              <table class="display table  " id="datatableid2">
                 <thead class=" text-primary thead">
 
                   <th class="text-dark">
@@ -298,7 +294,7 @@
 
                       <form action="{{ url('admin/modifUtilisateur/'.$data->id)}}" method="get">
                         <div class="form-group">
-                          <button type="submit" class="btn btn-warning btn-sm"><i class="material-icons">edit</i></button>
+                          <button type="submit" class="btn btn-secondary btn-sm"><i class="material-icons">edit</i></button>
                         </div>
                       </form>
                     </td>
@@ -322,7 +318,7 @@
 
                 </tbody>
               </table>
-
+            </div>
 
             {{-- </div> --}}
           {{-- </div> --}}
@@ -330,9 +326,8 @@
           <h2>Vous n'avez pas l'autorisation de consulter cette page</h2>
           @endif
         </div>
-      </div>
-
     </div>
+</div>
   {{-- </div>
 </div> --}}
 @endsection

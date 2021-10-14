@@ -89,23 +89,25 @@ document.addEventListener("DOMContentLoaded", function(event) {
     // Your code to run since DOM is loaded and ready
     });
 
-    
+
                             function buy(btn) {
                                 let idTransaction = pQuery(btn).attr('data-item-id');
                                 let commandName = pQuery(btn).attr('item-name');
                                 let commandPrice = pQuery(btn).attr('item-price');
+                                let nb_minute = pQuery(btn).attr('item-nb-minute');
                                 let client = pQuery(btn).attr('client');
-                                
 
 
-                                // alert(itemname); 
+
+                                // alert(commandName);
                                 (new PayTech({
                                      //will be sent to paiement.php page
-                                    // idPack          : idTransaction,
+                                    idPack          : idTransaction,
                                     pack            : commandName,
                                     price           : commandPrice ,
                                     client          : client,
-                                    
+                                    nb_minute       : nb_minute
+
 
                                 })).withOption({
                                     requestTokenUrl           :   'http://127.0.0.1:8000/admin/packs/paiement',
@@ -115,19 +117,19 @@ document.addEventListener("DOMContentLoaded", function(event) {
                                     },
                                     prensentationMode   :   PayTech.OPEN_IN_POPUP,
                                     willGetToken        :   function () {
-                                       
+
                                     },
                                     didGetToken         : function (token, redirectUrl) {
-                                       
+
                                     },
                                     didReceiveError: function (error) {
                                         // console.log(error);
                                     },
                                     didReceiveNonSuccessResponse: function (jsonResponse) {
-                                        //console.log(jsonResponse);
+                                        // console.log(jsonResponse);
                                     }
                                 }).send();
-                        
+
                                 // .send params are optional
                             }
 

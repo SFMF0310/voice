@@ -55,15 +55,15 @@
                     <i class='material-icons nav_icon'>dashboard</i>
                     <span class="nav_name">Dashboard</span>
                 </a>
-                <a href="/message" class="nav_link" data-toggle="tooltip" data-placement="right" title="Contacts">
+                <a href="/admin/message" class="nav_link" data-toggle="tooltip" data-placement="right" title="Contacts">
                     <i class='material-icons nav_icon'>mic</i>
                     <span class="nav_name">Message</span>
                 </a>
-                <a href="/contact" class="nav_link" data-toggle="tooltip" data-placement="right" title="Contacts">
+                <a href="/admin/contact" class="nav_link" data-toggle="tooltip" data-placement="right" title="Contacts">
                     <i class='material-icons nav_icon'>groups</i>
                     <span class="nav_name">Contacts</span>
                 </a>
-                 <a href="admin/utilisateur" class="nav_link" data-toggle="tooltip" data-placement="right" title="Paramétre">
+                 <a href="/admin/utilisateur" class="nav_link" data-toggle="tooltip" data-placement="right" title="Paramétre">
                         <i class='material-icons nav_icon'>settings</i>
                         <span class="nav_name">Paramétre</span>
                 </a>
@@ -74,7 +74,7 @@
                             <i class='material-icons nav_icon'>leaderboard</i>
                             <span class="nav_name">Stats</span>
                 </a>  --}}
-                <a href="/historique" class="nav_link" data-toggle="tooltip" data-placement="right" title="Historique">
+                <a href="/admin/historique" class="nav_link" data-toggle="tooltip" data-placement="right" title="Historique">
                     <i class='material-icons nav_icon'>history</i>
                     <span class="nav_name">historique</span>
                 </a>
@@ -84,7 +84,7 @@
         <div>
         <a href="#" class="nav_link" data-toggle="tooltip" title="Some tooltip text!">
             <i class='material-icons nav_icon'>notifications</i>
-            <span class="nav_name">SignOut</span>
+            <span class="nav_name">Notifications</span>
         </a>
         <!-- <div class="tooltip bs-tooltip-top bg-success" role="tooltip">
             <div class="arrow "></div>

@@ -2,21 +2,21 @@
 @section('content')
     <div class="bg-light">
         {{-- {{$creditRestant[0]['credit_total']}} --}}
-        @if(session('transaction'))
+        {{-- @if(session('_SESSION')) --}}
             <div class="card">
                 <div class="card-header ">
-                    <h1 class="text-dark card-title">REF:{{$transaction['ref_command']}}</h1>
+                    <h1 class="text-dark card-title">REF:{{$_SESSION['ref_command']}}</h1>
                 </div>
                 <div class="card-body row">
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item text-dark"><b>Réference</b>:{{$transaction['ref_command']}}</li>
-                        <li class="list-group-item text-dark"><b>Pack</b>:{{$transaction['forfait']}}</li>
-                        <li class="list-group-item text-dark"><b>Minutes d'appel(mn)</b>:{{$transaction['nb_minute']}}</li>
-                        <li class="list-group-item text-dark"><b>Total Minutes d'appel</b>:{{$transaction['nb_minute']}}</li>
+                        <li class="list-group-item text-dark"><b>Réference</b>:{{$_SESSION['ref_command']}}</li>
+                        <li class="list-group-item text-dark"><b>Pack</b>:{{$_SESSION['forfait']}}</li>
+                        <li class="list-group-item text-dark"><b>Minutes d'appel(mn)</b>:{{$_SESSION['nb_minute']}}</li>
+                        <li class="list-group-item text-dark"><b>Total Minutes d'appel</b>:{{$_SESSION['nb_minute']}}</li>
 
                     </ul>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item text-dark"><b>Description</b>:{{$transaction['desc']}}</li>
+                        <li class="list-group-item text-dark"><b>Description</b>:{{$_SESSION['desc']}}</li>
                     
                     </ul>
                 </div>
@@ -24,7 +24,7 @@
             <div class="card-footer d-flex justify-content-end">
                 <a href="/admin" class="btn btn-success">Retour à l'acceuil</a>
             </div>
-        @endif
+        {{-- @endif --}}
 
     </div>
 @endsection

@@ -37,9 +37,13 @@ Route::middleware(['casAuth','admin'])->group(function(){
     Route::get('/admin/modifUtilisateur/{id}', 'UserController@update');
     Route::put('admin/update-utilisateur-saving/{id}', 'UserController@updateSaving');
     Route::post('/admin/deleteUtilisateur/{id}', 'UserController@delete');
+
+    // Packs
     Route::get('/admin/packs','PackController@index');
     Route::get('/admin/packs/paiement','PackController@buy');
     Route::get('/admin/packs/retourpaiement','PackController@retourpaiement');
+    Route::get('/admin/packs/detailPaiement','PackController@detailPaiement');
+
 
 
     //client
@@ -87,6 +91,8 @@ Route::middleware(['casAuth','admin'])->group(function(){
 
     //Message
     Route::get('admin/message', 'MessageController@index');
+    //historique
+    Route::get('admin/historique', 'HistController@index');
 
 
 });
