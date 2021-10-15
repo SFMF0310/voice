@@ -30,7 +30,7 @@
             <div class="col-md-12">
                 <div class="card-body col-md-12">
                     <div class="container">
-                        <div class="container"> 
+                        <div class="container">
                             <div>
                                 <div class="row col-md-12  d-flex justify-content-between">
                                     <div class="card row col-md-3 bg-light ">
@@ -59,7 +59,7 @@
                                         </div>
                                         <div class="d-inline-flex justify-content-end top-0 d-inline">
                                             <p >Nombre campagnes</p>
-                                        </div>                                        
+                                        </div>
                                         <div class="card-footer bg-light d-inline-flex justify-content-end">
                                             <h2><b>2000</b></h2>
                                         </div>
@@ -70,17 +70,17 @@
                                         </div>
                                         <div class="d-inline-flex justify-content-end top-0 d-inline">
                                             <p >Nombre campagnes</p>
-                                        </div>                                        
+                                        </div>
                                         <div class="card-footer bg-light d-inline-flex justify-content-end">
                                             <h2><b>2000</b></h2>
                                         </div>
                                     </div>
-                                    
-                                    
-                                    
-                                    
-                                                   
-                                                      
+
+
+
+
+
+
                                   </div>
                             </div>
                             <div class="mt-5">
@@ -117,7 +117,7 @@
                         </div>
                     </div>
                 </div>
-            </div> 
+            </div>
         </div>
     </div>
 </div>

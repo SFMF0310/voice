@@ -9,14 +9,14 @@
                 </div>
                 <div class="card-body row">
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item text-dark"><b>Réference</b>:{{$_SESSION['ref_command']}}</li>
-                        <li class="list-group-item text-dark"><b>Pack</b>:{{$_SESSION['forfait']}}</li>
-                        <li class="list-group-item text-dark"><b>Minutes d'appel(mn)</b>:{{$_SESSION['nb_minute']}}</li>
-                        <li class="list-group-item text-dark"><b>Total Minutes d'appel</b>:{{$_SESSION['nb_minute']}}</li>
+                        <li class="list-group-item text-dark"><b>Réference</b>:  {{$_SESSION['ref_command']}}</li>
+                        <li class="list-group-item text-dark"><b>Pack</b>:  {{$_SESSION['forfait']}}</li>
+                        <li class="list-group-item text-dark"><b>Minutes d'appel(mn)</b>:  {{$_SESSION['nb_minute']}}</li>
+                        <li class="list-group-item text-dark"><b>Total Minutes d'appel(mn)</b>:  {{$_SESSION['total']}}</li>
 
                     </ul>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item text-dark"><b>Description</b>:{{$_SESSION['desc']}}</li>
+                        <li class="list-group-item text-dark"><b>Description</b>: {{$_SESSION['desc']}}</li>
                     
                     </ul>
                 </div>

@@ -120,10 +120,10 @@ class PackController extends Controller
             "ref_command"  =>  strval( $transactionInfos['ref']),
             "command_name" =>  $transactionInfos['pack'],
             "env"          =>  'prod',
-            "success_url"  =>  "https://voicev2.mlouma.com/admin/packs/retourpaiement?idPack=".$transactionInfos['id_pack']."&item_name=".$transactionInfos['pack']."&item_price=".$transactionInfos['price']."&nb_minute=".$transactionInfos['nb_minute']."&ref_command=".$transactionInfos['ref'],
+           // "success_url"  =>  "https://voicev2.mlouma.com/admin/packs/retourpaiement?idPack=".$transactionInfos['id_pack']."&item_name=".$transactionInfos['pack']."&item_price=".$transactionInfos['price']."&nb_minute=".$transactionInfos['nb_minute']."&ref_command=".$transactionInfos['ref'],
+            //"ipn_url"	   =>  'https://voicev2.mlouma.com/admin/packs/retourpaiement',
+            "success_url"  =>  "https://voicev2.mlouma.com/admin/packs/retourpaiement?idPack=".$transactionInfos['id_pack']."&item_price=".$transactionInfos['price']."&nb_minute=".$transactionInfos['nb_minute']."&ref_command=".$transactionInfos['ref'],
             "ipn_url"	   =>  'https://voicev2.mlouma.com/admin/packs/retourpaiement',
-            //"success_url"  =>  "http://127.0.0.1/admin/packs/retourpaiement?idPack=".$transactionInfos['id_pack']."&item_name=".$transactionInfos['pack']."&item_price=".$transactionInfos['price']."&nb_minute=".$transactionInfos['nb_minute']."&ref_command=".$transactionInfos['ref'],
-           // "ipn_url"	   =>  'http://127.0.0.1/admin/packs/retourpaiement',
             "cancel_url"   =>  'https://meteombay.mlouma.com',
             "custom_field" =>   ''
     );
@@ -147,7 +147,7 @@ class PackController extends Controller
         // $user = DB::select('select * voice_uProfil where voice_uprofil.user='.$_SESSION['profil']);
         $transaction['client'] = $_SESSION['user'];
         $operation = new PaiementModel([
-            'id_offre_financiere' => $transaction['item_name'],
+            'id_offre_financiere' => $transaction['id_pack'],
             'reference' => $transaction['ref_command'],
             'prix' => $transaction['item_price'],
             'id_client' => $transaction['client']
@@ -155,7 +155,7 @@ class PackController extends Controller
         if ($operation->save()) {
             # code...
             $structure = DB::table('voice_uprofil')->where('user',$_SESSION['user'])->get();
-            $offres = DB::table('voice_offre_financiere')->where('id',$transaction['item_name'])->get();
+            $offres = DB::table('voice_offre_financiere')->where('id',$transaction['id_pack'])->get();
             foreach($offres as $offre){
                 $transaction['forfait'] = $offre->forfait;
                 $transaction['nb_minute'] = $offre->nb_minute;
