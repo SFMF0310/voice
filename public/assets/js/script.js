@@ -38,7 +38,22 @@ $(document).ready(() => {
             selectstructure.attr({hidden:true,required:false});
             $('.role').attr({class:'col-md-12 role'});
         }
-    } )
+    } ) ;
+    $('.btnpopover').popover({
+        container: 'body',
+        html:true,
+        template:"<div  class='card ml-5'><ul class='list-group list-group-flush><li class='list-group-item'>An item</li><li class='list-group-item'>A second item</li><li class='list-group-item'>A third item</li></ul></div>"
+
+      });
+    // $('.ttip').tooltip();
+    // $('[data-bs-toggle="tooltip"]').tooltip({
+    //     html:true,
+    //     // delay: { "show": 500, "hide": 100 },
+    //     // container : 'element',
+    //     placement: 'right',
+    //     // template:"<div class='tooltip' role='tooltip'><div class='tooltip-arrow'></div><div class='tooltip-inner'><div class='card' style='width: 18rem;'><ul class='list-group list-group-flush><li class='list-group-item'>An item</li><li class='list-group-item'>A second item</li><li class='list-group-item'>A third item</li></ul></div></div></div>"
+    // });
+        
 
 });
 // $(document).ready(function(){

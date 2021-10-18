@@ -22,13 +22,29 @@ class Usercontroller extends Controller
 
     public function index(){
 
-        $user=DB::select('select u.nom,u.prenom,u.mail,u.login,u.tel,d.id,p.intitule from ml_users u , voice_uprofil d ,voice_profil p  WHERE 1 AND u.id=d.user AND p.id = d.profil' );
-        $mlUser=MlUser::all();
-        $role=DB::select(' SELECT * FROM voice_profil WHERE id!=1');
-        $clients = DB::table('voice_clients')->get();
+        if (in_array($_SESSION['profil'],array(1,2))) {
 
-        return view('admin.utilisateur',compact('user','mlUser','role','clients'));
-    }
+            $user=DB::select('select u.nom,u.prenom,u.mail,u.login,u.tel,d.id,p.intitule from ml_users u , voice_uprofil d ,voice_profil p  WHERE 1 AND u.id=d.user AND p.id = d.profil' );
+            $mlUser=MlUser::all();
+            $role=DB::select(' SELECT * FROM voice_profil WHERE id!=1');
+            $clients = DB::table('voice_clients')->get();
+            
+
+            return view('admin.utilisateur',compact('user','mlUser','role','clients'));
+    
+        }
+        elseif (in_array($_SESSION['profil'],array(3))) {
+            
+            $clients = DB::table('voice_uprofil')->selectRaw('')->get();
+            $user=DB::select('select u.nom,u.prenom,u.mail,u.login,u.tel,d.id,p.intitule from ml_users u , voice_uprofil d ,voice_profil p  WHERE 1 AND u.id=d.user AND p.id = d.profil AND d.client =' );
+            $mlUser=MlUser::all();
+            $role=DB::select(' SELECT * FROM voice_profil WHERE id!=1');
+
+            return view('admin.utilisateur',compact('user','mlUser','role','clients'));
+
+
+        }
+}
 
 
 
@@ -51,9 +67,9 @@ class Usercontroller extends Controller
         $infos['client'] =  $request->input('client');
         // if(is_null($infos['utilisateur'])){
         if($infos['role'] == 3){
-         // $u = DB::table('ml_users')->where('tel',$infos['tel'])->value('id');
+         $u = DB::table('ml_users')->where('tel',$infos['tel'])->value('id');
             $u = DB::table('ml_users')->selectRaw('*')->where('tel',$infos['tel'])->get();
-            if(!empty($u)){
+            if(!empty($u[0])){
                 $newClient = DB::insert('insert into voice_clients (nom) values (?)', [$u[0]->nom]);
                 if($newClient){
                     $ifProfilExist = DB::table('voice_uprofil')->where('user',$u[0]->id)->value('id');
@@ -148,7 +164,7 @@ class Usercontroller extends Controller
                                 return redirect('/admin/utilisateur')->with('success','Profil non créé');
                             }
                         }
-                       
+
                     }else{
                         $user = new MlUser([
                             'prenom' => $infos['prenom'],
@@ -186,13 +202,13 @@ class Usercontroller extends Controller
                             }else{
                                 return redirect('/admin/utilisateur')->with('error',"Erreur survenue lors de l'ajout dans l'annuaire");
                             }
-        
+
                         }else{
                             return redirect('/admin/utilisateur')->with('error',"Erreur survenue lors de la création de l'utilisateur");
                         }
                     }
 
-                
+
                 }
                 // elseif($infos['role'] == 4 ){
                 //     $user = new MlUser([
@@ -230,14 +246,14 @@ class Usercontroller extends Controller
                 //         }else{
                 //             return redirect('/admin/utilisateur')->with('error',"Erreur survenue lors de l'ajout dans l'annuaire");
                 //         }
-    
+
                 //     }else{
                 //         return redirect('/admin/utilisateur')->with('error',"Erreur survenue lors de la création de l'utilisateur");
                 //     }
 
                 // }
 
-                
+
             }
         // }
         // else{
@@ -249,8 +265,8 @@ class Usercontroller extends Controller
         //         }else{
         //             return redirect('/admin/utilisateur')->with('success','Profil non créé');
         //         }
-                                       
-        // }                              
+
+        // }
 
     }
 
