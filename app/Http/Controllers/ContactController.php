@@ -27,11 +27,12 @@ class ContactController extends Controller
 
         $contact=VoiceContact::all();
 
-        if($_SESSION['user']==3 || $_SESSION['user'] == 4){
+        if($_SESSION['profil']==3 || $_SESSION['profil'] == 4){
 
             $client=DB::select('select client from voice_uprofil where user="'.$_SESSION['user'].'" ');
 
             $contact=VoiceContact::where('client', $client[0]->client)->get();
+            //var_dump($contact);
             
         }
 
@@ -40,6 +41,7 @@ class ContactController extends Controller
         $client=VoiceClient::all();
         $langue=VoiceLangue::all();
 
+        
 
 
         return view('admin.contact',compact('contact','client','localite','langue','departement'));

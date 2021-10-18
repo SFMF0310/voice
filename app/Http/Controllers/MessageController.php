@@ -177,6 +177,7 @@ class MessageController extends Controller
             $message->historyStateId=$tab_res["historyStateId"];
             $message->messageFileName=$tab_res["messageFileName"];
             $message->contacts=$tab_res["contacts"];
+            $message->user=$_SESSION['user'];
             $message->fichier=$audioName;
 
             $message->save();

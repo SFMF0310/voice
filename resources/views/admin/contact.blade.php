@@ -270,7 +270,7 @@ use App\Models\VoiceClient;
               {{-- </div> --}}
             <div class="mt-5 table-responsive">
             
-              @if ($_SESSION['user']==1 || $_SESSION['user'] == 2)
+              @if ($_SESSION['profil']==1 || $_SESSION['profil'] == 2)
               <table class="table display" id="datatableid2">
                 <thead class=" text-primary thead">
                   <th class="text-dark">
@@ -374,7 +374,7 @@ use App\Models\VoiceClient;
                   @endforeach
                 </tbody>
               </table>
-              @elseif ($_SESSION['user']==3 || $_SESSION['user'] == 4)
+              @elseif ($_SESSION['profil']==3 || $_SESSION['profil'] == 4)
                     
                 <table class="table display" id="datatableid2">
                   <thead class=" text-primary thead">
