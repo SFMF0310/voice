@@ -14,12 +14,28 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $clients = DB::table('voice_clients')->orderBy('id','asc')->get() ;
-        $nbProfils =  DB::table('voice_uprofil')->selectRaw('count(*)')->groupBy('id');
-        $nbCampagne = DB::table('voice_campagne')->selectRaw('count(*)')->groupBy('id');
-        // $packs = Db
- 
-        return view('admin.dashboard',compact('clients','nbProfils','nbCampagne'));
+
+                                    # Admin et SuperAdmin
+
+        if (in_array($_SESSION['profil'],array(1,2))) {
+        # code...
+
+                $clients = DB::table('voice_clients')->orderBy('id','asc')->get() ;
+                $nbProfils =  DB::table('voice_uprofil')->count('*');
+                $nbCampagne = DB::table('voice_campagne')->count('*');
+                $message = DB::table('voice_lam_resultat')->count('*');
+                $successedMessage = DB::table('voice_lam_resultat')->where('callSuccessCount','=',0)->count('*') ;
+
+                return view('admin.dashboard',compact('clients','nbProfils','nbCampagne','successedMessage','message'));
+        }
+        elseif(in_array($_SESSION['profil'],array(3))){
+
+                $clients = DB::table('voice_uprofil')->selectRaw('*')->where('user',$_SESSION['user'])->orderBy('id','asc')->get() ;
+                // $nbProfils =  DB::table('voice_uprofil')->selectRaw('count(*)')->groupBy('id');
+                // $nbCampagne = DB::table('voice_campagne')->selectRaw('count(*)')->groupBy('id');
+                return redirect("/client/".$clients[0]->id."/dashbaord");
+
+        }
     }
 
     /**

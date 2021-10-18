@@ -15,8 +15,8 @@ class StatsController extends Controller
     public function index()
     {
         //
-        $nbProfils =  DB::table('voice_uprofil')->selectRaw('count(*)')->groupBy('id');
-        $nbCampagn = DB::table('voice_campagne')->selectRaw('count(*)')->groupBy('id');
+        // $nbProfils =  DB::table('voice_uprofil')->count();
+        // $nbCampagn = DB::table('voice_campagne')->selectRaw('count(*)')->groupBy('id');
 
         return view('admin.dashboard',compact('nbProfils','nbCampagn')) ;
 

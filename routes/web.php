@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ClientController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,14 +19,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-// Route::get('/login', function () {
-//     cas()->auth
-// });
+
 Route::get('/logout',function(){
 
     cas()->logout();
     return redirect('https://auth.mlouma.com/cas/logout');
 });
+Route::middleware(['casAuth'])->get('/login','RedirectController@redirectUser');
 
                     /* Admin & SuperAdmin */
 Route::middleware(['casAuth','admin'])->group(function(){
@@ -83,7 +83,7 @@ Route::middleware(['casAuth','admin'])->group(function(){
 
 
 
-    //choix dynamique 
+    //choix dynamique
 
     Route::get('admin/choixdept/{dept}', 'ChoixController@choixDept');
     Route::get('admin/choixcomm/{comm}', 'ChoixController@choixComm');
@@ -93,20 +93,24 @@ Route::middleware(['casAuth','admin'])->group(function(){
     Route::get('admin/message', 'MessageController@index');
     //historique
     Route::get('admin/historique', 'HistController@index');
+
     Route::post('/admin/envoi-message','MessageController@store');
+    
 
 
 });
                     /* Profil Client */
 Route::middleware(['casAuth','client'])->group(function(){
 
-    Route::get('/client', function () {
-        return view('client.client');
-    });
-    // Route::get('/logout',function(){
-    //     cas()->logout();
-    //     return redirect('htpps://auth.mlouma.com/cas/logout');
-    // });
+    Route::get('/client','ClientController@index');
+    Route::get('/client/{id}/dashbaord','DetailClientController@index');
+
+    Route::get('client/utilisateur', 'UserController@index');
+    Route::post('/client/ajoutUtilisateur','UserController@store');
+    Route::get('/client/modifUtilisateur/{id}', 'UserController@update');
+    Route::put('client/update-utilisateur-saving/{id}', 'UserController@updateSaving');
+    Route::post('/client/deleteUtilisateur/{id}', 'UserController@delete');
+    
 
 });
                     /* Personnel */

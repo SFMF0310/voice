@@ -39,7 +39,7 @@
                                             </div>
                                             <p class="d-inline-flex justify-content-end top-0 d-inline">Nombre d'utilisateurs</p>
                                             <div class="card-footer bg-light d-inline-flex justify-content-end">
-                                                <h2><b>2000</b></h2>
+                                                <h2><b>{{count($clients)}}</b></h2>
                                             </div>
                                     </div>
                                     <div class="card row col-md-3 bg-light">
@@ -47,10 +47,10 @@
                                             <i class="material-icons" style="font-size: 2.5em">campaign</i>
                                         </div>
                                         <div class="d-inline-flex justify-content-end top-0 d-inline">
-                                            <p >Nombre campagnes</p>
+                                            <p>Nombre campagnes</p>
                                         </div>
                                         <div class="card-footer bg-light d-inline-flex justify-content-end">
-                                            <h2><b>2000</b></h2>
+                                            <h2><b>{{ $nbCampagne }}</b></h2>
                                         </div>
                                     </div>
                                     <div class="card row col-md-3 bg-light">
@@ -58,10 +58,10 @@
                                             <i class="material-icons" style="font-size: 2.5em">check</i>
                                         </div>
                                         <div class="d-inline-flex justify-content-end top-0 d-inline">
-                                            <p >Nombre campagnes</p>
+                                            <p >Taux d'envoi réussi</p>
                                         </div>
                                         <div class="card-footer bg-light d-inline-flex justify-content-end">
-                                            <h2><b>2000</b></h2>
+                                            <h2><b>{{$successedMessage*100/$message}}%</b></h2>
                                         </div>
                                     </div>
                                     <div class="card row col-md-3 bg-light">
@@ -72,7 +72,7 @@
                                             <p >Nombre campagnes</p>
                                         </div>
                                         <div class="card-footer bg-light d-inline-flex justify-content-end">
-                                            <h2><b>2000</b></h2>
+                                            <h2><b>{{($message-$successedMessage)*100/$message}}%</b></h2>
                                         </div>
                                     </div>
 

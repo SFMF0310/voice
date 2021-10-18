@@ -94,7 +94,7 @@
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
 
-      <a href="" class="appointment-btn " style="background-color: #E9A830;"><span class="d-none d-md-inline" ><b>CONNEXION</b> </span> </a>
+      <a href="/login" class="appointment-btn " style="background-color: #E9A830;"><span class="d-none d-md-inline" ><b>CONNEXION</b> </span> </a>
 
     </div>
   </header><!-- End Header -->
