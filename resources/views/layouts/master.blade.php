@@ -25,6 +25,9 @@ The above copyright notice and this permission notice shall be included in all c
         {{-- <link rel="stylesheet" href="style.css">  --}}
         <link rel="stylesheet" href="{{asset('assets/css/layoutStyle.css')}}">
 
+          <!--select searchs -->
+        <link href="{{asset('assets/bootstrap-select/css/bootstrap-select.css') }}" rel="stylesheet">
+
         <meta charset="utf-8" />
         <title>
           @yield('title')
@@ -199,7 +202,7 @@ The above copyright notice and this permission notice shall be included in all c
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
   {{-- <script src="{{asset('assets/demo/demo.js') }}"></script> --}}
 
- {{-- <script src="{{asset('assets/bootstrap-select/js/bootstrap-select.js') }}"></script> --}}
+ <script src="{{asset('assets/bootstrap-select/js/bootstrap-select.js') }}"></script>
  <script type="text/javascript" src="{{asset('assets/js/audio/WebAudioRecorder.min.js') }}"></script>
  <script type="text/javascript" src="{{asset('assets/js/audio/WebAudioRecorderMp3.min.js') }}"></script>
  <script type="text/javascript" src="{{asset('assets/js/audio/app.js') }}"></script>

@@ -24,7 +24,17 @@ class ContactController extends Controller
 
 
         //$contact= DB::select('select c.*,loc.nom as nomloc ,lan.nom as nomlan ,cl.nom as nomclient from voice_contact c ,ml_localite loc , voice_langue lan , voice_clients cl where c.localite=loc.id and c.langue_reception=lan.id and c.client=cl.id');
+
         $contact=VoiceContact::all();
+
+        if($_SESSION['user']==3 || $_SESSION['user'] == 4){
+
+            $client=DB::select('select client from voice_uprofil where user="'.$_SESSION['user'].'" ');
+
+            $contact=VoiceContact::where('client', $client[0]->client)->get();
+            
+        }
+
         $localite=DB::select('select a.id id, a.nom nom, b.nom commune from ml_localite a, ml_commune b where a.commune=b.id order by nom');
         $departement=DB::select('select * from ml_departement');
         $client=VoiceClient::all();

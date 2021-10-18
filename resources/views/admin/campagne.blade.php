@@ -56,13 +56,13 @@
 
 
     <div class="row">
-      <div class="col-md-12">
+      <!-- <div class="col-md-12">
         <div class="card">
           <div class="card-header card-header-primary">
             <h4 class="card-title "> Liste des campagnes   </h4>
 
           </div>
-          <div class="card-body">
+          <div class="card-body"> -->
             @if (session('success'))
               <div class="alert alert-success" role="alert">
                 <strong>{{session('success')}}</strong>
@@ -73,41 +73,41 @@
                 <strong>{{session('status')}}</strong>
               </div>
             @endif
-             <div class="row">
-                <div class="col-12 text-right">
+            <div class="row ">
+                <div class="col-12 d-flex justify-content-end ">
 
              
-                    <a href="#addCampagne">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    <a href="#addCampagne" class="">
+                    <button type="button" class="btn btn-success " data-toggle="modal" data-target="#exampleModal">
                       Ajouter une campagne 
                     </button>
                     </a>
                   
                   
                 </div>
-              </div>
-            <div class="table-responsive">
+            </div>
+            <!--  <div class="table-responsive"> -->
              
-              <table class="table" id="datatableid2">
-                <thead class=" text-primary">
-                  <th>
+              <table class="table display" id="datatableid2">
+                <thead class=" text-primary thead">
+                  <th class="text-dark">
                     Intitulé
                   </th>
-                   <th>
+                  <th class="text-dark">
                     Client
                   </th>
-                  <th>
+                  <th class="text-dark">
                     Créé par
                   </th>
-                  <th>
+                  <th class="text-dark">
                     Date de création 
                   </th>
                
-                  <th>
+                  <th class="text-dark">
                     Modifier
                   </th>
 
-                  <th>
+                  <th class="text-dark">
                     Supprimer
                   </th>
                   
@@ -116,7 +116,7 @@
 
                   @foreach($campagne as $data )
 
-                  <tr>
+                  <tr class="tr">
                     <td>
                      <a href="/admin/detailsCampagne/{{$data->id}}"> {{ $data->intitule }} </a>
                     </td>
@@ -161,14 +161,14 @@
               </table>
 
               
-            </div>
-          </div>
+            <!-- </div>
+          </div> -->
         </div>
       </div>
       
     </div>
-  </div>
-</div>
+  <!-- </div>
+</div> -->
 @endsection
 
 

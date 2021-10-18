@@ -69,17 +69,17 @@
 
 
     <div class="row">
-      <div class="col-md-12">
+      <!-- <div class="col-md-12"> -->
         
         <form method="post" action="/admin/ajoutCampagneContact" autocomplete="off" class="form-horizontal">
             @csrf
-
-            <div class="card ">
+            <h4 class="card-title">Gestion de la campagne</h4>
+            <!-- <div class="card ">
               <div class="card-header card-header-primary">
 
                 <h4 class="card-title">Gestion de la campagne</h4>
               </div>
-              <div class="card-body ">
+              <div class="card-body "> -->
                   @if (session('success'))
                     <div class="alert alert-success" role="alert">
                       <strong>{{session('success')}}</strong>
@@ -112,7 +112,7 @@
                 <div class="form-group row">
                         <div class="col-md-12">
                             <label for="" class="col-form-label ">Contact</label>
-                            <select class="form-control select-live" multiple="multiple"  name="contact[]">
+                            <select class="form-control select-live2" multiple="multiple"  name="contact[]">
 
                                 <option value="" >Sélectionner un contact </option>
 
@@ -134,12 +134,12 @@
                         
                 </div>
                 
-              </div>
+              <!-- </div> -->
               <div class="card-footer ml-auto mr-auto">
                 <a class="btn btn-danger" data-dismiss="modal">Annuler</a>
                 <button type="submit" class="btn btn-primary">Enregistrer</button>
               </div>
-            </div>
+            <!-- </div> -->
         </form>
 
 
@@ -148,20 +148,23 @@
     </div>
   </div>
 
+  <br><br>
+
   <div class="container-fluid">
 
 
     <div class="row">
-      <div class="col-md-12">
+    <h4 class="card-title "> Liste des contacts de la campagne  </h4>
+      <!-- <div class="col-md-12">
         <div class="card">
           <div class="card-header card-header-primary">
             <h4 class="card-title "> Liste des contacts de la campagne  </h4>
 
           </div>
           <div class="card-body">
-           
-             <div class="row">
-                <div class="col-12 text-right">
+            -->
+             <!-- <div class="row"> -->
+                <!-- <div class="col-12 text-right">
 
              
                     <a href="#addListe">
@@ -174,29 +177,30 @@
                 </div>
 
               </div>
-            <div class="table-responsive">
+            <div class="table-responsive"> -->
              
-              <table class="table" id="datatableid2">
-                <thead class=" text-primary">
-                  <th>
+              <table class="table display" id="datatableid2">
+                <thead class=" text-primary thead">
+                  <th class="text-dark">
+
                     Prénom
                   </th>
-                   <th>
+                  <th class="text-dark">
                     Nom
                   </th>
-                  <th>
+                  <th class="text-dark">
                     Téléphone
                   </th>
 
-                  <th>
+                  <th class="text-dark">
                     Détails
                   </th>
                
-                  <th>
+                  <th class="text-dark">
                     Modifier
                   </th>
 
-                  <th>
+                  <th class="text-dark">
                     Supprimer
                   </th>
                   
@@ -205,7 +209,7 @@
 
                 @foreach($contactCampagne as $dataContactCampagne)
 
-                  <tr>
+                  <tr class="tr">
                     <td>
                      {{$dataContactCampagne->prenom ?? '--'}}
                     </td>
@@ -250,14 +254,14 @@
               </table>
 
               
-            </div>
-          </div>
+            <!-- </div>
+          </div> -->
         </div>
       </div>
       
     </div>
-  </div>
-</div>
+  <!-- </div>
+</div> -->
 @endsection
 
 

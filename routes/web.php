@@ -71,6 +71,8 @@ Route::middleware(['casAuth','admin'])->group(function(){
     Route::get('/admin/detailsContact/{id}', 'ContactController@details');
     Route::post('/admin/deleteContact/{id}', 'ContactController@delete');
 
+    //
+
 
 
     //liste contact
@@ -107,6 +109,15 @@ Route::middleware(['casAuth','client'])->group(function(){
     //     cas()->logout();
     //     return redirect('htpps://auth.mlouma.com/cas/logout');
     // });
+
+    //contact
+    Route::get('client/contact', 'ContactController@index');
+    Route::post('/client/ajoutContact','ContactController@store');
+    Route::post('/client/import_contact', 'ContactController@import');
+    Route::get('/client/modifContact/{id}', 'ContactController@update');
+    Route::put('client/update-contact-saving/{id}', 'ContactController@updateSaving');
+    Route::get('/client/detailsContact/{id}', 'ContactController@details');
+    Route::post('/client/deleteContact/{id}', 'ContactController@delete');
 
 });
                     /* Personnel */

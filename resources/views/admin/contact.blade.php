@@ -269,7 +269,8 @@ use App\Models\VoiceClient;
                 </div>
               {{-- </div> --}}
             <div class="mt-5 table-responsive">
-
+            
+              @if ($_SESSION['user']==1 || $_SESSION['user'] == 2)
               <table class="table display" id="datatableid2">
                 <thead class=" text-primary thead">
                   <th class="text-dark">
@@ -308,6 +309,8 @@ use App\Models\VoiceClient;
 
                 </thead>
                 <tbody>
+
+                
                   @foreach($contact as $dataCon)
                     <tr class="tr">
                       <td>{{$dataCon->prenom ?? '--'}} </td>
@@ -371,7 +374,94 @@ use App\Models\VoiceClient;
                   @endforeach
                 </tbody>
               </table>
+              @elseif ($_SESSION['user']==3 || $_SESSION['user'] == 4)
+                    
+                <table class="table display" id="datatableid2">
+                  <thead class=" text-primary thead">
+                    <th class="text-dark">
+                      Prénom
+                    </th>
+                    <th class="text-dark">
+                      Nom
+                    </th>
+                    <th class="text-dark">
+                      Genre
+                    </th>
 
+                    <th class="text-dark">
+                      Tel
+                    </th>
+
+                    <th class="text-dark">
+                      Localite
+                    </th>
+                    
+                    <th class="text-dark">
+                      Détails
+                    </th>
+
+                    <th class="text-dark">
+                      Modifier
+                    </th>
+
+                    <th class="text-dark">
+                      Supprimer
+                    </th>
+
+                  </thead>
+                  <tbody>
+
+                  
+                    @foreach($contact as $dataCon)
+                      <tr class="tr">
+                        <td>{{$dataCon->prenom ?? '--'}} </td>
+                        <td>{{$dataCon->nom ?? '--'}}</td>
+                        <td>{{$dataCon->genre ?? '--'}}</td>
+                        <td>{{$dataCon->tel ?? '--'}}</td>
+                        <td>
+
+                          <?php //use App\Models\VoiceLocalite;
+                          //use App\Models\VoiceLocalite;
+                          if (!empty($dataCon->localite)) {
+
+                            $locCon= VoiceLocalite::findOrFail($dataCon->localite);
+
+                            echo $locCon->nom;
+                          }else{
+                            echo "--";
+                          }
+
+
+                          ?>
+
+
+                        </td>
+                       
+                        <td><a href="/admin/detailsContact/{{$dataCon->id}}" class="btn btn-success btn-sm"><i class="material-icons">assignment</i></a></td>
+                        <td>
+                          <form action="{{ url('admin/modifContact/'.$dataCon->id)}}" method="get">
+                            <div class="form-group">
+                              <button type="submit" class="btn btn-secondary btn-sm"><i class="material-icons">edit</i></button>
+                            </div>
+                          </form>
+                      </td>
+                        <td>
+                        <form action="/admin/deleteContact/{{$dataCon->id ?? ''}}" onsubmit="return confirm('Confirmez-vous la suppression');" method="post">
+                          @csrf
+
+                          <div class="form-group">
+
+                              <button type="submit" class="btn btn-danger btn-sm"><i class="material-icons">delete</i></button>
+                          </div>
+
+                        </form>
+                        </td>
+                      </tr>
+                    @endforeach
+                  </tbody>
+                </table>
+
+              @endif
               <div class="col-12 text-left">
                   <!-- <a href="#addListe">
                   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#listeModal">
