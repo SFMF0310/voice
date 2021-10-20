@@ -128,6 +128,7 @@
                                               </select>
                                           </div>
 
+                                          @if ($_SESSION['profil']==1 || $_SESSION['profil'] == 2)
                                           <div class="col-md-6">
                                               <label for="" class="col-form-label ">Client</label>
                                              <!--  <input disabled class="form-control" type="text" name="intitule" > -->
@@ -141,13 +142,21 @@
                                               @endforeach
                                              </select>
                                           </div>
+                                          @endif
                                   </div>
                                   
                                 </div>
+                @if ($_SESSION['profil']==1 || $_SESSION['profil'] == 2)
                   <div class="card-footer ml-auto mr-auto">
-                    <a class="btn btn-succes" data-dismiss="modal" href="url()->previous()">Retour</a>
+                    <a class="btn btn-succes" data-dismiss="modal" href="/admin/contact">Retour</a>
                     <a class="btn btn-warning" data-dismiss="modal" href="/admin/modifContact/{{ $contact->id }}">Modifier</a>
                   </div>
+                @elseif($_SESSION['profil']==3 || $_SESSION['profil'] == 4)
+                  <div class="card-footer ml-auto mr-auto">
+                    <a class="btn btn-succes" data-dismiss="modal" href="/client/contact">Retour</a>
+                    <a class="btn btn-warning" data-dismiss="modal" href="/client/modifContact/{{ $contact->id }}">Modifier</a>
+                  </div>
+                @endif
                 </div>
           <!-- </form> -->
           </div>

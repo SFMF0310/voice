@@ -52,6 +52,10 @@ class ContactController extends Controller
 
     public function store (Request $request){
 
+        
+
+        
+
         $contact=new VoiceContact;
         
         $contact->prenom=$request->input('prenom');
@@ -65,18 +69,52 @@ class ContactController extends Controller
         $contact->localite=$request->input('localite');
         $contact->langue_reception=$request->input('langue_reception');
         $contact->tel=$request->input('tel');
-        $contact->client=$request->input('client');
+
+        if ($_SESSION['profil']==3 || $_SESSION['profil'] == 4) {
+
+            $client=DB::select('select client from voice_uprofil where user="'.$_SESSION['user'].'" ');
+            $contact->client=$client[0]->client;
+
+        }elseif ($_SESSION['profil']==1 || $_SESSION['profil'] == 2) {
+
+            $contact->client=$request->input('client');
+
+        }
+
+        // if (null !== $request->input('client')) {
+           
+        // }
+
         $contact->createur=$_SESSION['user'];
         $contact->save();
 
-        return redirect('/admin/contact')->with('success','Contact ajouté avec succès');
+        if ($_SESSION['profil']==1 || $_SESSION['profil'] == 2) {
+            return redirect('/admin/contact')->with('success','Contact ajouté avec succès');
+        }elseif ($_SESSION['profil']==3 || $_SESSION['profil'] == 4) {
+            return redirect('/client/contact')->with('success','Contact ajouté avec succès');
+        }
+
+        
 
     }
 
     public function import(Request $request) 
     {
 
-        $_SESSION['client_csv']=$request->input('client');
+        if ($_SESSION['profil']==3 || $_SESSION['profil'] == 4) {
+
+            $client=DB::select('select client from voice_uprofil where user="'.$_SESSION['user'].'" ');
+            
+
+            $_SESSION['client_csv']=$client[0]->client;
+
+
+        }elseif ($_SESSION['profil']==1 || $_SESSION['profil'] == 2) {
+
+            $_SESSION['client_csv']=$request->input('client');
+
+        }
+       
 
         Excel::import(new ContactImport,request()->file('csv_file'));
            
@@ -113,11 +151,18 @@ class ContactController extends Controller
         $contact->localite=$request->input('localite');
         $contact->langue_reception=$request->input('langue_reception');
         $contact->tel=$request->input('tel');
-        $contact->client=$request->input('client');
+
+        if (null !== $request->input('client')) {
+            $contact->client=$request->input('client');
+        }
         $contact->update();
        
-
-        return redirect('/admin/contact')->with('success','Contact modifié avec succès');
+        if ($_SESSION['profil']==1 || $_SESSION['profil'] == 2) {
+            return redirect('/admin/contact')->with('success','Contact modifié avec succès');
+        }elseif ($_SESSION['profil']==3 || $_SESSION['profil'] == 4) {
+            return redirect('/client/contact')->with('success','Contact modifié avec succès');
+        }
+        
 
         
     }

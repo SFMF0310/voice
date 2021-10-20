@@ -85,10 +85,7 @@ Route::middleware(['casAuth','admin'])->group(function(){
 
 
 
-    //choix dynamique
 
-    Route::get('admin/choixdept/{dept}', 'ChoixController@choixDept');
-    Route::get('admin/choixcomm/{comm}', 'ChoixController@choixComm');
 
 
     //Message
@@ -124,6 +121,11 @@ Route::middleware(['casAuth','client'])->group(function(){
     Route::post('/client/deleteContact/{id}', 'ContactController@delete');
 
 });
+
+    //choix dynamique
+
+    Route::get('choixdept/{dept}', 'ChoixController@choixDept');
+    Route::get('choixcomm/{comm}', 'ChoixController@choixComm');
                     /* Personnel */
 Route::middleware(['casAuth','personnel'])->group(function(){
     Route::get('/client/personnel', function () {

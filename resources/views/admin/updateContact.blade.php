@@ -13,7 +13,11 @@
 
           <div class="col-md-12">
 
+          @if ($_SESSION['profil']==1 || $_SESSION['profil'] == 2)
             <form method="post" action="/admin/update-contact-saving/{{ $contact->id }}" autocomplete="off" class="form-horizontal">
+          @else ($_SESSION['profil']==3 || $_SESSION['profil'] == 4)
+          <form method="post" action="/client/update-contact-saving/{{ $contact->id }}" autocomplete="off" class="form-horizontal">
+          @endif
                 @csrf
                 @method('put')
 
@@ -127,7 +131,7 @@
                                                   @endforeach
                                               </select>
                                           </div>
-
+                                          @if ($_SESSION['profil']==1 || $_SESSION['profil'] == 2)
                                           <div class="col-md-6">
                                               <label for="" class="col-form-label ">Client</label>
                                              <!--  <input class="form-control" type="text" name="intitule" > -->
@@ -141,6 +145,7 @@
                                               @endforeach
                                              </select>
                                           </div>
+                                          @endif
                                   </div>
                                   
                                 </div>

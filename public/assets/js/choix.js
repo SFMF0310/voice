@@ -33,7 +33,7 @@ $(document).ready(function(){
         
         $.ajax({
             type: "GET",
-            url: "/admin/choixdept/"+dept,
+            url: "/choixdept/"+dept,
             dataType: "json",
             success: function(resultat){
                 $("#commune").empty();
@@ -67,7 +67,7 @@ $(document).ready(function(){
 //        alert(comm);
         $.ajax({
             type: "GET",
-            url: "/admin/choixcomm/"+comm,
+            url: "/choixcomm/"+comm,
             dataType: "json",
             success: function(resultat){
                 $("#localite").empty();
@@ -89,5 +89,7 @@ $(document).ready(function(){
             }
         });
     });
+
+    
     return false;
 });
