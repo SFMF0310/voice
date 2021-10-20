@@ -15,10 +15,23 @@ class DetailClientController extends Controller
     public function index($id)
     {
         //
-        $client = DB::table('voice_clients')->selectRaw('*')->where('id',$id)->get();
-        $clientProfils = DB::table('voice_uprofil')->join('ml_users','voice_uprofil.user','=','ml_users.id')->select('*','voice_uprofil.id as vpid')->where('voice_uprofil.client',$id)->get();
-        $campagnes = DB::table('voice_campagne')->where('voice_campagne.client',$id)->get();
-        return view('admin.clients.details',compact('client','clientProfils','campagnes'));
+        if(in_array($_SESSION['profil'],array(1,2))){
+
+            $client = DB::table('voice_clients')->selectRaw('*')->where('id',$id)->get();
+            $clientProfils = DB::table('voice_uprofil')->join('ml_users','voice_uprofil.user','=','ml_users.id')->select('*','voice_uprofil.id as vpid')->where('voice_uprofil.client',$id)->get();
+            $campagnes = DB::table('voice_campagne')->where('voice_campagne.client',$id)->count('*');
+            return view('admin.clients.details',compact('client','clientProfils','campagnes'));
+        }
+        elseif ($_SESSION['profil'] == 3) {
+            # code...
+            $idClient = DB::table('voice_uprofil')->where('user','=',$_SESSION['user'])->value('client');
+            $client = DB::table('voice_clients')->selectRaw('*')->where('id',$idClient)->get();
+            $clientProfils = DB::table('voice_uprofil')->join('ml_users','voice_uprofil.user','=','ml_users.id')->select('*','voice_uprofil.id as vpid')->where('voice_uprofil.client',$idClient)->get();
+            $campagnes = DB::table('voice_campagne')->where('voice_campagne.client',$idClient)->count('*');
+
+            return view('admin.clients.details',compact('client','clientProfils','campagnes'));
+        }
+       
     }
 
     /**
