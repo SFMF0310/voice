@@ -30,14 +30,14 @@
             <div class="col-md-12">
                 <div class="card-body col-md-12">
                     <div class="container">
-                        <div class="container"> 
+                        <div class="container">
                             <div>
                                 <div class="row col-md-12  d-flex justify-content-between">
                                     <div class="card row col-md-3 bg-light ">
                                             <div class="col-md-3 d-inline-flex  bg-success rounded text-light" style="margin-top: -1em;">
                                                 <i class="material-icons" style="font-size: 2.5em">person</i>
                                             </div>
-                                            <p class="d-inline-flex justify-content-end top-0 d-inline">Nombre d'utilisateurs</p>
+                                            <p class="d-inline-flex justify-content-end top-0 d-inline">Nombre de profils</p>
                                             <div class="card-footer bg-light d-inline-flex justify-content-end">
                                                 <h2><b>{{count($clientProfils)}}</b></h2>
                                             </div>
@@ -58,29 +58,41 @@
                                             <i class="material-icons" style="font-size: 2.5em">check</i>
                                         </div>
                                         <div class="d-inline-flex justify-content-end top-0 d-inline">
-                                            <p >Taux d'envoi réussi</p>
-                                        </div>                                        
+                                            <p >Nombre de contacts</p>
+                                        </div>
                                         <div class="card-footer bg-light d-inline-flex justify-content-end">
-                                            <h2><b>2000</b></h2>
+                                            <h2><b>{{ $nbContact }}</b></h2>
+
+                                            {{-- @if ($message != 0)
+                                                <h2><b>{{ $successedMessage*100/$message}}%</b></h2>
+                                            @else
+                                                <h2><b>{{ $successedMessage }}%</b></h2>
+                                            @endif --}}
                                         </div>
                                     </div>
                                     <div class="card row col-md-3 bg-light">
                                         <div class="col-md-3 d-inline-flex  bg-success rounded text-light" style="margin-top: -1em;">
-                                            <i class="material-icons" style="font-size: 2.5em">priority_high</i>
+                                            <i class="material-icons" style="font-size: 2.5em">contacts</i>
                                         </div>
                                         <div class="d-inline-flex justify-content-end top-0 d-inline">
-                                            <p >Taux d'envoi échoué</p>
-                                        </div>                                        
+                                            <p >Nombre de message</p>
+                                        </div>
                                         <div class="card-footer bg-light d-inline-flex justify-content-end">
-                                            <h2><b>2000</b></h2>
+                                            {{-- @if ($message != 0)
+                                                <h2><b>{{ ($message - $successedMessage)*100/$message}}%</b></h2>
+                                            @else
+                                                <h2><b>{{ $message - $successedMessage }}%</b></h2>
+                                            @endif --}}
+                                            <h2><b>{{ $message  }}</b></h2>
+
                                         </div>
                                     </div>
-                                    
-                                    
-                                    
-                                    
-                                                   
-                                                      
+
+
+
+
+
+
                                   </div>
                             </div>
                             <div class="mt-5">
@@ -119,7 +131,7 @@
                         </div>
                     </div>
                 </div>
-            </div> 
+            </div>
         </div>
     </div>
 </div>

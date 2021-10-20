@@ -20,7 +20,12 @@ class DetailClientController extends Controller
             $client = DB::table('voice_clients')->selectRaw('*')->where('id',$id)->get();
             $clientProfils = DB::table('voice_uprofil')->join('ml_users','voice_uprofil.user','=','ml_users.id')->select('*','voice_uprofil.id as vpid')->where('voice_uprofil.client',$id)->get();
             $campagnes = DB::table('voice_campagne')->where('voice_campagne.client',$id)->count('*');
-            return view('admin.clients.details',compact('client','clientProfils','campagnes'));
+            $message =  DB::table('voice_lam_resultat')->where('user','=',$clientProfils[0]->user)->count();
+            $successedMessage = DB::table('voice_lam_resultat')->where([['user','=',$clientProfils[0]->user],['callSuccessCount','=', 0]])->count();
+            $nbContact =  DB::table('voice_contact')->where('client','=',$client[0]->id)->count('*');
+
+
+            return view('admin.clients.details',compact('client','clientProfils','campagnes','message','successedMessage','nbContact'));
         }
         elseif ($_SESSION['profil'] == 3) {
             # code...
@@ -28,10 +33,15 @@ class DetailClientController extends Controller
             $client = DB::table('voice_clients')->selectRaw('*')->where('id',$idClient)->get();
             $clientProfils = DB::table('voice_uprofil')->join('ml_users','voice_uprofil.user','=','ml_users.id')->select('*','voice_uprofil.id as vpid')->where('voice_uprofil.client',$idClient)->get();
             $campagnes = DB::table('voice_campagne')->where('voice_campagne.client',$idClient)->count('*');
+            $message =  DB::table('voice_lam_resultat')->where('user','=',$clientProfils[0]->user)->count();
+            $nbContact =  DB::table('voice_contact')->where('client','=',$client[0]->id)->count('*');
 
-            return view('admin.clients.details',compact('client','clientProfils','campagnes'));
+
+
+
+            return view('admin.clients.details',compact('client','clientProfils','campagnes','message','nbContact'));
         }
-       
+
     }
 
     /**
@@ -98,13 +108,13 @@ class DetailClientController extends Controller
     public function destroy($id)
     {
         //
-        $profil=DB::table('voice_uprofil')->where('id',$id); 
-        
+        $profil=DB::table('voice_uprofil')->where('id',$id);
+
         if($profil->delete()){
             return redirect("admin/client/".$id."/infos")->with('success','Profil supprimé avec succés');
         }else{
             return redirect("admin/client/".$id."/infos")->with('error','Erreur survenue lors de la suppression');
 
-        }  
+        }
     }
 }

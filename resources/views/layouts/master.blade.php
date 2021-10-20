@@ -110,7 +110,7 @@ The above copyright notice and this permission notice shall be included in all c
 
           @yield('sidebar2')
 
-      </div> 
+      </div>
    <?php  }?>
 
 
@@ -146,7 +146,11 @@ The above copyright notice and this permission notice shall be included in all c
   <!--   Core JS Files   -->
   <script src="{{asset('assets/js/core/jquery.min.js') }}"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.com/libraries/Chart.js"></script>
+
   <script src="{{asset('assets/js/script.js') }}"></script>
+  <script src="{{asset('assets/js/charts.js') }}"></script>
+
 
   <script src="https://paytech.sn/cdn/paytech.min.js"></script>
 
@@ -201,7 +205,6 @@ The above copyright notice and this permission notice shall be included in all c
   {{-- <script src="{{asset('assets/js/material-dashboard.js?v=2.1.2') }}"></script> --}}
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
   {{-- <script src="{{asset('assets/demo/demo.js') }}"></script> --}}
-
  <script src="{{asset('assets/bootstrap-select/js/bootstrap-select.js') }}"></script>
  <script type="text/javascript" src="{{asset('assets/js/audio/WebAudioRecorder.min.js') }}"></script>
  <script type="text/javascript" src="{{asset('assets/js/audio/WebAudioRecorderMp3.min.js') }}"></script>
