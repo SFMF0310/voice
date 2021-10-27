@@ -52,7 +52,7 @@ use App\Models\VoiceClient;
 
 
     <div class="row">
-      <div class="col-md-12">
+      <!-- <div class="col-md-12">
 
         
           <div class="card border border-secondary" style="background-color: rgba(245, 245, 245, 0.4);margin-top:20px;" >
@@ -72,7 +72,7 @@ use App\Models\VoiceClient;
                 </div>
             </div>
           </div>
-      </div>
+      </div> -->
 
       <div class="col-md-12 ">
         
@@ -99,7 +99,7 @@ use App\Models\VoiceClient;
                                   <br>
                                   <button id="recordButton"><img src="{{asset('assets/img/play.png') }}"></button>
                                   <button id="pausebtn" disabled ><img src="{{asset('assets/img/pause.png') }}"></button>
-                                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+                                  &nbsp; &nbsp; &nbsp; &nbsp;  
                                   <button id="stopButton" ><img src="{{asset('assets/img/stop.png') }}"></button>
 
                                  <!--  <div class="col-md-2">
@@ -130,7 +130,12 @@ use App\Models\VoiceClient;
         </div>
 
         <div class="row py-4">
-          <form method="POST" action="/admin/envoi-message" style="background-color: rgba(245, 245, 245, 0);margin-top:20px;"  enctype="multipart/form-data">
+        @if ($_SESSION['profil']==1 || $_SESSION['profil'] == 2)
+        <form method="POST" action="/admin/envoi-message" style="background-color: rgba(245, 245, 245, 0);margin-top:20px;"  enctype="multipart/form-data">
+        @elseif($_SESSION['profil']==3 || $_SESSION['profil'] == 4)
+        <form method="POST" action="/client/envoi-message" style="background-color: rgba(245, 245, 245, 0);margin-top:20px;"  enctype="multipart/form-data">
+        @endif
+          
              @csrf
             <select class="form-control" name="campagne" style="background-color: rgba(245, 245, 245, 0);border-top: none;border-right: none;border-left: none;" required>
               <option value="">Selectionnez les destinataire de votre campagne </option>
@@ -178,13 +183,18 @@ use App\Models\VoiceClient;
               <div class="card-body " >
                
                   <div class="row " >
+
+
+
                     <div class="col-12 ">
-
-                      <div class="row py-2">
-
-                      <div class="d-flex "> <div><i class="material-icons">sms</i></div> <div class="text-left"> <strong >Vocal 32 |Campagne Covid 19 MEDA   </strong> </div></div>
+                      <div class="row py-1">
+                      <div class="d-flex col-3 ">  <div><i class="material-icons">sms</i></div> <div class="text-left"> <p >Vocal 32 |Campagne Covid 19   </p> </div></div>
+                      <div class="col-3" > <p >8 585 appels réussis    </p> </div>
+                      <div class="col-3" > <p >252 appels échoués    </p> </div>
+                      <div class="col-3" > <p >Analyses  97 %    </p> </div>
                       </div>
                     </div>
+
                   </div>
               </div>
             </div>

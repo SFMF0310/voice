@@ -190,8 +190,12 @@ class MessageController extends Controller
 
     //    }
 
-
-        return redirect('/admin/message')->with('success','Message envoyé avec succès');
+        if ($_SESSION['profil']==1 || $_SESSION['profil'] == 2) {
+            return redirect('/admin/message')->with('success','Message envoyé avec succès');
+        }elseif ($_SESSION['profil']==3 || $_SESSION['profil'] == 4) {
+            return redirect('/client/message')->with('success','Message envoyé avec succès');
+        }
+        
 
     }
 

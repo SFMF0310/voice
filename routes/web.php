@@ -39,7 +39,7 @@ Route::middleware(['casAuth','admin'])->group(function(){
     Route::post('/admin/deleteUtilisateur/{id}', 'UserController@delete');
 
     // Packs
-    
+
 
 
 
@@ -127,6 +127,20 @@ Route::middleware(['casAuth','client'])->group(function(){
 
     #HISTORIQUE
     Route::get('client/historique','HistController@index');
+    //campagne
+    Route::get('client/campagne', 'CampagneController@index');
+    Route::post('/client/ajoutCampagne','CampagneController@store');
+    Route::get('/client/modifCampagne/{id}', 'CampagneController@update');
+    Route::put('client/update-campagne-saving/{id}', 'CampagneController@updateSaving');
+    Route::post('/client/deleteCampagne/{id}', 'CampagneController@delete');
+    Route::get('/client/detailsCampagne/{id}', 'CampagneController@details');
+    Route::post('/client/ajoutCampagneContact','CampagneController@storeContact');
+    Route::post('/client/deleteContactCampagne/{id}', 'CampagneController@deleteContact');
+    Route::post('/client/import_contactCampagne', 'CampagneController@import');
+
+    //Message
+    Route::get('client/message', 'MessageController@index');
+    Route::post('/client/envoi-message','MessageController@store');
 
 });
 
@@ -146,7 +160,7 @@ Route::middleware(['casAuth','personnel'])->group(function(){
 
 });
 Route::middleware(['casAuth'])->group(function(){
-    
+
     Route::get('/admin/packs','PackController@index');
     Route::get('/admin/packs/paiement','PackController@buy');
     Route::get('/admin/packs/retourpaiement','PackController@retourpaiement');

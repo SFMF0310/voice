@@ -12,24 +12,30 @@
 <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
+    @if ($_SESSION['profil']==1 || $_SESSION['profil'] == 2)
       <form method="post" action="/admin/ajoutCampagne" autocomplete="off" class="form-horizontal">
+    @elseif($_SESSION['profil']==3 || $_SESSION['profil'] == 4)
+    <form method="post" action="/client/ajoutCampagne" autocomplete="off" class="form-horizontal">
+    @endif
             @csrf
 
             <div class="card ">
-              <div class="card-header card-header-primary">
+              <div class="card-header card-header-color" >
 
                 <h4 class="card-title">Ajout d'une campagne</h4>
               </div>
-              <div class="card-body ">
+              <div class="card-body card-body-color " >
+
+              @if ($_SESSION['profil']==1 || $_SESSION['profil'] == 2)
                 <div class="form-group row">
                         <div class="col-md-6">
                             <label for="" class="col-form-label ">Intitulé</label>
-                            <input class="form-control" type="text" name="intitule" >
+                            <input class="form-control input-color" type="text" name="intitule" >
                         </div>
 
                         <div class="col-md-6">
                             <label for="" class="col-form-label ">Client</label>
-                            <select class="form-control select-live2" name="client">
+                            <select class="form-control select-live2 input-color" name="client">
                               <option>Sélectionner un client</option>
                               @foreach($client as $dataClient )
                                 <option value="{{$dataClient->id}}">{{$dataClient->nom }}</option>
@@ -38,11 +44,21 @@
                         </div>
                         
                 </div>
+
+              @elseif($_SESSION['profil']==3 || $_SESSION['profil'] == 4)
+                <div class="form-group row">
+                        <div class="col-md-12">
+                            <label for="" class="col-form-label ">Intitulé</label>
+                            <input class="form-control input-color" type="text" name="intitule" >
+                        </div>
+                        
+                </div>
+              @endif
                 
               </div>
-              <div class="card-footer ml-auto mr-auto">
+              <div class="card-footer ml-auto mr-auto card-footer-color">
                 <a class="btn btn-danger" data-dismiss="modal">Annuler</a>
-                <button type="submit" class="btn btn-primary">Enregistrer</button>
+                <button type="submit" class="btn btn-success">Enregistrer</button>
               </div>
             </div>
       </form>
@@ -118,7 +134,11 @@
 
                   <tr class="tr">
                     <td>
-                     <a href="/admin/detailsCampagne/{{$data->id}}"> {{ $data->intitule }} </a>
+                    @if ($_SESSION['profil']==1 || $_SESSION['profil'] == 2)
+                    <a href="/admin/detailsCampagne/{{$data->id}}"> {{ $data->intitule }} </a>
+                    @elseif($_SESSION['profil']==3 || $_SESSION['profil'] == 4)
+                    <a href="/client/detailsCampagne/{{$data->id}}"> {{ $data->intitule }} </a>
+                    @endif
                     </td>
 
                     <td>
@@ -134,15 +154,25 @@
                     </td>
                     
                     <td >
-                      <form action="{{ url('admin/modifCampagne/'.$data->id)}}" method="get">
+                    @if ($_SESSION['profil']==1 || $_SESSION['profil'] == 2)
+                     <form action="{{ url('admin/modifCampagne/'.$data->id)}}" method="get">
                         <div class="form-group">
                           <button type="submit" class="btn btn-warning btn-sm"><i class="material-icons">edit</i></button>
                         </div>
                       </form>
+                    @elseif($_SESSION['profil']==3 || $_SESSION['profil'] == 4)
+                     <form action="{{ url('client/modifCampagne/'.$data->id)}}" method="get">
+                        <div class="form-group">
+                          <button type="submit" class="btn btn-warning btn-sm"><i class="material-icons">edit</i></button>
+                        </div>
+                      </form>
+                    @endif
+                      
                     </td>
 
                     <td>
-                     <form action="/admin/deleteCampagne/{{$data->id ?? ''}}" onsubmit="return confirm('Confirmez-vous la suppression');" method="post">
+                    @if ($_SESSION['profil']==1 || $_SESSION['profil'] == 2)
+                      <form action="/admin/deleteCampagne/{{$data->id ?? ''}}" onsubmit="return confirm('Confirmez-vous la suppression');" method="post">
                         @csrf
                          
                         <div class="form-group">
@@ -151,6 +181,18 @@
                         </div>
 
                       </form>
+                    @elseif($_SESSION['profil']==3 || $_SESSION['profil'] == 4)
+                      <form action="/client/deleteCampagne/{{$data->id ?? ''}}" onsubmit="return confirm('Confirmez-vous la suppression');" method="post">
+                        @csrf
+                         
+                        <div class="form-group">
+                    
+                            <button type="submit" class="btn btn-danger btn-sm"><i class="material-icons">delete</i></button>
+                        </div>
+
+                      </form>
+                    @endif
+                     
                     </td>
                    
                   </tr>
