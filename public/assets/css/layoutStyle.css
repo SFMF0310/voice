@@ -219,4 +219,20 @@ tr.border_bottom td {
         padding-left: calc(var(--nav-width) + 188px)
     }
 
+    .card-body-color{
+        background-color: #d9dad8;
+    }
+
+    .card-header-color{
+        background-color: #cecece;
+    }
+
+    .input-color{
+        background-color: #cecece;
+    }
+
+    .card-footer-color{
+        background-color: #cecece;
+    }
+
 }

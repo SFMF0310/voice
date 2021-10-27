@@ -18,27 +18,27 @@
                 @method('put')
 
                 <div class="card ">
-                  <div class="card-header card-header-primary">
+                  <div class="card-header card-header-primary card-header-color">
 
                     <h4 class="card-title">Détails contact</h4>
                   </div>
             
 
-                                <div class="card-body ">
+                                <div class="card-body card-body-color">
                                   <div class="form-group row">
                                       <div class="col-md-6">
                                           <label for="" class="col-form-label ">Prénom</label>
-                                          <input disabled class="form-control" type="text" name="prenom" value="{{$contact->prenom}}">
+                                          <input disabled class="form-control input-color" type="text" name="prenom" value="{{$contact->prenom}}">
                                       </div>
                                       <div class="col-md-6">
                                           <label for="" class="col-form-label ">Nom</label>
-                                          <input disabled class="form-control" type="text" name="nom" value="{{$contact->nom}}">
+                                          <input disabled class="form-control input-color" type="text" name="nom" value="{{$contact->nom}}">
                                       </div>
                                   </div>
                                   <div class="form-group row">
                                       <div class="col-md-6">
                                           <label for="" class="col-form-label ">Genre</label>
-                                          <select disabled class="form-control " name="genre">
+                                          <select disabled class="form-control input-color" name="genre">
                                             <option value="" >Sélectionner le genre </option>
                                              <option value="H" {{ $contact->genre == 'H' ? 'selected' : '' }} >Homme</option>
                                              <option value="F" {{ $contact->genre == 'F' ? 'selected' : '' }} >Femme</option>
@@ -47,14 +47,14 @@
                                       </div>
                                       <div class="col-md-6">
                                           <label for="" class="col-form-label ">Date de naissance</label>
-                                          <input disabled class="form-control" type="date" name="date_naissance" value="{{$contact->date_naissance}}" >
+                                          <input disabled class="form-control input-color" type="date" name="date_naissance" value="{{$contact->date_naissance}}" >
                                       </div>
                                   </div>
                                   <div class="form-group row">
 
                                       <div class="col-md-6">
                                           <label for="" class="col-form-label ">lieu de naissance</label>
-                                           <input disabled class="form-control" type="text" name="lieu_naissance" value="{{$contact->lieu_naissance}}">
+                                           <input disabled class="form-control input-color" type="text" name="lieu_naissance" value="{{$contact->lieu_naissance}}">
                                       </div>
 
                                       <div class="col-md-6">
@@ -69,7 +69,7 @@
                                   <div class="form-group row">
                                     <div class="col-md-6">
                                       <label for="" class="col-form-label">Departement</label>
-                                      <select disabled class="form-control " name="departement" id="departement" >
+                                      <select disabled class="form-control input-color" name="departement" id="departement" >
                                         <option  value="">--Sélectionnez le département</option>
                                         @foreach($departement as $dataDep)
                                           <option value="{{$dataDep->id}}" {{ $dataDep->id == $contact->departement ? 'selected' : '' }} >{{$dataDep->nom}}</option>
@@ -79,7 +79,7 @@
 
                                     <div class="col-md-6">
                                       <label for="" class="col-form-label ">Commune</label>
-                                      <select disabled class="form-control " name="commune" id="commune" >
+                                      <select disabled class="form-control input-color" name="commune" id="commune" >
                                         <option value="">--Sélectionnez la commune</option>
                                         @foreach($commune as $dataCom)
                                           <option value="{{$dataCom->id}}" {{ $dataCom->id == $contact->commune ? 'selected' : '' }} >{{$dataCom->nom}}</option>
@@ -94,7 +94,7 @@
 
                                           <label for="" class="col-form-label ">Localité</label>
 
-                                          <select disabled class="form-control " name="localite">
+                                          <select disabled class="form-control input-color " name="localite">
 
                                               <option value="" >Sélectionner une localité </option>
 
@@ -107,7 +107,7 @@
 
                                       <div class="col-md-6">
                                           <label for="" class="col-form-label ">Téléphone</label>
-                                          <input disabled class="form-control" type="text" name="tel" value="{{$contact->tel}}">
+                                          <input disabled class="form-control input-color" type="text" name="tel" value="{{$contact->tel}}">
                                       </div>
 
                                   </div>
@@ -118,7 +118,7 @@
 
                                               <label for="" class="col-form-label ">Langue de réception</label>
 
-                                              <select disabled class="form-control " name="langue_reception">
+                                              <select disabled class="form-control input-color" name="langue_reception">
 
                                                   <option value="" >Sélectionner une langue </option>
 
@@ -133,7 +133,7 @@
                                               <label for="" class="col-form-label ">Client</label>
                                              <!--  <input disabled class="form-control" type="text" name="intitule" > -->
 
-                                             <select disabled class="form-control " name="client" >
+                                             <select disabled class="form-control input-color" name="client" >
 
                                               <option value="" >Sélectionner un Client </option>
 
@@ -147,14 +147,14 @@
                                   
                                 </div>
                 @if ($_SESSION['profil']==1 || $_SESSION['profil'] == 2)
-                  <div class="card-footer ml-auto mr-auto">
-                    <a class="btn btn-succes" data-dismiss="modal" href="/admin/contact">Retour</a>
-                    <a class="btn btn-warning" data-dismiss="modal" href="/admin/modifContact/{{ $contact->id }}">Modifier</a>
+                  <div class="card-footer ml-auto mr-auto card-footer-color">
+                    <a class="btn btn-danger" data-dismiss="modal" href="/admin/contact">Retour</a>
+                    <!-- <a class="btn btn-warning" data-dismiss="modal" href="/admin/modifContact/{{ $contact->id }}">Modifier</a> -->
                   </div>
                 @elseif($_SESSION['profil']==3 || $_SESSION['profil'] == 4)
-                  <div class="card-footer ml-auto mr-auto">
-                    <a class="btn btn-succes" data-dismiss="modal" href="/client/contact">Retour</a>
-                    <a class="btn btn-warning" data-dismiss="modal" href="/client/modifContact/{{ $contact->id }}">Modifier</a>
+                  <div class="card-footer ml-auto mr-auto card-footer-color">
+                    <a class="btn btn-danger" data-dismiss="modal" href="/client/contact">Retour</a>
+                    <!-- <a class="btn btn-warning" data-dismiss="modal" href="/client/modifContact/{{ $contact->id }}">Modifier</a> -->
                   </div>
                 @endif
                 </div>
