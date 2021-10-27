@@ -21,6 +21,10 @@
                     <i class='material-icons nav_icon'>mic</i>
                     <span class="nav_name">Message</span>
                 </a>
+                <a href="/client/campagne" class="nav_link" data-bs-toggle="tooltip" data-placement="right" title="Campagnes">
+                    <i class='material-icons nav_icon'>campaign</i>
+                    <span class="nav_name">Campagnes</span>
+                </a>
                 <a href="/client/contact" class="nav_link" data-toggle="tooltip" data-placement="right" title="Contacts">
                     <i class='material-icons nav_icon'>groups</i>
                     <span class="nav_name">Contacts</span>

@@ -73,7 +73,7 @@ The above copyright notice and this permission notice shall be included in all c
             </div>
             <div class="">
                 <!-- <img src="https://i.imgur.com/hczKIze.jpg" alt="">  -->
-                <span><i class='material-icons nav_icon'>account_balance_wallet</i><b>SOLDE |</b>{{$_SESSION['solde']}} mn</span>
+                <span><i class='material-icons nav_icon'>account_balance_wallet</i><b>SOLDE |</b>{{ $_SESSION['solde'] }} mn</span>
             </div>
         </header>
         @yield('header2')
