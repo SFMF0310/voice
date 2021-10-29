@@ -39,10 +39,7 @@ Route::middleware(['casAuth','admin'])->group(function(){
     Route::post('/admin/deleteUtilisateur/{id}', 'UserController@delete');
 
     // Packs
-    Route::get('/admin/packs','PackController@index');
-    Route::get('/admin/packs/paiement','PackController@buy');
-    Route::get('/admin/packs/retourpaiement','PackController@retourpaiement');
-    Route::get('/admin/packs/detailPaiement','PackController@detailPaiement');
+
 
 
 
@@ -94,7 +91,7 @@ Route::middleware(['casAuth','admin'])->group(function(){
     Route::get('admin/historique', 'HistController@index');
 
     Route::post('/admin/envoi-message','MessageController@store');
-    
+
 
 
 });
@@ -109,7 +106,8 @@ Route::middleware(['casAuth','client'])->group(function(){
     Route::get('/client/modifUtilisateur/{id}', 'UserController@update');
     Route::put('client/update-utilisateur-saving/{id}', 'UserController@updateSaving');
     Route::post('/client/deleteUtilisateur/{id}', 'UserController@delete');
-    
+
+
 
     //contact
     Route::get('client/contact', 'ContactController@index');
@@ -120,6 +118,15 @@ Route::middleware(['casAuth','client'])->group(function(){
     Route::get('/client/detailsContact/{id}', 'ContactController@details');
     Route::post('/client/deleteContact/{id}', 'ContactController@delete');
 
+
+
+    Route::get('/client/packs','PackController@index');
+    Route::get('/client/packs/paiement','PackController@buy');
+    Route::get('/client/packs/retourpaiement','PackController@retourpaiement');
+    Route::get('/client/packs/detailPaiement','PackController@detailPaiement');
+
+    #HISTORIQUE
+    Route::get('client/historique','HistController@index');
     //campagne
     Route::get('client/campagne', 'CampagneController@index');
     Route::post('/client/ajoutCampagne','CampagneController@store');
@@ -142,13 +149,22 @@ Route::middleware(['casAuth','client'])->group(function(){
     Route::get('choixdept/{dept}', 'ChoixController@choixDept');
     Route::get('choixcomm/{comm}', 'ChoixController@choixComm');
                     /* Personnel */
-Route::middleware(['casAuth','personnel'])->group(function(){
-    Route::get('/client/personnel', function () {
-        return view('client.personnel.index');
-    });
+// Route::middleware(['casAuth','personnel'])->group(function(){
+//     Route::get('/client/personnel', function () {
+//         return view('client.personnel.index');
+//     });
     // Route::get('/logout',function(){
     //     cas()->logout();
     //     return redirect('htpps://auth.mlouma.com/cas/logout');
     // });
+
+// });
+Route::middleware(['casAuth'])->group(function(){
+
+    Route::get('/admin/packs','PackController@index');
+    Route::get('/admin/packs/paiement','PackController@buy');
+    Route::get('/admin/packs/retourpaiement','PackController@retourpaiement');
+    Route::get('/admin/packs/detailPaiement','PackController@detailPaiement');
+
 
 });

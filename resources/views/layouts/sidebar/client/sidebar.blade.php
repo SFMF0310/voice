@@ -21,17 +21,24 @@
                     <i class='material-icons nav_icon'>mic</i>
                     <span class="nav_name">Message</span>
                 </a>
+                <a href="/client/campagne" class="nav_link" data-bs-toggle="tooltip" data-placement="right" title="Campagnes">
+                    <i class='material-icons nav_icon'>campaign</i>
+                    <span class="nav_name">Campagnes</span>
+                </a>
                 <a href="/client/contact" class="nav_link" data-toggle="tooltip" data-placement="right" title="Contacts">
                     <i class='material-icons nav_icon'>groups</i>
                     <span class="nav_name">Contacts</span>
                 </a>
-                 <a href="/client/utilisateur" class="nav_link" data-toggle="tooltip" data-placement="right" title="Paramétre">
+                @if ($_SESSION['profil'] == 3)
+                    <a href="/client/utilisateur" class="nav_link" data-toggle="tooltip" data-placement="right" title="Paramétre">
                         <i class='material-icons nav_icon'>settings</i>
                         <span class="nav_name">Paramétre</span>
-                </a>
+                    </a>
+                @endif
+
                 <!-- <a href="#" class="nav_link">
                         <i class='bx bx-bar-chart-alt nav_icon'></i>
-                        <span class="nav_name">Files</span> </a> -->
+                        <span class="nav_nlame">Files</span> </a> -->
                 {{-- <a href="/client" class="nav_link" data-toggle="tooltip" data-placement="right" title="Stats">
                             <i class='material-icons nav_icon'>leaderboard</i>
                             <span class="nav_name">Stats</span>

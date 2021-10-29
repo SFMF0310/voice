@@ -5,16 +5,30 @@
   Utilisateurs
 @endsection
 @section('top-menu')
-<li class="nav-item active">
-    <a class="nav-link text-dark" href="/admin/utilisateur"><b>Utilisateurs |</b> <span class="sr-only"></span></a>
-</li>
+    @if (in_array($_SESSION['profil'],array(1,2)))
+        <li class="nav-item active">
+            <a class="nav-link text-dark" href="/admin/utilisateur"><b>Utilisateurs |</b> <span class="sr-only"></span></a>
+        </li>
 
-<li class="nav-item">
-    <a class="nav-link" href="/admin/packs">Tarifications |</a>
-</li>
-<li class="nav-item">
-    <a class="nav-link" href="">Mon compte</a>
-</li>
+        <li class="nav-item">
+            <a class="nav-link" href="/admin/packs">Tarifications |</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="">Mon compte</a>
+        </li>
+    @elseif (in_array($_SESSION['profil'],array(3)))
+        <li class="nav-item active">
+            <a class="nav-link text-dark" href="/client/utilisateur"><b>Utilisateurs |</b> <span class="sr-only"></span></a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="/client/packs">Tarifications |</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="">Mon compte</a>
+        </li>
+    @endif
+
 @endsection
 @section('sidebar2')
       @include('layouts.sidebar.sidebar2')
@@ -26,7 +40,12 @@
 <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <form method="post" action="/admin/ajoutUtilisateur" autocomplete="off" class="form-horizontal">
+    @if (in_array($_SESSION['profil'],array(1,2)))
+        <form method="post" action="/admin/ajoutUtilisateur" autocomplete="off" class="form-horizontal">
+    @elseif ($_SESSION['profil'] == 3)
+        <form method="post" action="/client/ajoutUtilisateur" autocomplete="off" class="form-horizontal">
+
+    @endif
             @csrf
 
             <div class="card ">
@@ -43,7 +62,7 @@
                               <option>--Sélectionner le rôle</option>
 
                               @foreach($role as $dataRole)
-                                @if ($_SESSION['profil'] == 3 && $dataRole->id == 2){
+                                @if ($_SESSION['profil'] == 3 && ($dataRole->id != 2 && $dataRole->id != 3)){
                                     <option value="{{$dataRole->id}}"> {{$dataRole->intitule}}  </option>
                                 }@elseif ($_SESSION['profil'] == 2 || $_SESSION['profil'] == 1 ){
                                     <option value="{{$dataRole->id}}"> {{$dataRole->intitule}}  </option>
@@ -180,11 +199,11 @@
 <div class="content">
   <div class="container-fluid">
      <div class="row ">
-      {{-- <div class="col-md-12"> 
+      {{-- <div class="col-md-12">
         <div class="card"> --}}
 
-          @if($_SESSION['profil']=1 or $_SESSION['profil']=2  )
-          {{-- <div class="card-header card-header-primary"> --}}
+            @if (in_array($_SESSION['profil'],array(1,2,3)))
+            {{-- <div class="card-header card-header-primary"> --}}
             {{-- <h4 class="card-title ">Liste des utilisateurs</h4> --}}
             <?php
             $user1 = cas()->getUser();
@@ -291,28 +310,45 @@
 
                     <td >
 
+                        @if (in_array($_SESSION['profil'],array(1,2)))
+                            <form action="{{ url('admin/modifUtilisateur/'.$data->id)}}" method="get">
+                                <div class="form-group">
+                                <button type="submit" class="btn btn-secondary btn-sm">{{$_SESSION['profil']}}<i class="material-icons">edit</i></button>
+                                </div>
+                            </form>
+                            </td>
 
-                      <form action="{{ url('admin/modifUtilisateur/'.$data->id)}}" method="get">
-                        <div class="form-group">
-                          <button type="submit" class="btn btn-secondary btn-sm"><i class="material-icons">edit</i></button>
-                        </div>
-                      </form>
+                            <td >
+                            <form action="/admin/deleteUtilisateur/{{$data->id ?? ''}}" onsubmit="return confirm('Confirmez-vous la suppression');" method="post">
+                                @csrf
+
+                                <div class="form-group">
+
+                                    <button type="submit" class="btn btn-danger btn-sm"><i class="material-icons">delete</i></button>
+                                </div>
+
+                            </form>
+                        @elseif ($_SESSION['profil'] == 3)
+                            <form action="{{ url('client/modifUtilisateur/'.$data->id)}}" method="get">
+                                <div class="form-group">
+                                <button type="submit" class="btn btn-secondary btn-sm"><i class="material-icons">edit</i></button>
+                                </div>
+                            </form>
+                            </td>
+
+                            <td >
+                            <form action="/client/deleteUtilisateur/{{$data->id ?? ''}}" onsubmit="return confirm('Confirmez-vous la suppression');" method="post">
+                                @csrf
+
+                                <div class="form-group">
+
+                                    <button type="submit" class="btn btn-danger btn-sm"><i class="material-icons">delete</i></button>
+                                </div>
+
+                            </form>
+                        @endif
+
                     </td>
-
-                    <td >
-                      <form action="/admin/deleteUtilisateur/{{$data->id ?? ''}}" onsubmit="return confirm('Confirmez-vous la suppression');" method="post">
-                        @csrf
-
-                        <div class="form-group">
-
-                            <button type="submit" class="btn btn-danger btn-sm"><i class="material-icons">delete</i></button>
-                        </div>
-
-                      </form>
-                    </td>
-
-
-
                   </tr>
                @endforeach
 

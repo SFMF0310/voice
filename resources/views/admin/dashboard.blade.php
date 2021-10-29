@@ -89,7 +89,7 @@
                                 <thead class="border-top thead" >
                                     <tr class="border_bottom  align-items-center">
                                         <th class="">Nom</th>
-                                        <th class="">Stats</th>
+                                        <th class="">Stats{{ $_SESSION['profil']}}</th>
                                         <th class="">Supprimer</th>
                                     </tr>
                                 </thead>

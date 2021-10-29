@@ -15,7 +15,7 @@ class ClientMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if (cas()->authenticate() && in_array($_SESSION['profil'],array(3))) {
+        if (cas()->authenticate() && in_array($_SESSION['profil'],array(3,4))) {
             return $next($request);
        }
 

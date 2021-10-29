@@ -29,13 +29,13 @@ class ClientController extends Controller
 
                 return view('admin.dashboard',compact('clients','nbProfils','nbCampagne','successedMessage','message'));
         }
-        elseif(in_array($_SESSION['profil'],array(3))){
+        elseif(in_array($_SESSION['profil'],array(3,4))){
 
                 $clients = DB::table('voice_uprofil')->selectRaw('*')->where('user',$_SESSION['user'])->orderBy('id','asc')->get() ;
                 $nbContact =  DB::table('voice_contact')->where('client','=',$clients[0]->id)->count('*');
                 // $nbProfils =  DB::table('voice_uprofil')->selectRaw('count(*)')->groupBy('id');
                 // $nbCampagne = DB::table('voice_campagne')->selectRaw('count(*)')->groupBy('id');
-                return redirect("/client/".$clients[0]->id."/dashbaord");
+                return redirect("/client/".$clients[0]->client."/dashbaord");
 
         }
     }
