@@ -177,8 +177,8 @@ use App\Models\VoiceClient;
 
         <div class="col-md-12">
 
-        
-            <div class="card border border-secondary" style="margin-top:40px;" >
+        @foreach($campagne as $dataCampagne)
+            <div class="card border border-secondary" style="margin-top:20px;" >
               
               <div class="card-body " >
                
@@ -188,16 +188,17 @@ use App\Models\VoiceClient;
 
                     <div class="col-12 ">
                       <div class="row py-1">
-                      <div class="d-flex col-3 ">  <div><i class="material-icons">sms</i></div> <div class="text-left"> <p >Vocal 32 |Campagne Covid 19   </p> </div></div>
-                      <div class="col-3" > <p >8 585 appels réussis    </p> </div>
-                      <div class="col-3" > <p >252 appels échoués    </p> </div>
-                      <div class="col-3" > <p >Analyses  97 %    </p> </div>
+                        <div class="d-flex col-3 ">  <div><i class="material-icons">sms</i></div> <div class="text-left"> <p >Vocal 32 |Campagne Covid 19   </p> </div></div>
+                        <div class="col-3" > <p >8 585 appels réussis    </p> </div>
+                        <div class="col-3" > <p >252 appels échoués    </p> </div>
+                        <div class="col-3" > <p >Analyses  97 %    </p> </div>
                       </div>
                     </div>
 
                   </div>
               </div>
             </div>
+        @endforeach
         </div>
 
         

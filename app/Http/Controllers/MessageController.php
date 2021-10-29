@@ -15,6 +15,15 @@ class MessageController extends Controller
     public function index(){
 
         $campagne=VoiceCampagne::all();
+
+        if($_SESSION['profil']==3 || $_SESSION['profil'] == 4){
+
+            $client=DB::select('select client from voice_uprofil where user="'.$_SESSION['user'].'" ');
+
+            $campagne=VoiceCampagne::where('client', $client[0]->client)->get();
+            
+        }
+
         $langue=VoiceLangue::all();
 
         return view('admin.message',compact('campagne','langue'));
