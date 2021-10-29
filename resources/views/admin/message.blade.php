@@ -7,7 +7,7 @@
 
 
 @section('sidebar2')
-      
+
     <!-- <form style="background-color: rgba(245, 245, 245, 0);margin-top:50px;">
       <select class="form-control" style="background-color: rgba(245, 245, 245, 0);border-top: none;border-right: none;border-left: none;">
         <option value=""> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Choisir la langue </option>
@@ -38,7 +38,7 @@
 @section('content')
 
 
-<?php 
+<?php
 use App\Models\VoiceLocalite;
 use App\Models\VoiceClient;
 
@@ -47,18 +47,18 @@ use App\Models\VoiceClient;
 ?>
 
 <div class="content ">
-  
+
   <div class="container-fluid">
 
 
     <div class="row">
       <!-- <div class="col-md-12">
 
-        
+
           <div class="card border border-secondary" style="background-color: rgba(245, 245, 245, 0.4);margin-top:20px;" >
-            
+
             <div class="card-body " >
-             
+
                 <div class="row " >
                   <div class="col-12 ">
 
@@ -75,18 +75,18 @@ use App\Models\VoiceClient;
       </div> -->
 
       <div class="col-md-12 ">
-        
+
         <div class="card border border-secondary" style="background-color: rgba(245, 245, 245, 0.4);margin-top:20px;">
-          
+
           <div class="card-body">
-           
+
               <div class="row">
                 <div class="col-12">
 
                   <div class="row py-2">
 
-                  
-                    <h4 class="col-5 text-right py-3">Enrdegistrez votre message vocal</h4>
+
+                    <h4 class="col-5 text-right py-3">Enregistrez votre message vocal{{$_SESSION['profil']}}</h4>
 
                       <div class=" form-group col-3 ">
                               <select id="encodingTypeSelect">
@@ -94,12 +94,12 @@ use App\Models\VoiceClient;
                                 <option value="mp3" selected>MP3 (MPEG-1 Audio Layer III) (.mp3)</option>
                                 <option value="ogg">Ogg Vorbis (.ogg)</option>
                               </select>
-                              
+
                               <div id="controls " style="margin-left:20px;">
                                   <br>
                                   <button id="recordButton"><img src="{{asset('assets/img/play.png') }}"></button>
                                   <button id="pausebtn" disabled ><img src="{{asset('assets/img/pause.png') }}"></button>
-                                  &nbsp; &nbsp; &nbsp; &nbsp;  
+                                  &nbsp; &nbsp; &nbsp; &nbsp;
                                   <button id="stopButton" ><img src="{{asset('assets/img/stop.png') }}"></button>
 
                                  <!--  <div class="col-md-2">
@@ -135,7 +135,7 @@ use App\Models\VoiceClient;
         @elseif($_SESSION['profil']==3 || $_SESSION['profil'] == 4)
         <form method="POST" action="/client/envoi-message" style="background-color: rgba(245, 245, 245, 0);margin-top:20px;"  enctype="multipart/form-data">
         @endif
-          
+
              @csrf
             <select class="form-control" name="campagne" style="background-color: rgba(245, 245, 245, 0);border-top: none;border-right: none;border-left: none;" required>
               <option value="">Selectionnez les destinataire de votre campagne </option>
@@ -167,21 +167,21 @@ use App\Models\VoiceClient;
       </div>
 
         <!-- <div class=" card-body col-12 ">
-                   
+
           <br>
-          
+
             <div class="d-flex "> <div><img class="" src="{{ asset('assets/img/xammbay.png') }}" class="shadow" width="50" height="50"></div> <div class="text-left"> <strong >Xamsa Mbay  </strong> <span class="miniDesc">Approche Chaîne de Valeur </span></div></div>
-          
-          
+
+
         </div> -->
 
         <div class="col-md-12">
 
-        
+
             <div class="card border border-secondary" style="margin-top:40px;" >
-              
+
               <div class="card-body " >
-               
+
                   <div class="row " >
 
 
@@ -200,9 +200,9 @@ use App\Models\VoiceClient;
             </div>
         </div>
 
-        
+
       </div>
-      
+
     </div>
   </div>
 </div>

@@ -17,12 +17,16 @@
                     </ul>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item text-dark"><b>Description</b>: {{$_SESSION['desc']}}</li>
-                    
+
                     </ul>
                 </div>
             </div>
             <div class="card-footer d-flex justify-content-end">
-                <a href="/admin" class="btn btn-success">Retour à l'acceuil</a>
+                @if (in_array($_SESSION['profil'],array(1,2)))
+                    <a href="/admin" class="btn btn-success">Retour à l'acceuil</a>
+                @elseif (in_array($_SESSION['profil'],array(3,4)))
+                    <a href="/client" class="btn btn-success">Retour à l'acceuil</a>
+                @endif
             </div>
         {{-- @endif --}}
 
@@ -40,7 +44,7 @@
 
 $(document).ready(function(){
     e.preventDefault();
-    $(document).bind("keydown", disable_f5);    
+    $(document).bind("keydown", disable_f5);
 });
 </script>
 @endsection

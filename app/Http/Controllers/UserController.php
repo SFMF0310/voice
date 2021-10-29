@@ -33,10 +33,10 @@ class Usercontroller extends Controller
             return view('admin.utilisateur',compact('user','mlUser','role','clients'));
 
         }
-        elseif (in_array($_SESSION['profil'],array(3))) {
+        elseif (in_array($_SESSION['profil'],array(3,4))) {
 
             $clients = DB::table('voice_clients')->get();
-            $clientConnectes =DB::table('voice_uprofil')->where('user','=',$_SESSION['user'])->get();               
+            $clientConnectes =DB::table('voice_uprofil')->where('user','=',$_SESSION['user'])->get();
             // $user = DB::table('voice_uprofil')->join('ml_users','voice_uprofil.user','=','ml_users.id')
             // ->join('voice_profil','voice_uprofil.profil','=','voice_profil.id')
             // ->where('voice_uprofil.id','=',$clientConnectes[0]->id)->get();
@@ -296,9 +296,12 @@ class Usercontroller extends Controller
         //$user->numero_compte=$request->input('numero_compte');
         $user->profil=$request->input('profil');
         $user->update();
-
+        if(in_array($_SESSION['profil'],array(1,2))){
             return redirect('/admin/utilisateur')->with('success','Utilisateur modifié avec succès');
-
+        }
+        elseif(in_array($_SESSION['profil'],array(3,4))){
+            return redirect('/client/utilisateur')->with('success','Utilisateur modifié avec succès');
+        }
 
     }
 

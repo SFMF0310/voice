@@ -149,16 +149,16 @@ Route::middleware(['casAuth','client'])->group(function(){
     Route::get('choixdept/{dept}', 'ChoixController@choixDept');
     Route::get('choixcomm/{comm}', 'ChoixController@choixComm');
                     /* Personnel */
-Route::middleware(['casAuth','personnel'])->group(function(){
-    Route::get('/client/personnel', function () {
-        return view('client.personnel.index');
-    });
+// Route::middleware(['casAuth','personnel'])->group(function(){
+//     Route::get('/client/personnel', function () {
+//         return view('client.personnel.index');
+//     });
     // Route::get('/logout',function(){
     //     cas()->logout();
     //     return redirect('htpps://auth.mlouma.com/cas/logout');
     // });
 
-});
+// });
 Route::middleware(['casAuth'])->group(function(){
 
     Route::get('/admin/packs','PackController@index');

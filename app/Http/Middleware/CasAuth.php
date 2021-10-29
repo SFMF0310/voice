@@ -41,8 +41,7 @@ class CasAuth
 
             }
             else{
-                session()->put('cas_user', cas()->user() );
-
+                session()->put('cas_user', cas()->user());
                 $getsolde = DB::table('voice_credit_client')->where('structure',$if_profil_exist[0]->client)->get() ;
                 if(!empty($getsolde[0])){
                   $solde = $getsolde[0]->credit_total ;

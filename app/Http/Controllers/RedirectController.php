@@ -13,18 +13,18 @@ class RedirectController extends Controller
             return redirect('/admin');
 
         }
-        elseif($_SESSION['profil'] == 3){
+        elseif($_SESSION['profil'] == 3 || $_SESSION['profil'] == 4){
 
             return redirect('/client');
 
 
         }
-        elseif($_SESSION['profil'] == 4){
+        // elseif($_SESSION['profil'] == 4){
 
-            return redirect('/personnel');
+        //     return redirect('client/personnel');
 
 
-        }
+        // }
 
     }
 }

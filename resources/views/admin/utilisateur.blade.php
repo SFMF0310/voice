@@ -202,8 +202,8 @@
       {{-- <div class="col-md-12">
         <div class="card"> --}}
 
-          @if($_SESSION['profil']=1 or $_SESSION['profil']=2  )
-          {{-- <div class="card-header card-header-primary"> --}}
+            @if (in_array($_SESSION['profil'],array(1,2,3)))
+            {{-- <div class="card-header card-header-primary"> --}}
             {{-- <h4 class="card-title ">Liste des utilisateurs</h4> --}}
             <?php
             $user1 = cas()->getUser();
@@ -310,28 +310,45 @@
 
                     <td >
 
+                        @if (in_array($_SESSION['profil'],array(1,2)))
+                            <form action="{{ url('admin/modifUtilisateur/'.$data->id)}}" method="get">
+                                <div class="form-group">
+                                <button type="submit" class="btn btn-secondary btn-sm">{{$_SESSION['profil']}}<i class="material-icons">edit</i></button>
+                                </div>
+                            </form>
+                            </td>
 
-                      <form action="{{ url('admin/modifUtilisateur/'.$data->id)}}" method="get">
-                        <div class="form-group">
-                          <button type="submit" class="btn btn-secondary btn-sm"><i class="material-icons">edit</i></button>
-                        </div>
-                      </form>
+                            <td >
+                            <form action="/admin/deleteUtilisateur/{{$data->id ?? ''}}" onsubmit="return confirm('Confirmez-vous la suppression');" method="post">
+                                @csrf
+
+                                <div class="form-group">
+
+                                    <button type="submit" class="btn btn-danger btn-sm"><i class="material-icons">delete</i></button>
+                                </div>
+
+                            </form>
+                        @elseif ($_SESSION['profil'] == 3)
+                            <form action="{{ url('client/modifUtilisateur/'.$data->id)}}" method="get">
+                                <div class="form-group">
+                                <button type="submit" class="btn btn-secondary btn-sm"><i class="material-icons">edit</i></button>
+                                </div>
+                            </form>
+                            </td>
+
+                            <td >
+                            <form action="/client/deleteUtilisateur/{{$data->id ?? ''}}" onsubmit="return confirm('Confirmez-vous la suppression');" method="post">
+                                @csrf
+
+                                <div class="form-group">
+
+                                    <button type="submit" class="btn btn-danger btn-sm"><i class="material-icons">delete</i></button>
+                                </div>
+
+                            </form>
+                        @endif
+
                     </td>
-
-                    <td >
-                      <form action="/admin/deleteUtilisateur/{{$data->id ?? ''}}" onsubmit="return confirm('Confirmez-vous la suppression');" method="post">
-                        @csrf
-
-                        <div class="form-group">
-
-                            <button type="submit" class="btn btn-danger btn-sm"><i class="material-icons">delete</i></button>
-                        </div>
-
-                      </form>
-                    </td>
-
-
-
                   </tr>
                @endforeach
 

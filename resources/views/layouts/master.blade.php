@@ -84,14 +84,14 @@ The above copyright notice and this permission notice shall be included in all c
         <?php }elseif ($_SESSION['role']=='Super administrateur') {?>
             @include('layouts.sidebar.admin.sidebar')
 
-        <?php }elseif ($_SESSION['role']=='Client') {?>
+        <?php }elseif ($_SESSION['role']=='Client' || $_SESSION['role']=='Personnel') {?>
             @include('layouts.sidebar.client.sidebar')
 
-        <?php }elseif($_SESSION['role']=='Personnel') { ?>
-
-            @include('layouts.sidebar.personnel.sidebar')
-
         <?php } ?>
+
+            {{-- @include('layouts.sidebar.personnel.sidebar') --}}
+
+        
 
 
 

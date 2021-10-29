@@ -27,7 +27,7 @@ class DetailClientController extends Controller
 
             return view('admin.clients.details',compact('client','clientProfils','campagnes','message','successedMessage','nbContact'));
         }
-        elseif ($_SESSION['profil'] == 3) {
+        elseif ($_SESSION['profil'] == 3 || $_SESSION['profil'] == 4) {
             # code...
             $idClient = DB::table('voice_uprofil')->where('user','=',$_SESSION['user'])->value('client');
             $client = DB::table('voice_clients')->selectRaw('*')->where('id',$idClient)->get();
