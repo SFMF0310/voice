@@ -225,9 +225,19 @@
           {{-- <div class="card-body"> --}}
 
               @if (session('success'))
-                {{-- <div class="alert alert-success" role="alert">
+                <div class="alert alert-success" role="alert">
                   <strong>{{session('success')}}</strong>
-                </div> --}}
+                </div> 
+              @endif
+              @if (session('error'))
+                <div class="alert alert-danger" role="alert">
+                  <strong>{{session('success')}}</strong>
+                </div> 
+              @endif
+              @if (session('warning'))
+                <div class="alert alert-warning" role="alert">
+                  <strong>{{session('success')}}</strong>
+                </div> 
               @endif
               <div class="row">
                   <div class="col-12 d-flex justify-content-end">
