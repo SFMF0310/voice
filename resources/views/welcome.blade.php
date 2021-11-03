@@ -118,17 +118,17 @@
           <div class="col-md-12 d-flex align-items-stretch">
             <div class="content col-md-8 text-dark rounded-left" style="background-color: #DEDEDE;">
               <!-- <h3>Why Choose Medilab?</h3> -->
-              <p>
-                <ul>
-                  <li><h4>Installation du système Maintenance</h4></li>
-                  <li><h4>Formation et prise en main</h4></li>
-                  <li><h4>2000 Minutes d’appels pour 3 mois</h4></li>
+                <p>
+                    <ul>
+                    <li><h2>Installation du système Maintenance</h2></li>
+                    <li><h2>Formation et prise en main</h2></li>
+                    <li><h2>2000 Minutes d’appels pour 3 mois</h2></li>
 
-                </ul>
-              </p>
-              <div class="text-center">
-                <!-- <a href="#" class="more-btn">Learn More <i class="bx bx-chevron-right"></i></a> -->
-              </div>
+                    </ul>
+                </p>
+                <div class="text-center">
+                    <!-- <a href="#" class="more-btn">Learn More <i class="bx bx-chevron-right"></i></a> -->
+                </div>
             </div>
             <div class="content col-md-4 rounded-right border-left-0" style="background-color: #52504F;">
               <h3>Souscrivez à votre
@@ -287,7 +287,9 @@
                 2000 mn d’appels
                 Validité 3 mois
               </h4>
-              <div class="card-footer col-md-12 btn text-light rounded" style="background-color: #086634;" disabled><h3>200.000 FCFA</h3></div>
+              <div class="card-footer col-md-12 btn text-light rounded" style="background-color: #086634;" disabled>
+                <h3>200.000 FCFA</h3>
+              </div>
 
             </div>
 
@@ -360,11 +362,11 @@
 
         </div> -->
           <p>
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
+            <b>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
             nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam
             erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci
             tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
-            conse
+            conse</b>
           </p>
       </div>
      </section>  <!--End Services Section -->

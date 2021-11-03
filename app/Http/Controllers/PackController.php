@@ -121,7 +121,7 @@ class PackController extends Controller
                 "env"          =>  'prod',
                // "success_url"  =>  "https://voicev2.mlouma.com/admin/packs/retourpaiement?idPack=".$transactionInfos['id_pack']."&item_name=".$transactionInfos['pack']."&item_price=".$transactionInfos['price']."&nb_minute=".$transactionInfos['nb_minute']."&ref_command=".$transactionInfos['ref'],
                 //"ipn_url"	   =>  'https://voicev2.mlouma.com/admin/packs/retourpaiement',
-                "success_url"  =>  "http://127.0.0.1:8000/admin/packs/retourpaiement?idPack=".$transactionInfos['id_pack']."&item_price=".$transactionInfos['price']."&nb_minute=".$transactionInfos['nb_minute']."&ref_command=".$transactionInfos['ref'],
+                "success_url"  =>  "https://voicev2.mlouma.com/admin/packs/retourpaiement?idPack=".$transactionInfos['id_pack']."&item_price=".$transactionInfos['price']."&nb_minute=".$transactionInfos['nb_minute']."&ref_command=".$transactionInfos['ref'],
                 "ipn_url"	   =>  'https://voicev2.mlouma.com/admin/packs/retourpaiement',
                 "cancel_url"   =>  'https://meteombay.mlouma.com',
                 "custom_field" =>   ''

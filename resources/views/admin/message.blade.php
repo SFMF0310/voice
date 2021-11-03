@@ -86,7 +86,7 @@ use App\Models\VoiceClient;
                   <div class="row py-2">
 
 
-                    <h4 class="col-5 text-right py-3">Enregistrez votre message vocal{{$_SESSION['profil']}}</h4>
+                    <h4 class="col-5 text-right py-3">Enregistrez votre message vocal</h4>
 
                       <div class=" form-group col-3 ">
                               <select id="encodingTypeSelect">

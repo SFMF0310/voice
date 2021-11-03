@@ -127,7 +127,7 @@ class Usercontroller extends Controller
                             if ($req) {
                                 ldap_close($conn);
                                 $u = DB::table('ml_users')->where('tel', $infos['tel'])->value('id');
-                                $ifProfilExist = DB::table('voice_uprofil')->where('user', $u[0]->id)->value('id');
+                                $ifProfilExist = DB::table('voice_uprofil')->where('user', $u)->value('id');
                                 if (!is_null($ifProfilExist)) {
                                     if (in_array($_SESSION['profil'], array(1,2))) {
                                         return redirect('/admin/utilisateur')->with('warning', 'Ce profil existe déja');

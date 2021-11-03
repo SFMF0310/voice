@@ -313,7 +313,7 @@
                         @if (in_array($_SESSION['profil'],array(1,2)))
                             <form action="{{ url('admin/modifUtilisateur/'.$data->id)}}" method="get">
                                 <div class="form-group">
-                                <button type="submit" class="btn btn-secondary btn-sm">{{$_SESSION['profil']}}<i class="material-icons">edit</i></button>
+                                <button type="submit" class="btn btn-secondary btn-sm"><i class="material-icons">edit</i></button>
                                 </div>
                             </form>
                             </td>
