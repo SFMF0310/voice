@@ -24,9 +24,9 @@
         <li class="nav-item">
             <a class="nav-link" href="/client/packs">Tarifications |</a>
         </li>
-        <li class="nav-item">
+        {{-- <li class="nav-item">
             <a class="nav-link" href="">Mon compte</a>
-        </li>
+        </li> --}}
     @endif
 
 @endsection
@@ -227,17 +227,17 @@
               @if (session('success'))
                 <div class="alert alert-success" role="alert">
                   <strong>{{session('success')}}</strong>
-                </div> 
+                </div>
               @endif
               @if (session('error'))
                 <div class="alert alert-danger" role="alert">
                   <strong>{{session('success')}}</strong>
-                </div> 
+                </div>
               @endif
               @if (session('warning'))
                 <div class="alert alert-warning" role="alert">
                   <strong>{{session('success')}}</strong>
-                </div> 
+                </div>
               @endif
               <div class="row">
                   <div class="col-12 d-flex justify-content-end">
@@ -252,6 +252,9 @@
 
             {{-- <div class="table-responsive"> --}}
              <?php //var_dump($financement); ?>
+             <style>
+                
+             </style>
             <div>
               <table class="display table  " id="datatableid2">
                 <thead class=" text-primary thead">

@@ -91,7 +91,7 @@ The above copyright notice and this permission notice shall be included in all c
 
             {{-- @include('layouts.sidebar.personnel.sidebar') --}}
 
-        
+
 
 
 
@@ -149,6 +149,7 @@ The above copyright notice and this permission notice shall be included in all c
   <script src="https://cdnjs.com/libraries/Chart.js"></script>
 
   <script src="{{asset('assets/js/script.js') }}"></script>
+  <script src="{{asset('assets/js/notif.js') }}"></script>
   <script src="{{asset('assets/js/charts.js') }}"></script>
 
 
@@ -209,7 +210,14 @@ The above copyright notice and this permission notice shall be included in all c
  <script type="text/javascript" src="{{asset('assets/js/audio/WebAudioRecorder.min.js') }}"></script>
  <script type="text/javascript" src="{{asset('assets/js/audio/WebAudioRecorderMp3.min.js') }}"></script>
  <script type="text/javascript" src="{{asset('assets/js/audio/app.js') }}"></script>
-
+ {{-- <script>
+    var alertClose = () => {
+    var alertNode = document.querySelector('.alert')
+    var alert = new bootstrap.Alert.getInstance(alertNode)
+    alert.close()
+    // alert();
+    }
+</script> --}}
 <!--  chart js  -->
 
 
@@ -220,7 +228,7 @@ The above copyright notice and this permission notice shall be included in all c
         "language": {
               "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
           },
-        //   "dom": '<"toolbar">frtip'
+          "dom": '<"toolbar">frtip'
       });
     //   $("div.toolbar").html('<b>Custom tool bar! Text/images etc.</b>');
     } );

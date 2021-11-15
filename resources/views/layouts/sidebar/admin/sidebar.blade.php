@@ -48,7 +48,7 @@
             </div>
         </div>
         <div>
-        <a href="#" class="nav_link" data-bs-toggle="tooltip" title="Some tooltip text!">
+        <a href="/admin/notifications" class="nav_link" data-bs-toggle="tooltip" title="Some tooltip text!">
             <i class='material-icons nav_icon'>notifications</i>
             <span class="nav_name">Notifications</span>
         </a>

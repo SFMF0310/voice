@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CreditClientModel;
-use App\Models\PaiementModel;
+use App\Models\MlUser;
 use Illuminate\Http\Request;
+use App\Models\PaiementModel;
+use App\Models\CreditClientModel;
 use Illuminate\Support\Facades\DB;
+use App\Notifications\PaimentNotification;
+use Illuminate\Support\Facades\Notification;
 
 class PackController extends Controller
 {
@@ -121,7 +124,7 @@ class PackController extends Controller
                 "env"          =>  'prod',
                // "success_url"  =>  "https://voicev2.mlouma.com/admin/packs/retourpaiement?idPack=".$transactionInfos['id_pack']."&item_name=".$transactionInfos['pack']."&item_price=".$transactionInfos['price']."&nb_minute=".$transactionInfos['nb_minute']."&ref_command=".$transactionInfos['ref'],
                 //"ipn_url"	   =>  'https://voicev2.mlouma.com/admin/packs/retourpaiement',
-                "success_url"  =>  "https://voicev2.mlouma.com/admin/packs/retourpaiement?idPack=".$transactionInfos['id_pack']."&item_price=".$transactionInfos['price']."&nb_minute=".$transactionInfos['nb_minute']."&ref_command=".$transactionInfos['ref'],
+                "success_url"  =>  "http://127.0.0.1:8000/admin/packs/retourpaiement?idPack=".$transactionInfos['id_pack']."&item_price=".$transactionInfos['price']."&nb_minute=".$transactionInfos['nb_minute']."&ref_command=".$transactionInfos['ref'],
                 "ipn_url"	   =>  'https://voicev2.mlouma.com/admin/packs/retourpaiement',
                 "cancel_url"   =>  'https://meteombay.mlouma.com',
                 "custom_field" =>   ''
@@ -178,7 +181,8 @@ class PackController extends Controller
                     $_SESSION['forfait'] = $transaction['forfait']  ;
                     $_SESSION['nb_minute'] = $transaction['nb_minute'] ;
                     $_SESSION['desc'] = $transaction['desc'] ;
-
+                    $user = MlUser::findOrFail($_SESSION['user']);
+                    Notification::send($user,new PaimentNotification($transaction['ref_command'],$transaction['forfait'],$transaction['nb_minute'],$transaction['item_price']));
                     return redirect('admin/packs/detailPaiement');
                 }
                 else{
@@ -197,11 +201,13 @@ class PackController extends Controller
                     $_SESSION['forfait']=$transaction['forfait']  ;
                     $_SESSION['nb_minute']=$transaction['nb_minute'] ;
                     $_SESSION['desc']=$transaction['desc'] ;
+                    $user = MlUser::findOrFail($_SESSION['user']);
+                    Notification::send($user,new PaimentNotification($transaction['ref_command'],$transaction['forfait'],$transaction['nb_minute'],$transaction['item_price']));
                     return view('admin.detailPaiement');
 
                 }
                 else{
-                    return redirect('/historique');
+                    return redirect('/packs');
                 }
             }
         }

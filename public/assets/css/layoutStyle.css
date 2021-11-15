@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
-
+/* .form-control-sm{
+    width: 85em !important;
+} */
 :root {
     --header-height: 3rem;
     --nav-width: 68px;

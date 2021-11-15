@@ -11,8 +11,10 @@ use Illuminate\Http\Request;
 use Adldap\Laravel\Facades\Adldap;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Notifications\ClientNotification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Redirect;
 
 
@@ -90,7 +92,7 @@ class Usercontroller extends Controller
                         $user->client = $client;
                         $user->save();
                         if (in_array($_SESSION['profil'], array(1,2))) {
-                            return redirect('/admin/utilisateur')->with('success', 'Profil ajouté avec succés');
+                            return redirect('/admin/utilisateur')->with('success', 'Profil ajouté avec succs');
                         } else {
                             return redirect('/cient/utilisateur')->with('success', 'Profil ajouté avec succés');
                         }
@@ -141,14 +143,19 @@ class Usercontroller extends Controller
                                     $user->client = $infos['client'];
                                     $user->save();
                                     if (in_array($_SESSION['profil'], array(1,2))) {
-                                        return redirect('/admin/utilisateur')->with('success', 'Profil ajouté avec succés');
+                                        $user = MlUser::findOrFail($_SESSION['user']);
+                                        Notification::send($user,new ClientNotification($infos['intitule'],$infos['prenom'],$infos['login']));
+                                        return redirect('/admin/utilisateur')->with('success', 'Profil ajouté avec succ');
                                     } else {
+                                        $user = MlUser::findOrFail($_SESSION['user']);
+                                        Notification::send($user,new ClientNotification($infos['intitule'],$infos['prenom'],$infos['login']));
                                         return redirect('/client/utilisateur')->with('success', 'Profil ajouté avec succés');
                                     }
                                 }
                             } else {
                                 if (in_array($_SESSION['profil'], array(1,2))) {
-                                    return redirect('/admin/utilisateur')->with('success', 'Profil ajouté avec succés');
+                                   
+                                    return redirect('/admin/utilisateur')->with('success', 'Profil non ajouté');
                                 } else {
                                     return redirect('/client/utilisateur')->with('erreur', 'Profil non ajouté');
                                 }
@@ -201,8 +208,12 @@ class Usercontroller extends Controller
                         $user->profil=2;
                         if ($user->save()) {
                             if (in_array($_SESSION['profil'], array(1,2))) {
+                                $user = MlUser::findOrFail($_SESSION['user']);
+                                Notification::send($user,new ClientNotification($infos['intitule'],$infos['prenom'],$infos['login']));
                                 return redirect('/admin/utilisateur')->with('success', 'Profil ajouté avec succès');
                             } else {
+                                $user = MlUser::findOrFail($_SESSION['user']);
+                                Notification::send($user,new ClientNotification($infos['intitule'],$infos['prenom'],$infos['login']));
                                 return redirect('/client/utilisateur')->with('success', 'Profil ajouté avec succès');
                             }
                         } else {
@@ -243,8 +254,12 @@ class Usercontroller extends Controller
                                 $user->client =($infos['role'] == 4) ? $infos['client'] : null;
                                 $user->save();
                                 if (in_array($_SESSION['profil'], array(1,2))) {
+                                    $user = MlUser::findOrFail($_SESSION['user']);
+                                    Notification::send($user,new ClientNotification($infos['intitule'],$infos['prenom'],$infos['login']));
                                     return redirect('/admin/utilisateur')->with('success', 'Profil ajouté avec succès');
                                 } else {
+                                    $user = MlUser::findOrFail($_SESSION['user']);
+                                    Notification::send($user,new ClientNotification($infos['intitule'],$infos['prenom'],$infos['login']));
                                     return redirect('/client/utilisateur')->with('success', 'Profil ajouté avec succès');
                                 }
                             } else {
@@ -271,6 +286,7 @@ class Usercontroller extends Controller
                 }
             }
         }
+
     }
 
 

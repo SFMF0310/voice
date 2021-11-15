@@ -19,7 +19,7 @@
                 </a>
                 <a href="/client/message" class="nav_link" data-toggle="tooltip" data-placement="right" title="Contacts">
                     <i class='material-icons nav_icon'>mic</i>
-                    <span class="nav_name">Message</span>
+                    <span class="nav_name">Messages</span>
                 </a>
                 <a href="/client/campagne" class="nav_link" data-bs-toggle="tooltip" data-placement="right" title="Campagnes">
                     <i class='material-icons nav_icon'>campaign</i>
@@ -32,7 +32,7 @@
                 @if ($_SESSION['profil'] == 3)
                     <a href="/client/utilisateur" class="nav_link" data-toggle="tooltip" data-placement="right" title="Paramétre">
                         <i class='material-icons nav_icon'>settings</i>
-                        <span class="nav_name">Paramétre</span>
+                        <span class="nav_name">Paramétres</span>
                     </a>
                 @endif
 
@@ -51,10 +51,13 @@
             </div>
         </div>
         <div>
-        <a href="#" class="nav_link" data-toggle="tooltip" title="Some tooltip text!">
+        @if ($_SESSION['profil'] == 3)
+
+        <a href="/client/notifications" class="nav_link" data-toggle="tooltip" title="Some tooltip text!">
             <i class='material-icons nav_icon'>notifications</i>
             <span class="nav_name">Notifications</span>
         </a>
+        @endif
         <!-- <div class="tooltip bs-tooltip-top bg-success" role="tooltip">
             <div class="arrow "></div>
             <div class="tooltip-inner ">

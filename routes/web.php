@@ -92,6 +92,11 @@ Route::middleware(['casAuth','admin'])->group(function(){
 
     Route::post('/admin/envoi-message','MessageController@store');
 
+    //notifications
+    Route::get('admin/notifications', 'NotificationController@index');
+
+
+
 
 
 });
@@ -142,6 +147,10 @@ Route::middleware(['casAuth','client'])->group(function(){
     Route::get('client/message', 'MessageController@index');
     Route::post('/client/envoi-message','MessageController@store');
 
+    //Notifications
+    Route::get('client/notifications', 'NotificationController@index');
+
+
 });
 
     //choix dynamique
@@ -166,5 +175,6 @@ Route::middleware(['casAuth'])->group(function(){
     Route::get('/admin/packs/retourpaiement','PackController@retourpaiement');
     Route::get('/admin/packs/detailPaiement','PackController@detailPaiement');
 
+    Route::get('admin/markAsRead/{id}', 'NotificationController@notificationsMarkAsRead');
 
 });

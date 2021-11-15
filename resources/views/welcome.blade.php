@@ -289,7 +289,7 @@
               </h4>
               <div class="card-footer col-md-12 btn text-light rounded" style="background-color: #086634;" disabled>
                 <h3>200.000 FCFA</h3>
-              </div>
+            </div>
 
             </div>
 
