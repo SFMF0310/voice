@@ -197,188 +197,198 @@
 
 
 <div class="content">
-  <div class="container-fluid">
-     <div class="row ">
-      {{-- <div class="col-md-12">
-        <div class="card"> --}}
+    <div class="container-fluid">
+        <div class="row ">
+            <div class="col-md-12">
+                <div class="card-body col-md-12">
+                    <div class="container">
+                        <div class="container">
+                            <div>
 
-            @if (in_array($_SESSION['profil'],array(1,2,3)))
-            {{-- <div class="card-header card-header-primary"> --}}
-            {{-- <h4 class="card-title ">Liste des utilisateurs</h4> --}}
-            <?php
-            $user1 = cas()->getUser();
-            $login = DB::table('ml_users')->where('login', $user1)->first();
+                                @if (in_array($_SESSION['profil'],array(1,2,3)))
+                                {{-- <div class="card-header card-header-primary"> --}}
+                                {{-- <h4 class="card-title ">Liste des utilisateurs</h4> --}}
+                                <?php
+                                $user1 = cas()->getUser();
+                                $login = DB::table('ml_users')->where('login', $user1)->first();
 
-            $if_profil_exist =DB::table('voice_uprofil')
-            ->join('ml_users','ml_users.id','=','voice_uprofil.user')
-            ->join('voice_profil','voice_uprofil.profil','=','voice_profil.id')
-            ->where('voice_uprofil.user' ,'=' ,$login->id)->first();
-
-
+                                $if_profil_exist =DB::table('voice_uprofil')
+                                ->join('ml_users','ml_users.id','=','voice_uprofil.user')
+                                ->join('voice_profil','voice_uprofil.profil','=','voice_profil.id')
+                                ->where('voice_uprofil.user' ,'=' ,$login->id)->first();
 
 
 
-            //var_dump($if_profil_exist[0]->designation);
-            //echo "$if_profil_exist->designation";
-            ?>
-          {{-- </div> --}}
-          {{-- <div class="card-body"> --}}
 
-              @if (session('success'))
-                <div class="alert alert-success" role="alert">
-                  <strong>{{session('success')}}</strong>
+
+                                //var_dump($if_profil_exist[0]->designation);
+                                //echo "$if_profil_exist->designation";
+                                ?>
+                            {{-- </div> --}}
+                            {{-- <div class="card-body"> --}}
+
+                                @if (session('success'))
+                                    <div class="alert alert-success" role="alert">
+                                    <strong>{{session('success')}}</strong>
+                                    </div>
+                                @endif
+                                @if (session('error'))
+                                    <div class="alert alert-danger" role="alert">
+                                    <strong>{{session('success')}}</strong>
+                                    </div>
+                                @endif
+                                @if (session('warning'))
+                                    <div class="alert alert-warning" role="alert">
+                                    <strong>{{session('success')}}</strong>
+                                    </div>
+                                @endif
+                                <div class="row">
+                                    <div class="col-12 d-flex justify-content-end">
+                                        <a href="#addUser">
+                                        <button type="button" class="btn btn-success " data-toggle="modal" data-target="#exampleModal">
+                                            Ajouter un utilisateur
+                                        </button>
+                                        </a>
+                                    </div>
+                                </div>
+
+
+                                {{-- <div class="table-responsive"> --}}
+                                <?php //var_dump($financement); ?>
+                                <style>
+                                    
+                                </style>
+                                <div>
+                                <table class="display table  " id="datatableid2">
+                                    <thead class=" text-primary thead">
+
+                                    <th class="text-dark">
+                                        Prenom
+                                    </th>
+                                    <th class="text-dark">
+                                        Nom
+                                    </th>
+                                    <th class="text-dark">
+                                        Email
+                                    </th>
+
+
+                                    <th class="text-dark">
+                                        Login
+                                    </th>
+
+                                    <th class="text-dark">
+                                        Tel
+                                    </th>
+
+                                    <th class="text-dark">
+                                        Profil
+                                    </th>
+
+                                    <th class="text-dark">
+                                        Modifier
+                                    </th>
+                                    <th class="text-dark">
+                                        Supprimer
+                                    </th>
+
+
+                                    </thead>
+                                    <tbody>
+
+                                @foreach($user as $data)
+                                    <tr class="tr">
+
+                                        <td>
+                                        {{$data->prenom}}
+                                        </td>
+                                        <td>
+                                        {{$data->nom}}
+                                        </td>
+                                        <td>
+                                        {{$data->mail}}
+                                        </td>
+
+                                        <td>
+                                        {{$data->login }}
+                                        </td>
+
+                                        <td>
+                                        {{$data->tel}}
+                                        </td>
+
+                                        <td>
+                                        {{$data->intitule}}
+                                        </td>
+
+
+
+
+                                        <td >
+
+                                            @if (in_array($_SESSION['profil'],array(1,2)))
+                                                {{-- <form action="{{ url('admin/modifUtilisateur/'.$data->id)}}" method="get">
+                                                    <div class="form-group">
+                                                    <button type="submit" class="btn btn-secondary btn-sm"><i class="material-icons">edit</i></button>
+                                                    </div>
+                                                </form> --}}
+                                                <a href="{{ url('admin/modifUtilisateur/'.$data->id)}}"><i class="material-icons text-dark">edit</i></a>
+                                                </td>
+
+                                                <td >
+                                                {{-- <form action="/admin/deleteUtilisateur/{{$data->id ?? ''}}" onsubmit="return confirm('Confirmez-vous la suppression');" method="post">
+                                                    @csrf
+
+                                                    <div class="form-group">
+
+                                                        <button type="submit" class="btn btn-danger btn-sm"><i class="material-icons">delete</i></button>
+                                                    </div>
+
+                                                </form> --}}
+                                                <a href="/admin/deleteUtilisateur/{{$data->id ?? ''}}"><i class="material-icons text-danger">delete</i></a>
+                                            @elseif ($_SESSION['profil'] == 3)
+                                                {{-- <form action="{{ url('client/modifUtilisateur/'.$data->id)}}" method="get">
+                                                    <div class="form-group">
+                                                    <button type="submit" class="btn btn-secondary btn-sm"><i class="material-icons">edit</i></button>
+                                                    </div>
+                                                </form> --}}
+                                                <a href="{{ url('client/modifUtilisateur/'.$data->id)}}"><i class="material-icons text-dark">edit</i></a>
+                                                </td>
+
+                                                <td >
+                                                {{-- <form action="/client/deleteUtilisateur/{{$data->id ?? ''}}" onsubmit="return confirm('Confirmez-vous la suppression');" method="post">
+                                                    @csrf
+
+                                                    <div class="form-group">
+
+                                                        <button type="submit" class="btn btn-danger btn-sm"><i class="material-icons">delete</i></button>
+                                                    </div>
+
+                                                </form> --}}
+                                                <a href="/client/deleteUtilisateur/{{$data->id ?? ''}}" onclick="return confirm('Confirmez-vous la suppression');"><i class="material-icons">delete</i></a>
+                                            @endif
+
+                                        </td>
+                                    </tr>
+                                @endforeach
+
+                                    </tbody>
+                                </table>
+                                </div>
+
+                                {{-- </div> --}}
+                            {{-- </div> --}}
+                            @else
+                            <h2>Vous n'avez pas l'autorisation de consulter cette page</h2>
+                            @endif
+                        
+                        </div>
+                    </div>
                 </div>
-              @endif
-              @if (session('error'))
-                <div class="alert alert-danger" role="alert">
-                  <strong>{{session('success')}}</strong>
-                </div>
-              @endif
-              @if (session('warning'))
-                <div class="alert alert-warning" role="alert">
-                  <strong>{{session('success')}}</strong>
-                </div>
-              @endif
-              <div class="row">
-                  <div class="col-12 d-flex justify-content-end">
-                    <a href="#addUser">
-                      <button type="button" class="btn btn-success " data-toggle="modal" data-target="#exampleModal">
-                        Ajouter un utilisateur
-                      </button>
-                    </a>
-                  </div>
-              </div>
-
-
-            {{-- <div class="table-responsive"> --}}
-             <?php //var_dump($financement); ?>
-             <style>
-                
-             </style>
-            <div>
-              <table class="display table  " id="datatableid2">
-                <thead class=" text-primary thead">
-
-                  <th class="text-dark">
-                    Prenom
-                  </th>
-                  <th class="text-dark">
-                    Nom
-                  </th>
-                  <th class="text-dark">
-                    Email
-                  </th>
-
-
-                  <th class="text-dark">
-                    Login
-                  </th>
-
-                  <th class="text-dark">
-                    Tel
-                  </th>
-
-                  <th class="text-dark">
-                    Profil
-                  </th>
-
-                  <th class="text-dark">
-                    Modifier
-                  </th>
-                  <th class="text-dark">
-                    Supprimer
-                  </th>
-
-
-                </thead>
-                <tbody>
-
-               @foreach($user as $data)
-                  <tr class="tr">
-
-                    <td>
-                     {{$data->prenom}}
-                    </td>
-                    <td>
-                      {{$data->nom}}
-                    </td>
-                    <td>
-                     {{$data->mail}}
-                    </td>
-
-                    <td>
-                      {{$data->login }}
-                    </td>
-
-                    <td>
-                      {{$data->tel}}
-                    </td>
-
-                    <td>
-                      {{$data->intitule}}
-                    </td>
-
-
-
-
-                    <td >
-
-                        @if (in_array($_SESSION['profil'],array(1,2)))
-                            <form action="{{ url('admin/modifUtilisateur/'.$data->id)}}" method="get">
-                                <div class="form-group">
-                                <button type="submit" class="btn btn-secondary btn-sm"><i class="material-icons">edit</i></button>
-                                </div>
-                            </form>
-                            </td>
-
-                            <td >
-                            <form action="/admin/deleteUtilisateur/{{$data->id ?? ''}}" onsubmit="return confirm('Confirmez-vous la suppression');" method="post">
-                                @csrf
-
-                                <div class="form-group">
-
-                                    <button type="submit" class="btn btn-danger btn-sm"><i class="material-icons">delete</i></button>
-                                </div>
-
-                            </form>
-                        @elseif ($_SESSION['profil'] == 3)
-                            <form action="{{ url('client/modifUtilisateur/'.$data->id)}}" method="get">
-                                <div class="form-group">
-                                <button type="submit" class="btn btn-secondary btn-sm"><i class="material-icons">edit</i></button>
-                                </div>
-                            </form>
-                            </td>
-
-                            <td >
-                            <form action="/client/deleteUtilisateur/{{$data->id ?? ''}}" onsubmit="return confirm('Confirmez-vous la suppression');" method="post">
-                                @csrf
-
-                                <div class="form-group">
-
-                                    <button type="submit" class="btn btn-danger btn-sm"><i class="material-icons">delete</i></button>
-                                </div>
-
-                            </form>
-                        @endif
-
-                    </td>
-                  </tr>
-               @endforeach
-
-                </tbody>
-              </table>
             </div>
-
-            {{-- </div> --}}
-          {{-- </div> --}}
-          @else
-          <h2>Vous n'avez pas l'autorisation de consulter cette page</h2>
-          @endif
         </div>
     </div>
 </div>
-  {{-- </div>
-</div> --}}
 @endsection
 
 

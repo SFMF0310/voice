@@ -36,7 +36,7 @@ Route::middleware(['casAuth','admin'])->group(function(){
     Route::post('/admin/ajoutUtilisateur','UserController@store');
     Route::get('/admin/modifUtilisateur/{id}', 'UserController@update');
     Route::put('admin/update-utilisateur-saving/{id}', 'UserController@updateSaving');
-    Route::post('/admin/deleteUtilisateur/{id}', 'UserController@delete');
+    Route::get('/admin/deleteUtilisateur/{id}', 'UserController@delete');
 
     // Packs
 
@@ -52,7 +52,7 @@ Route::middleware(['casAuth','admin'])->group(function(){
     Route::post('/admin/ajoutCampagne','CampagneController@store');
     Route::get('/admin/modifCampagne/{id}', 'CampagneController@update');
     Route::put('admin/update-campagne-saving/{id}', 'CampagneController@updateSaving');
-    Route::post('/admin/deleteCampagne/{id}', 'CampagneController@delete');
+    Route::get('/admin/deleteCampagne/{id}', 'CampagneController@delete');
     Route::get('/admin/detailsCampagne/{id}', 'CampagneController@details');
     Route::post('/admin/ajoutCampagneContact','CampagneController@storeContact');
     Route::post('/admin/deleteContactCampagne/{id}', 'CampagneController@deleteContact');
@@ -66,7 +66,7 @@ Route::middleware(['casAuth','admin'])->group(function(){
     Route::get('/admin/modifContact/{id}', 'ContactController@update');
     Route::put('admin/update-contact-saving/{id}', 'ContactController@updateSaving');
     Route::get('/admin/detailsContact/{id}', 'ContactController@details');
-    Route::post('/admin/deleteContact/{id}', 'ContactController@delete');
+    Route::get('/admin/deleteContact/{id}', 'ContactController@delete');
 
     //
 
@@ -110,7 +110,7 @@ Route::middleware(['casAuth','client'])->group(function(){
     Route::post('/client/ajoutUtilisateur','UserController@store');
     Route::get('/client/modifUtilisateur/{id}', 'UserController@update');
     Route::put('client/update-utilisateur-saving/{id}', 'UserController@updateSaving');
-    Route::post('/client/deleteUtilisateur/{id}', 'UserController@delete');
+    Route::get('/client/deleteUtilisateur/{id}', 'UserController@delete');
 
 
 
@@ -121,7 +121,7 @@ Route::middleware(['casAuth','client'])->group(function(){
     Route::get('/client/modifContact/{id}', 'ContactController@update');
     Route::put('client/update-contact-saving/{id}', 'ContactController@updateSaving');
     Route::get('/client/detailsContact/{id}', 'ContactController@details');
-    Route::post('/client/deleteContact/{id}', 'ContactController@delete');
+    Route::get('/client/deleteContact/{id}', 'ContactController@delete');
 
 
 
@@ -137,10 +137,10 @@ Route::middleware(['casAuth','client'])->group(function(){
     Route::post('/client/ajoutCampagne','CampagneController@store');
     Route::get('/client/modifCampagne/{id}', 'CampagneController@update');
     Route::put('client/update-campagne-saving/{id}', 'CampagneController@updateSaving');
-    Route::post('/client/deleteCampagne/{id}', 'CampagneController@delete');
+    Route::get('/client/deleteCampagne/{id}', 'CampagneController@delete');
     Route::get('/client/detailsCampagne/{id}', 'CampagneController@details');
     Route::post('/client/ajoutCampagneContact','CampagneController@storeContact');
-    Route::post('/client/deleteContactCampagne/{id}', 'CampagneController@deleteContact');
+    Route::get('/client/deleteContactCampagne/{id}', 'CampagneController@deleteContact');
     Route::post('/client/import_contactCampagne', 'CampagneController@import');
 
     //Message
